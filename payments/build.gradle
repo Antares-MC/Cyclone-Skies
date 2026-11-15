@@ -1,0 +1,45 @@
+plugins {
+    id 'net.fabricmc.fabric-loom-remap'
+}
+
+version = rootProject.property('payments_version')
+group = 'com.paymentalerts'
+base {
+    archivesName = 'paymentalerts'
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${rootProject.property('minecraft_version')}"
+    // This module's source uses Mojang names (net.minecraft.client.gui.GuiGraphics, ...).
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.property('loader_version')}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.property('fabric_api_version')}"
+}
+
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+// Stable file name so cyclone's fabric.mod.json can reference it.
+tasks.named('remapJar') {
+    archiveFileName = 'paymentalerts.jar'
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+}

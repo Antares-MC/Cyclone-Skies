@@ -1,0 +1,33 @@
+# Build output
+.gradle/
+build/
+*/build/
+out/
+
+# Dev run directory: worlds, logs, generated resource packs, screenshots
+cyclone/run/
+run/
+
+# Logs and crash dumps
+*.log
+logs/
+crash-*.txt
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Local junk
+*.tmp
+*.bak

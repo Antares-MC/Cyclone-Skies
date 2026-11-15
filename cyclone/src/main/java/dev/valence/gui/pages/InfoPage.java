@@ -1,0 +1,73 @@
+package dev.valence.gui.pages;
+
+import dev.valence.gui.OptionList;
+import dev.valence.gui.Page;
+import dev.valence.gui.ValenceScreen;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.class_2561;
+import net.minecraft.class_332;
+
+@Environment(EnvType.CLIENT)
+public class InfoPage extends Page {
+   private final OptionList list = new OptionList();
+
+   @Override
+   public String nameKey() {
+      return "valence.page.info";
+   }
+
+   @Override
+   public String subtitleKey() {
+      return "valence.page.info.subtitle";
+   }
+
+   @Override
+   public String icon() {
+      return "info";
+   }
+
+   @Override
+   public void init(ValenceScreen screen, int x, int y, int w, int h) {
+      super.init(screen, x, y, w, h);
+      this.list.setBounds(x, y, w, h);
+      this.list.clear();
+      this.list.add(new OptionList.Header(class_2561.method_43471("valence.info.section.about")));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43469("valence.info.version", new Object[]{"1.9.9", "1.21.11"}), 1));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.about"), 3));
+      this.list.add(new OptionList.Header(class_2561.method_43471("valence.info.section.changelog")));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.199"), 5));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.198"), 5));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.197"), 4));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.196"), 5));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.195"), 6));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.194"), 5));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.193"), 3));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.192"), 4));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.191"), 5));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.190"), 7));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.181"), 6));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.180"), 8));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.170"), 8));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.160"), 10));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.150"), 9));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.140"), 12));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.130"), 12));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.120"), 8));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.110"), 8));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.changelog.100"), 6));
+      this.list.add(new OptionList.Header(class_2561.method_43471("valence.info.section.credits")));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.credits"), 5));
+      this.list.add(new OptionList.Info(() -> class_2561.method_43471("valence.info.credits.cord"), 2));
+   }
+
+   @Override
+   public void render(class_332 g, int mx, int my, float pt) {
+      this.list.render(g, mx, my);
+   }
+
+   @Override
+   public boolean mouseScrolled(double mx, double my, double amount) {
+      return this.list.mouseScrolled(mx, my, amount);
+   }
+}

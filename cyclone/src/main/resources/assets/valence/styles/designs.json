@@ -1,0 +1,11219 @@
+{
+ "_info": "Valence built-in style designs. Each design is a list of operations applied to the vanilla texture (see Recipes.java).",
+ "crystal": [
+  {
+   "id": "amethyst",
+   "swatch": "#8b3dff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#2a0a4a",
+      "#8b3dff",
+      "#e6c8ff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#5b3fa8",
+      "#d9c7ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rose",
+   "swatch": "#ff4fa3",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#4a0a24",
+      "#ff4fa3",
+      "#ffd1e8"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#a0607e",
+      "#ffe4f0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "aqua",
+   "swatch": "#21d4fd",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#06303a",
+      "#21d4fd",
+      "#d7fbff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#4aa3b8",
+      "#e8fdff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#3b5bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#0b1450",
+      "#3b5bff",
+      "#c9d4ff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#3b4f9e",
+      "#dbe3ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#4dff6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#0a3010",
+      "#4dff6a",
+      "#e0ffe0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#4f8f55",
+      "#e6ffe8"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "inferno",
+   "swatch": "#ff5a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#3a0800",
+      "#ff5a1f",
+      "#ffe0a0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#9e5a3b",
+      "#ffe9d6"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#2a0f45",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#000000",
+      "#2a0f45",
+      "#b06bff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#1a1424",
+      "#7a6a9a"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#3a2400",
+      "#ffc21f",
+      "#fff3c0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#a08440",
+      "#fff6d8"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#cfe8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#3a5068",
+      "#cfe8ff",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#9fb4c8",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neon",
+   "swatch": "#ff2fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#2a0030",
+      "#ff2fd8",
+      "#ffd0f8"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#00a8c0",
+      "#7dffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sunset",
+   "swatch": "#ff8a4f",
+   "ops": [
+    {
+     "op": "gradient",
+     "region": "core",
+     "from": "#ff3f8b",
+     "to": "#ffb34f",
+     "dir": "h"
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#9e6a7a",
+      "#ffe6d6"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#e3123c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#300008",
+      "#e3123c",
+      "#ff9db0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#8a3a48",
+      "#ffd8de"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#bdbdbd",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#202020",
+      "#bdbdbd",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#6a6a6a",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eclipse",
+   "swatch": "#101010",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#ffffff",
+      "#1a1a1a",
+      "#050505"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#5a5a5a",
+      "#e0e0e0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#b794f6",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#3a2a5a",
+      "#b794f6",
+      "#f3ecff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#8a7ab0",
+      "#f3ecff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "toxix_0v0",
+   "swatch": "#e0102a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#050000",
+      "#e0102a",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#2a0508",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#ff2bd6",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#12002a",
+      "#ff2bd6",
+      "#9ffcff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#881580",
+      "#d8fdff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#1fc9b0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#031a1a",
+      "#1fc9b0",
+      "#d6fff6"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#117165",
+      "#eefffb"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#ffe600",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#2a2400",
+      "#ffe600",
+      "#fffbd0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#948500",
+      "#fffdec"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#5f7fb0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#0a1220",
+      "#5f7fb0",
+      "#e6f0ff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#344868",
+      "#f5f9ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#c8692f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#2a1004",
+      "#c8692f",
+      "#ffe0c0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#793c19",
+      "#fff2e5"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "core",
+     "colors": [
+      "#3a0a30",
+      "#ff6fcf",
+      "#fff0fa"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "glass",
+     "colors": [
+      "#9c3c7f",
+      "#fff9fd"
+     ]
+    }
+   ]
+  }
+ ],
+ "totem": [
+  {
+   "id": "gold",
+   "swatch": "#e8a317",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#5a3200",
+      "#e8a317",
+      "#fff3a0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#0a5a2a",
+      "#4dff8a"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ice",
+   "swatch": "#7fd3ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#1a3a5a",
+      "#7fd3ff",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#006a8a",
+      "#9ff0ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#9b5cff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#2a0f45",
+      "#9b5cff",
+      "#f0e0ff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#5a0030",
+      "#ff6ad5"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rose",
+   "swatch": "#ff6aa8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#4a0a24",
+      "#ff6aa8",
+      "#ffe0ee"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#2a0040",
+      "#c78bff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#1fd36a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#003a1a",
+      "#1fd36a",
+      "#d0ffe0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#5a4000",
+      "#ffd84f"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "shadow",
+   "swatch": "#2a2338",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#050508",
+      "#2a2338",
+      "#7a6a9a"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#3a0060",
+      "#d08bff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ghost",
+   "swatch": "#e8ecff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#8a90a8",
+      "#e8ecff",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#004a6a",
+      "#4fd8ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neon",
+   "swatch": "#ff4fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#0a0012",
+      "#24103a"
+     ]
+    },
+    {
+     "op": "outline",
+     "region": "body",
+     "color": "#ff4fd8"
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#00e0ff",
+      "#bff8ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mini",
+   "swatch": "#ffd84f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#5a3200",
+      "#f0b020",
+      "#fff6b0"
+     ]
+    },
+    {
+     "op": "shrink",
+     "scale": 0.75
+    }
+   ]
+  },
+  {
+   "id": "mini_ice",
+   "swatch": "#9fe0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#1a3a5a",
+      "#8fdcff",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#006a8a",
+      "#9ff0ff"
+     ]
+    },
+    {
+     "op": "shrink",
+     "scale": 0.75
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#e3123c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#300008",
+      "#e3123c",
+      "#ffb0c0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#6a4a00",
+      "#ffd84f"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ocean",
+   "swatch": "#1f8bff",
+   "ops": [
+    {
+     "op": "gradient",
+     "region": "body",
+     "from": "#1fd1ff",
+     "to": "#2a3bff"
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#e8f6ff",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#9a9a9a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#1a1a1a",
+      "#9a9a9a",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#3a3a3a",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sunset",
+   "swatch": "#ff8a4f",
+   "ops": [
+    {
+     "op": "gradient",
+     "region": "body",
+     "from": "#ff4f9e",
+     "to": "#ffb34f"
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#3a0060",
+      "#c78bff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "toxix_0v0",
+   "swatch": "#e0102a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#000000",
+      "#e0102a",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#500008",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#ff2bd6",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#12002a",
+      "#ff2bd6",
+      "#9ffcff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#12002a",
+      "#00f0ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#1fc9b0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#031a1a",
+      "#1fc9b0",
+      "#d6fff6"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#031a1a",
+      "#3df2d0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#ffe600",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#2a2400",
+      "#ffe600",
+      "#fffbd0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#2a2400",
+      "#fff200"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#5f7fb0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#0a1220",
+      "#5f7fb0",
+      "#e6f0ff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#0a1220",
+      "#9ec8ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#c8692f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#2a1004",
+      "#c8692f",
+      "#ffe0c0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#2a1004",
+      "#6fe0c0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "body",
+     "colors": [
+      "#3a0a30",
+      "#ff6fcf",
+      "#fff0fa"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "eyes",
+     "colors": [
+      "#3a0a30",
+      "#7ff0ff"
+     ]
+    }
+   ]
+  }
+ ],
+ "obsidian": [
+  {
+   "id": "midnight",
+   "swatch": "#14205a",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#020210",
+      "#14205a",
+      "#5a7aff"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#7b3fd0",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#0a0214",
+      "#3a1270",
+      "#b07bff"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#a01030",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#0a0004",
+      "#4a0618",
+      "#ff4a6a"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#0c8a40",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#000a04",
+      "#063a1a",
+      "#3dff9a"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "clean",
+   "swatch": "#1a0f2e",
+   "ops": [
+    {
+     "op": "smooth",
+     "amount": 0.7
+    },
+    {
+     "op": "map",
+     "colors": [
+      "#0c0718",
+      "#24163e",
+      "#4a3478"
+     ],
+     "lo": 0.05,
+     "hi": 0.2
+    },
+    {
+     "op": "border",
+     "color": "#3a2a5c"
+    }
+   ]
+  },
+  {
+   "id": "outline",
+   "swatch": "#8b5cf6",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#05020a",
+      "#1d1030",
+      "#6a4ab0"
+     ],
+     "hi": 0.35
+    },
+    {
+     "op": "border",
+     "color": "#8b5cf6"
+    }
+   ]
+  },
+  {
+   "id": "outline_white",
+   "swatch": "#e8e0ff",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#05020a",
+      "#1d1030",
+      "#6a4ab0"
+     ],
+     "hi": 0.35
+    },
+    {
+     "op": "border",
+     "color": "#e8e0ff"
+    }
+   ]
+  },
+  {
+   "id": "starry",
+   "swatch": "#2a1a50",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#020108",
+      "#0d0820",
+      "#2a1a50"
+     ],
+     "hi": 0.35
+    },
+    {
+     "op": "specks",
+     "color": "#ffffff",
+     "density": 0.05,
+     "seed": 4
+    }
+   ]
+  },
+  {
+   "id": "glossy",
+   "swatch": "#3a2a6a",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#060312",
+      "#3a2470",
+      "#f0e6ff"
+     ],
+     "gamma": 0.65,
+     "hi": 0.3
+    }
+   ]
+  },
+  {
+   "id": "pink",
+   "swatch": "#ff8ad8",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#12040c",
+      "#5a1a46",
+      "#ff8ad8"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "ash",
+   "swatch": "#6a6a70",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3e",
+      "#a0a0aa"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "ocean",
+   "swatch": "#0a6a8a",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#000a10",
+      "#063a4a",
+      "#3de0ff"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8c8e8",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#1a2a3a",
+      "#6a8aaa",
+      "#e8f4ff"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "toxix_0v0",
+   "swatch": "#e0102a",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#000000",
+      "#3a0008",
+      "#ff1030"
+     ],
+     "hi": 0.35
+    },
+    {
+     "op": "border",
+     "color": "#ffffff"
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#ff2bd6",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#090015",
+      "#7c1377",
+      "#ff2bd6"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#1fc9b0",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#010d0d",
+      "#0f685d",
+      "#1fc9b0"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#ffe600",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#151200",
+      "#897b00",
+      "#ffe600"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#5f7fb0",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#050910",
+      "#304360",
+      "#5f7fb0"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#c8692f",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#150802",
+      "#713817",
+      "#c8692f"
+     ],
+     "hi": 0.35
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fcf",
+   "ops": [
+    {
+     "op": "map",
+     "colors": [
+      "#1d0518",
+      "#923777",
+      "#ff6fcf"
+     ],
+     "hi": 0.35
+    }
+   ]
+  }
+ ],
+ "anchor": [
+  {
+   "id": "vibrant",
+   "swatch": "#b03dff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#3a0070",
+      "#b03dff",
+      "#ffd0ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pink",
+   "swatch": "#ff3d9e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#4a0028",
+      "#ff3d9e",
+      "#ffe0f0"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "golden",
+   "swatch": "#ffa31f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#4a1a00",
+      "#ffa31f",
+      "#fff3b0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#0a0604",
+      "#2a1a10",
+      "#7a5a3a"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "aqua",
+   "swatch": "#21d4fd",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#003040",
+      "#21d4fd",
+      "#e0fbff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#ff1f3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#3a0004",
+      "#ff1f3d",
+      "#ffd0d8"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#080204",
+      "#24080e",
+      "#5a2a34"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2dff7a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#003a14",
+      "#2dff7a",
+      "#e0ffe8"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#ffffff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#000000",
+      "#0a0810",
+      "#2a2440"
+     ],
+     "hi": 0.5
+    },
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#6a6a8a",
+      "#ffffff",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#c8e0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#1a2a3a",
+      "#4a6a8a",
+      "#c8e0ff"
+     ],
+     "hi": 0.5
+    },
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#5aa0ff",
+      "#e8f6ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neon",
+   "swatch": "#00f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#04020a",
+      "#140a22",
+      "#3a2a5a"
+     ],
+     "hi": 0.5
+    },
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#00303a",
+      "#00f0ff",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "border",
+     "region": "frame",
+     "color": "#ff3dd8",
+     "frame": 16
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#9a9a9a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#9a9a9a"
+     ],
+     "hi": 0.5
+    },
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#5a5a5a",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "outline",
+   "swatch": "#b794ff",
+   "ops": [
+    {
+     "op": "border",
+     "region": "frame",
+     "color": "#b794ff",
+     "frame": 16
+    }
+   ]
+  },
+  {
+   "id": "royal",
+   "swatch": "#c8a040",
+   "ops": [
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#0a0604",
+      "#3a2a10",
+      "#b09050"
+     ],
+     "hi": 0.5
+    },
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#3a0070",
+      "#9b5cff",
+      "#efe0ff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ice",
+   "swatch": "#9fc8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#2a4aa0",
+      "#9fc8ff",
+      "#ffffff"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "toxix_0v0",
+   "swatch": "#e0102a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#400006",
+      "#ff1030",
+      "#ffffff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#000000",
+      "#0c0204",
+      "#2a0a10"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#ff2bd6",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#12002a",
+      "#ff2bd6",
+      "#9ffcff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#050508",
+      "#14141c",
+      "#4e194a"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#1fc9b0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#031a1a",
+      "#1fc9b0",
+      "#d6fff6"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#050508",
+      "#14141c",
+      "#164141"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#ffe600",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#2a2400",
+      "#ffe600",
+      "#fffbd0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#050508",
+      "#14141c",
+      "#4e4815"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#5f7fb0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#0a1220",
+      "#5f7fb0",
+      "#e6f0ff"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#050508",
+      "#14141c",
+      "#262e41"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#c8692f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#2a1004",
+      "#c8692f",
+      "#ffe0c0"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#050508",
+      "#14141c",
+      "#412920"
+     ],
+     "hi": 0.5
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "glow",
+     "colors": [
+      "#3a0a30",
+      "#ff6fcf",
+      "#fff0fa"
+     ]
+    },
+    {
+     "op": "map",
+     "region": "frame",
+     "colors": [
+      "#050508",
+      "#14141c",
+      "#4e2a48"
+     ],
+     "hi": 0.5
+    }
+   ]
+  }
+ ],
+ "swords": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 24
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 35
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 31,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 52
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 59
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 70
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 66,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 73
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 136,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 143
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 171,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 234
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 248,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 255
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 266
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 262
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 273
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 276
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 283,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 311,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "spears": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#7b46e0",
+     "light": "#e8d8ff",
+     "seed": 155
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 166
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 162,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 183
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#3a1a8a",
+     "light": "#9b7bff",
+     "seed": 190
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 201
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 197,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 204
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 267,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 274
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#d8f014",
+     "to": "#ffffb0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 302,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 365
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 379,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#14c0a0",
+     "light": "#c8fff4",
+     "seed": 386
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 397
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#4a1ac0",
+     "light": "#c0a8ff",
+     "seed": 393
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 404
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 407
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 414,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.0,
+     "hi": 0.74
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 442,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "tools": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 155
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 166
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 162,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 183
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 190
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 201
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 197,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 204
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 267,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 274
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 302,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 365
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 379,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 386
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 397
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 393
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 404
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 407
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 414,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 442,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "mace": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 286
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 297
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 293,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 314
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 321
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 332
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 328,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 335
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 398,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 405
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 433,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 496
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 510,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 517
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 528
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 524
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 535
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 538
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 545,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 573,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "shield": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 417
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 428
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 424,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 445
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 452
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 463
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 459,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 466
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 529,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 536
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 564,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 627
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 641,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 648
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 659
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 655
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 666
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 669
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 676,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 704,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "armor": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 548
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 559
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 555,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 576
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 583
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 594
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 590,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 597
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 660,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 667
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 695,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 758
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 772,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 779
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 790
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 786
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 797
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 800
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 807,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 835,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "gapples": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 679
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 690
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 686,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 707
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 714
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 725
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 721,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 728
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 791,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 798
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 826,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 889
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 903,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 910
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 921
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 917
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 928
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 931
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 938,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 966,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "pearls": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 810
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 821
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 817,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 838
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 845
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 856
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 852,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 859
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 922,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 929
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 957,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 1020
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 1034,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 1041
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 1052
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 1048
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 1059
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 1062
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 1069,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 1097,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "xp": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 941
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 952
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 948,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 969
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 976
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 987
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 983,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 990
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 1053,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 1060
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 1088,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 1151
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 1165,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 1172
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 1183
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 1179
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 1190
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 1193
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 1200,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 1228,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ],
+ "cobweb": [
+  {
+   "id": "aurora",
+   "swatch": "#3ef2b4",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241e",
+      "#1fbf8f",
+      "#c9fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#1fbf8f",
+     "to": "#c9fff0",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "nebula",
+   "swatch": "#8b5cff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#150a34",
+     "light": "#7b46e0",
+     "seed": 1072
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8d8ff",
+     "density": 0.05,
+     "seed": 1083
+    }
+   ]
+  },
+  {
+   "id": "ember",
+   "swatch": "#ff7a1f",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0a02",
+      "#ff6a10",
+      "#ffe6b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe6b0",
+     "seed": 1079,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "frost",
+   "swatch": "#a8e8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e2a3a",
+      "#7fd4f0",
+      "#f2fdff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#7fd4f0",
+     "to": "#f2fdff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "jade",
+   "swatch": "#37d67a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032414",
+      "#22b562",
+      "#d8ffe8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "sakura",
+   "swatch": "#ff9ecb",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#3a0a22",
+      "#ff86bb",
+      "#ffe4f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffe4f0",
+     "density": 0.1,
+     "seed": 1100
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "swatch": "#6a3bd8",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02010a",
+     "light": "#3a1a8a",
+     "seed": 1107
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#9b7bff",
+     "density": 0.05,
+     "seed": 1118
+    }
+   ]
+  },
+  {
+   "id": "plasma",
+   "swatch": "#ff3df0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#24022a",
+      "#e01ac0",
+      "#ffd6fb"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffd6fb",
+     "seed": 1114,
+     "cell": 3,
+     "width": 0.11
+    }
+   ]
+  },
+  {
+   "id": "toxic",
+   "swatch": "#9dff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a1a02",
+      "#6fe014",
+      "#eaffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#eaffb0",
+     "density": 0.12,
+     "seed": 1121
+    }
+   ]
+  },
+  {
+   "id": "glacier",
+   "swatch": "#cfe9ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#12324a",
+      "#8fc6e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8fc6e8",
+     "to": "#ffffff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "midnight",
+   "swatch": "#22355c",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#03060e",
+      "#16264a",
+      "#6f93d8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "swatch": "#ffd93d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1a02",
+      "#ffbb1a",
+      "#fff4c0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.45
+    }
+   ]
+  },
+  {
+   "id": "obsidian",
+   "swatch": "#4b2a6b",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#050308",
+      "#241436",
+      "#8a6bb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.4
+    }
+   ]
+  },
+  {
+   "id": "emerald",
+   "swatch": "#2ee08a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#032418",
+      "#12b06a",
+      "#c8ffe4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "ruby",
+   "swatch": "#ff2e4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81430",
+      "#ffc8d0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "sapphire",
+   "swatch": "#2e7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#1a56d8",
+      "#bcd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "amethyst",
+   "swatch": "#a86bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a0630",
+      "#8a3dff",
+      "#ecd8ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#8a3dff",
+     "to": "#ecd8ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "copper",
+   "swatch": "#e08a4a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1206",
+      "#c06a2a",
+      "#ffdcb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffdcb0",
+     "seed": 1184,
+     "cell": 6,
+     "width": 0.07
+    }
+   ]
+  },
+  {
+   "id": "candy",
+   "swatch": "#ff6fd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#300a26",
+      "#ff5ac0",
+      "#b8fff0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#b8fff0",
+     "density": 0.09,
+     "seed": 1191
+    }
+   ]
+  },
+  {
+   "id": "phantom",
+   "swatch": "#3a4a8a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04060e",
+      "#2a3a72",
+      "#9fb0ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.3
+    }
+   ]
+  },
+  {
+   "id": "volt",
+   "swatch": "#f2ff2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1e02",
+      "#d8f014",
+      "#ffffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "outline",
+     "region": "all",
+     "color": "#1a1e02"
+    }
+   ]
+  },
+  {
+   "id": "storm",
+   "swatch": "#7a9cc8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#080c14",
+      "#4a6a96",
+      "#d0e0f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "cyber",
+   "swatch": "#2ef2ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a12",
+      "#14c8e0",
+      "#ff5ad8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ff5ad8",
+     "seed": 1219,
+     "cell": 3,
+     "width": 0.1
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "swatch": "#ffc21e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a1e02",
+      "#e0a010",
+      "#fff0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.35
+    }
+   ]
+  },
+  {
+   "id": "crimson",
+   "swatch": "#d81e3a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#20020a",
+      "#b01024",
+      "#ffb0b8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.4
+    }
+   ]
+  },
+  {
+   "id": "mint",
+   "swatch": "#6ff0c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#04241a",
+      "#3fd8a0",
+      "#e0fff4"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lavender",
+   "swatch": "#c0a0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1030",
+      "#a080f0",
+      "#f0e6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#a080f0",
+     "to": "#f0e6ff",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "blueberry",
+   "swatch": "#5a7bff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#060a24",
+      "#3a5ae0",
+      "#c8d4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "mono",
+   "swatch": "#cfcfcf",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#1a1a1a",
+      "#8a8a8a",
+      "#f2f2f2"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.55
+    }
+   ]
+  },
+  {
+   "id": "noir",
+   "swatch": "#6a6a6a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0a0a",
+      "#3a3a3a",
+      "#b0b0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.6
+    }
+   ]
+  },
+  {
+   "id": "honey",
+   "swatch": "#ffcf4d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2e1a02",
+      "#f0b020",
+      "#fff6cc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "gradient",
+     "region": "all",
+     "from": "#f0b020",
+     "to": "#fff6cc",
+     "dir": "v",
+     "amount": 0.42
+    }
+   ]
+  },
+  {
+   "id": "cherry",
+   "swatch": "#ff3b52",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0208",
+      "#d81e34",
+      "#ffc0c8"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#ffc0c8",
+     "density": 0.08,
+     "seed": 1282
+    }
+   ]
+  },
+  {
+   "id": "slime",
+   "swatch": "#7cf05a",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a2206",
+      "#4fd02a",
+      "#e0ffcc"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    }
+   ]
+  },
+  {
+   "id": "lapis",
+   "swatch": "#3a6fe0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#020a24",
+      "#2a56c0",
+      "#a8c4ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#a8c4ff",
+     "seed": 1296,
+     "cell": 5,
+     "width": 0.08
+    }
+   ]
+  },
+  {
+   "id": "ender",
+   "swatch": "#2ee8c0",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#02140f",
+     "light": "#14c0a0",
+     "seed": 1303
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c8fff4",
+     "density": 0.05,
+     "seed": 1314
+    }
+   ]
+  },
+  {
+   "id": "voidpearl",
+   "swatch": "#7a4bff",
+   "ops": [
+    {
+     "op": "galaxy",
+     "region": "all",
+     "dark": "#0a0218",
+     "light": "#4a1ac0",
+     "seed": 1310
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#c0a8ff",
+     "density": 0.05,
+     "seed": 1321
+    }
+   ]
+  },
+  {
+   "id": "pearlwhite",
+   "swatch": "#e8f0ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a3040",
+      "#c0d0e8",
+      "#ffffff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.5
+    }
+   ]
+  },
+  {
+   "id": "lime",
+   "swatch": "#a8ff3d",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0e1e02",
+      "#7ae014",
+      "#e8ffb0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "specks",
+     "region": "all",
+     "color": "#e8ffb0",
+     "density": 0.1,
+     "seed": 1324
+    }
+   ]
+  },
+  {
+   "id": "soul",
+   "swatch": "#4fd8ff",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#02101a",
+      "#2aa8e0",
+      "#d0f6ff"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#d0f6ff",
+     "seed": 1331,
+     "cell": 4,
+     "width": 0.09
+    }
+   ]
+  },
+  {
+   "id": "meteor",
+   "swatch": "#ff6a2e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#200602",
+      "#e04a10",
+      "#ffd0a0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.5
+    }
+   ]
+  },
+  {
+   "id": "titan",
+   "swatch": "#8fa8c0",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#0a0e14",
+      "#6a8298",
+      "#e0e8f0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "smooth",
+     "region": "all",
+     "amount": 0.35
+    }
+   ]
+  },
+  {
+   "id": "knight",
+   "swatch": "#c8ccd8",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#14161c",
+      "#9aa0b0",
+      "#f2f4fa"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "contrast",
+     "region": "all",
+     "amount": 1.25
+    }
+   ]
+  },
+  {
+   "id": "crest",
+   "swatch": "#ff8a1e",
+   "ops": [
+    {
+     "op": "map",
+     "region": "all",
+     "colors": [
+      "#2a0e02",
+      "#e07a10",
+      "#ffe0b0"
+     ],
+     "lo": 0.04,
+     "hi": 0.96
+    },
+    {
+     "op": "veins",
+     "region": "all",
+     "color": "#ffe0b0",
+     "seed": 1359,
+     "cell": 5,
+     "width": 0.07
+    }
+   ]
+  }
+ ]
+}

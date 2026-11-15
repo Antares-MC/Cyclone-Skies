@@ -1,0 +1,129 @@
+# CycloneSkies + Payment Alerts (Minecraft 1.21.11, Fabric)
+
+One Gradle project, one jar. `cyclone/` is CycloneSkies; `payments/` is the paymentalerts mod
+(150+ themes, 44 payment effects) ported to 1.21.11 and bundled **inside** the CycloneSkies jar
+(Fabric jar-in-jar, same mechanism already used for Lithium and ImmediatelyFast).
+
+## Build
+JDK 21, internet for the first run:
+
+    ./gradlew build          (Windows: build.bat)
+
+Ship: `cyclone/build/libs/cycloneskies-1.9.9.jar` (contains `META-INF/jars/paymentalerts.jar`).
+Ignore the `-sources` jar and `payments/build/libs`.
+
+## Why two modules
+CycloneSkies source uses Intermediary names (`class_332`...). The paymentalerts source uses Mojang
+names (`GuiGraphics`...). One compile cannot use both, so each module compiles with its own mapping
+and the payments jar is embedded at `processResources` time. CycloneSkies talks to it only through
+reflection (`dev.valence.pay.PaymentsBridge`).
+
+## What you get
+- **Cyclone theme** (`cyclone`, second entry in the theme list): lilac `#A77BFF` -> indigo `#7C9CFF`,
+  ice-white accent `#E6F0FF`, cyan glow `#5FD8FF`. Pick it globally or per effect in
+  Payment settings -> Themes. One line in `payments/.../theme/Themes.java` if you want other colors.
+- **Payments page** in the CycloneSkies menu: alerts on/off, buttons to the alert settings and stats screens.
+- Keys: **H** toggle alerts (was K, which CycloneSkies already uses for its menu), **O** alert settings,
+  **J** stats. Chat command `/payalerts`.
+
+## UI themes
+The CycloneSkies menu has four palettes, selectable from the chips row on the **Settings** page and
+stored as `theme` in `config/valence.json`. **Cyclone is the default**; the other three are variants
+of the same design so nothing in the layout moves when you switch.
+
+| id | name | panels | accent | light | dark |
+|----|------|--------|--------|-------|------|
+| `cyclone` | Cyclone | deep navy | `#25D9F2` | `#A6F3FF` | `#0B6E86` |
+| `nebula` | Nebula | the stock purple | `#A77BFF` | `#E6D8FF` | `#5B3E9E` |
+| `ember` | Ember | warm charcoal | `#FF8A3D` | `#FFD9B0` | `#9E3E12` |
+| `jade` | Jade | dark teal | `#3DE0A0` | `#C6FFE9` | `#12785A` |
+
+`Theme.map` recolors every flat fill, gradient, pill, outline, glow and icon colour drawn inside the
+mod's own screens (`DrawContextThemeMixin`, gated on `ValenceScreen`, so vanilla menus, chat and the
+HUD are untouched). Textures are never tinted: `Theme.image` is deliberately unmapped, which keeps
+skin faces and cosmetic previews their real colours.
+
+## Cosmetics
+The **Cosmetics** page has three tabs: **Capes** (49), **Hats** (37) and **Wings** (19). Every tile
+renders a live 80x80 3D preview instead of a flat icon; the previews are software-rasterized into a
+`DynamicTexture` and cached per theme, and the wing previews re-raster at 8 fps so they animate.
+Hover a tile to see the name/group in the right-hand panel; click to equip or clear.
+
+- **Hats** are 3D meshes anchored on the head: 26 blocky `.bin` meshes shipped with the old cord
+  cosmetics (`assets/valence_cord/models/*.bin`, magic header `827149390`, 14 floats per triangle),
+  4 generated procedurally in `dev/valence/cosmetics/Hats.java` (`storm_crown`, `volt_halo`,
+  `neon_visor`, `mech_helm`, recoloured by the active theme) and **7 baked from the supplied packs**
+  (Fairyset, Emissary, Necros, Twilight, three Soul Reaper variants).
+- **Wings** are 13 generated meshes plus **6 baked from the packs** (Emissary, Necros, Twilight,
+  three Soul Reaper variants). The generated ones are built on a shared shoulder-blade "arm" curve so
+  they sweep outward and trail behind the body instead of ringing the head. Four generators: feathered
+  (angel, seraph, frost, phoenix, raven), membrane (dragon crimson/void, night bat), blade (cyber edge,
+  mech frame, storm) and insect (fairy, moon moth). Each pair animates with a slow flap; `storm` takes
+  its colours from the active theme.
+- **Pack models** are ordinary Blockbench files in
+  `assets/valence_cord/cosmetics/models/*.json` (13 files, 24 textures). `CosmeticModels` bakes the
+  cube list into triangles at first use; a per-model `scale`/`yOff`/`zOff` in `CosmeticModels.HATS`
+  and `WINGS` seats each piece on the head or the shoulder blades. UVs are normalised against a fixed
+  16-unit block space, not the model's `texture_size`, so the packs' 24-80 px art stretches over the
+  whole cube instead of being cropped to one corner.
+- **Pack textures are registered by the mod itself.** The dev-time resource manager will not serve
+  `assets/valence_cord/textures/cosmetics/*` (it logs `Missing resource valence_cord:cosmetics/<name>`
+  and paints the checkerboard), so `CosmeticTextures` reads each PNG off the classpath and registers it
+  as a `DynamicTexture` under its real id. Stacked animation sheets (glow layers) are declared in
+  `CosmeticModels.ANIM` and scrolled by the renderer.
+- **Wings replace the cape.** While a wing is equipped, `CapeMixin` clears the cape state, so neither
+  the vanilla cape nor a custom cape from the Capes tab renders underneath the wings.
+
+## Skies
+70 skies in the sky menu (`cyclone/src/main/java/dev/valence/sky/classic/Skies.java`). The newest 45
+live in `classic/ExtraSkies.java` (blood moon, enchanted forest, abyss, twin moons, eclipse, prism,
+spores, amber, twilight, cyber city, volcano, sandstorm, solaris, ocean, ice age) and
+`classic/ExtraSkies2.java` (moonrise, milky way, black hole, pulsar, andromeda, cosmic web, starfall,
+sun dog, high noon, monsoon, hurricane, misty valley, ashfall, aurora storm, aether, lagoon, coral
+dusk, tundra, desert dusk, zenith, triple moon, moon shard, crimson forest, hyperdrive, reef,
+blossom, ink wash, neon rain, binary sun, gas giant). Each has a preview angle in
+`SkyDefinition.VIEWS` and a name in `lang/en_us.json`.
+
+## Styles
+43 built-in item styles plus the 7 recolors, defined as data in
+`assets/valence/styles/designs.json` (513 designs across 14 categories: crystal, obsidian, anchor,
+armor, swords, spears, tools, mace, gapples, pearls, totem, xp, shield, cobweb). A design is a list
+of operations (`map`, `gradient`, `galaxy`, `veins`, `specks`, `outline`, `smooth`, `contrast`,
+`border`, `shrink`) applied to the vanilla texture at apply time, so no texture files are shipped.
+Every weapon category carries the full 43-style set, so a style picked in one category stays valid
+in the others.
+
+**Spears** restyle four textures at once - the netherite and diamond spear both in the GUI/ground
+sprite (`textures/item/<material>_spear.png`, 16x16) and in the held model
+(`textures/item/<material>_spear_in_hand.png`, 32x32). The spear designs use the same palettes as
+the sword of the same name, but with the ramp shifted up (`lo 0.0`, `hi 0.74`, mid-to-light
+colors): the vanilla shaft sits at the bottom of the luminance range, so the sword's dark-first
+ramp would collapse the 1px shaft into a near-black line. The `volt` style is converted from
+`outline` to `gradient` for spears for the same reason - an outline swallows a one-pixel shaft.
+A resource pack that ships any of those four paths is listed under the Spears category and its
+texture is copied verbatim when selected.
+
+Picked styles are baked into a generated resource pack at `.minecraft/resourcepacks/Cyclone Skies
+Resource`, which the mod enables itself. Folders from older builds (`CycloneSkies Styles`,
+`CycloneSkies Reosurce`, `Cyclone Skies Reosurce`, `Valence Styles`, `Valance Styles`) are deleted
+and unregistered on startup.
+
+## Build status
+The 26.x -> 1.21.11 API port now compiles against the real 1.21.11 jars and launches. Fixed during
+the port: 7 CycloneSkies compile errors (1.21.11 renames), dead nested jars in `fabric.mod.json`, 17
+broken `Record` classes plus an undefined `r0` in two files in the original paymentalerts source, a
+broken generic in `SkinFetcher`, a shadowed lambda variable, and a `float[]`/`float[][]` mix-up.
+
+Mixins: `GameRendererMixin` (camera shake) uses `require = 0` - `GameRenderer.bobHurt` no longer
+exists in 1.21.11, so camera shake silently no-ops instead of crashing. `HudMixin` (draws the alerts)
+fails loudly on purpose.
+
+## Behaviour changes in the port
+- **3D skin doll replaced by a flat player face.** The 26.x picture-in-picture doll renderer depends on
+  render APIs I could not port blind. The code already fell back to faces; it now always does.
+  Original files are in `payments/reference-26x/` (not compiled).
+- Alerts effect `SNOW_GLOBE` (style defined, no tier) was dead code; its two switch cases were removed.
+- `SplashManagerMixin` (from the original) replaces every title-screen splash with "subscribe to jettism".
+  Kept as-is; delete the mixin if you do not want it in the combined mod.
+- The CycloneSkies menu (and so the Payments page) still sits behind the CycloneSkies license screen;
+  the payment alerts and their own keys work regardless.

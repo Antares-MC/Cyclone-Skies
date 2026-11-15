@@ -1,0 +1,30 @@
+{
+ "required": true,
+ "minVersion": "0.8",
+ "package": "dev.valence.mixin",
+ "compatibilityLevel": "JAVA_21",
+ "client": [
+  "EntityRenderDispatcherMixin",
+  "BlockEntityRenderDispatcherMixin",
+  "FramerateLimitTrackerMixin",
+  "ReloadableResourceManagerMixin",
+  "CordEntityRendererMixin",
+  "SkyRendererMixin",
+  "FogRendererMixin",
+  "LevelRendererMixin",
+  "LowFireMixin",
+  "TotemPopMixin",
+  "TotemSmallMixin",
+  "EmoteRenderStateMixin",
+  "EmoteExtractMixin",
+  "EmoteModelMixin",
+  "EmoteBodyMixin",
+  "EmoteCameraMixin",
+  "EmoteTurnMixin",
+  "CapeMixin",
+  "DrawContextThemeMixin"
+ ],
+ "injectors": {
+  "defaultRequire": 1
+ }
+}

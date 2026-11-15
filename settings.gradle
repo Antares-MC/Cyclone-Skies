@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.fabricmc.net/' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'CycloneSkies-Combined'
+
+// cyclone  : CycloneSkies (Intermediary-named source)      -> the jar you ship
+// payments : paymentalerts (Mojang-named source, ported)   -> nested inside the cyclone jar
+include 'payments'
+include 'cyclone'

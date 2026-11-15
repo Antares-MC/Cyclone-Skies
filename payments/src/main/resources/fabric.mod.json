@@ -1,0 +1,31 @@
+{
+	"schemaVersion": 1,
+	"id": "paymentalerts",
+	"version": "${version}",
+	"name": "Donut SMP Payment Addon",
+	"description": "Client-side alerts when someone pays you in chat \u2014 dozens of effects from coin pops to god-tier finales, with 150+ themes. Only you can see and hear them.",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.paymentalerts.PaymentAlertsClient"
+		]
+	},
+	"mixins": [
+		"paymentalerts.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.18.0",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"authors": [
+		"cyclonelwk",
+		"Lumina"
+	],
+	"contributors": [
+		"cobha"
+	],
+	"contact": {},
+	"credits": "Originally by cobha. Developed by cyclonelwk & Lumina."
+}

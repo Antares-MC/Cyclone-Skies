@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "id": "cycloneskies",
+  "version": "1.9.9",
+  "name": "CycloneSkies",
+  "description": "Animated skies, lyric overlays, custom visual styles, and payment alerts with 150+ themes (including a Cyclone theme).",
+  "authors": [
+    "CycloneLwk"
+  ],
+  "license": "All-Rights-Reserved",
+  "icon": "assets/valence/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.valence.ValenceClient"
+    ],
+    "modmenu": [
+      "dev.valence.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "valence.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/paymentalerts.jar"
+    }
+  ],
+  "recommends": {
+    "sodium": "*",
+    "entityculling": "*",
+    "modmenu": "*",
+    "lithium": "*",
+    "immediatelyfast": "*"
+  },
+  "contributors": [
+    "polishtraps85 (Lyrics Cord engine, MIT)"
+  ],
+  "breaks": {
+    "neonlyrics": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "badges": [
+        "client"
+      ]
+    }
+  }
+}

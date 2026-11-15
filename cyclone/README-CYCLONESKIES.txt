@@ -1,0 +1,1 @@
+CycloneSkies branding for the supplied source. Target: Minecraft 1.21.11 only. The internal `dev.valence` Java package and `valence` resource namespace are intentionally retained for compatibility. Original license and attribution notices are retained.
