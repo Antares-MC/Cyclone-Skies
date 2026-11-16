@@ -54,6 +54,20 @@ tasks.withType(JavaCompile).configureEach {
     options.release = Integer.parseInt(project.java_release)
 }
 
+// The shared resources declare the Minecraft dependency for the 1.21.11 build.
+// Every other jar has to narrow that to the version it was compiled against, or
+// Fabric will refuse to load it. Rewriting the single depends line here keeps
+// the shared fabric.mod.json free of build-system placeholders.
+processResources {
+    def mcVersion = project.minecraft_version
+    inputs.property 'valenceMinecraftVersion', mcVersion
+    filesMatching('fabric.mod.json') {
+        filter { String line ->
+            line.replace('"minecraft": "~1.21.11"', '"minecraft": "~' + mcVersion + '"')
+        }
+    }
+}
+
 java {
     def rel = Integer.parseInt(project.java_release)
     sourceCompatibility = JavaVersion.toVersion(rel)
