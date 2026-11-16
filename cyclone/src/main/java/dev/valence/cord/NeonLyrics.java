@@ -1,8 +1,9 @@
 package dev.valence.cord;
 
+import dev.valence.ValenceClient;
+import dev.valence.compat.Hud;
 import dev.valence.compat.Keys;
 import dev.valence.compat.WorldRenderHook;
-import dev.valence.ValenceClient;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.config.Storage;
 import dev.valence.cord.cosmetic.DeathFx;
@@ -24,9 +25,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.class_1269;
 import net.minecraft.class_2960;
@@ -72,12 +70,12 @@ public final class NeonLyrics {
       keyProfile = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.profile", 297));
       keySync = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.sync", -1));
       keyLyrics = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.lyrics", -1));
-      HudElementRegistry.addFirst(class_2960.method_60655("valence_cord", "sky"), gated(SkyRenderer::render));
-      HudElementRegistry.addLast(class_2960.method_60655("valence_cord", "island"), gated(Island::render));
-      HudElementRegistry.addLast(class_2960.method_60655("valence_cord", "screen_lyrics"), gated((g, d) -> SkyLyrics.renderScreen(g)));
-      HudElementRegistry.replaceElement(VanillaHudElements.HOTBAR, v -> gatedOr(GlassHotbar.wrap(v), v));
-      HudElementRegistry.replaceElement(VanillaHudElements.CROSSHAIR, v -> gatedOr(Crosshair.wrap(v), v));
-      HudElementRegistry.addLast(class_2960.method_60655("valence_cord", "beatglow"), gated(BeatGlow::render));
+      Hud.addFirst(class_2960.method_60655("valence_cord", "sky"), gated(SkyRenderer::render));
+      Hud.addLast(class_2960.method_60655("valence_cord", "island"), gated(Island::render));
+      Hud.addLast(class_2960.method_60655("valence_cord", "screen_lyrics"), gated(SkyLyrics::renderScreen));
+      Hud.replaceHotbar(v -> gatedOr(GlassHotbar.wrap(v), v));
+      Hud.replaceCrosshair(v -> gatedOr(Crosshair.wrap(v), v));
+      Hud.addLast(class_2960.method_60655("valence_cord", "beatglow"), gated(BeatGlow::render));
       WorldRenderHook.afterEntities(WorldSky::render);
       WorldRenderHook.endMain(WorldSky::renderLyrics);
       dev.valence.cosmetics.CosmeticRender.register();
@@ -118,15 +116,15 @@ public final class NeonLyrics {
       }
    }
 
-   private static HudElement gated(HudElement e) {
-      return (g, d) -> {
+   private static Hud.Element gated(Hud.Element e) {
+      return g -> {
          if (License.active()) {
-            e.render(g, d);
+            e.render(g);
          }
       };
    }
 
-   private static HudElement gatedOr(HudElement mine, HudElement vanilla) {
-      return (g, d) -> (License.active() ? mine : vanilla).render(g, d);
+   private static Hud.Element gatedOr(Hud.Element mine, Hud.Element vanilla) {
+      return g -> (License.active() ? mine : vanilla).render(g);
    }
 }

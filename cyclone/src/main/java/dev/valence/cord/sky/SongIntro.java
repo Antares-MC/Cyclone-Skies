@@ -1,5 +1,6 @@
 package dev.valence.cord.sky;
 
+import dev.valence.compat.Fonts;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.hud.Gfx;
 import dev.valence.cord.hud.SongCard;
@@ -142,7 +143,7 @@ public final class SongIntro {
             float ls = 0.62F;
             float lw = font.method_1727(label) * ls;
             Matrix4f m = M.set(m0).translate(-lw / 2.0F, -27.0F - rise + (1.0F - ph.label()) * 3.0F, 0.02F).scale(ls, ls, 1.0F);
-            font.method_27522(class_2561.method_43470(label), 0.0F, 0.0F, Gfx.argbRaw(lineCol, la), false, m, buffers, mode, 0, 15728880);
+            Fonts.draw(font, class_2561.method_43470(label), 0.0F, 0.0F, Gfx.argbRaw(lineCol, la), false, m, buffers, mode, 15728880);
          }
 
          float ta = a * ph.title();
@@ -158,20 +159,20 @@ public final class SongIntro {
                for (int q = 0; q < 4; q++) {
                   double ang = q * Math.PI / 2.0 + (Math.PI / 4);
                   Matrix4f g = TMP.set(m).translate((float)Math.cos(ang) * 0.8F, (float)Math.sin(ang) * 0.8F, -0.01F);
-                  font.method_27522(t, 0.0F, 0.0F, Gfx.argbRaw(color, ta * 0.2F), false, g, buffers, mode, 0, 15728880);
+                  Fonts.draw(font, t, 0.0F, 0.0F, Gfx.argbRaw(color, ta * 0.2F), false, g, buffers, mode, 15728880);
                }
             } else {
                Matrix4f s = TMP.set(m).translate(0.6F, 0.8F, -0.01F);
-               font.method_27522(t, 0.0F, 0.0F, Gfx.argbRaw(Gfx.lerpColor(color, 328714, 0.85F), ta * 0.5F), false, s, buffers, mode, 0, 15728880);
+               Fonts.draw(font, t, 0.0F, 0.0F, Gfx.argbRaw(Gfx.lerpColor(color, 328714, 0.85F), ta * 0.5F), false, s, buffers, mode, 15728880);
             }
 
-            font.method_27522(t, 0.0F, 0.0F, Gfx.argbRaw(tc, ta), false, m, buffers, mode, 0, 15728880);
+            Fonts.draw(font, t, 0.0F, 0.0F, Gfx.argbRaw(tc, ta), false, m, buffers, mode, 15728880);
          }
 
          float aa = a * ph.artist() * 0.85F;
          if (aa > 0.02F && !artist.isBlank()) {
             Matrix4f m = M.set(m0).translate(-aw / 2.0F, 11.0F - rise + (1.0F - ph.artist()) * 4.0F, 0.03F);
-            font.method_27522(class_2561.method_43470(artist), 0.0F, 0.0F, Gfx.argbRaw(16777215, aa), false, m, buffers, mode, 0, 15728880);
+            Fonts.draw(font, class_2561.method_43470(artist), 0.0F, 0.0F, Gfx.argbRaw(16777215, aa), false, m, buffers, mode, 15728880);
          }
       }
    }

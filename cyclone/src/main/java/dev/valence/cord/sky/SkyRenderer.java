@@ -16,7 +16,6 @@ import net.minecraft.class_310;
 import net.minecraft.class_332;
 import net.minecraft.class_4063;
 import net.minecraft.class_7172;
-import net.minecraft.class_9779;
 
 @Environment(EnvType.CLIENT)
 public final class SkyRenderer {
@@ -155,14 +154,14 @@ public final class SkyRenderer {
       }
    }
 
-   public static void render(class_332 g, class_9779 delta) {
+   public static void render(class_332 g) {
       class_310 mc = class_310.method_1551();
       if (!mc.field_1690.field_1842 && mc.field_1724 != null && mc.field_1687 != null) {
          Config c = NeonLyrics.cfg();
          long nowNs = System.nanoTime();
          float dt = Math.min(0.1F, (float)(nowNs - lastNanos) / 1.0E9F);
          lastNanos = nowNs;
-         float pt = delta.method_60637(false);
+         float pt = class_310.method_1551().method_61966().method_60637(false);
          setupCamera(g, mc, pt);
          SkyPreset p = SkyPreset.get(c.sky);
          float old = Gfx.alpha;

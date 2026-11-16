@@ -4,6 +4,9 @@ build/
 */build/
 out/
 
+# Generated per-version source trees (produced by versions/tools/xlate.py)
+versions/gen/
+
 # Dev run directory: worlds, logs, generated resource packs, screenshots
 cyclone/run/
 run/

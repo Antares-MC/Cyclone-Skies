@@ -1,5 +1,6 @@
 package dev.valence.cosmetics;
 
+import dev.valence.compat.Textures;
 import dev.valence.cord.cosmetic.Accessories;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -64,7 +65,7 @@ final class CosmeticTextures {
             byte[] bytes = in.readAllBytes();
             class_1011 image = class_1011.method_49277(bytes);
             String label = "cosmetic_" + serial++;
-            class_310.method_1551().method_1531().method_4616(id, new class_1043(() -> label, image));
+            class_310.method_1551().method_1531().method_4616(id, Textures.named(label, image));
             return id;
          } catch (Throwable var7) {
             LOGGER.warn("[cosmetics] could not upload {}", asset, var7);

@@ -113,6 +113,19 @@ def usage_map(src):
     return used
 
 
+OVERRIDES_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "renames.json")
+
+
+def overrides(to):
+    """Hand-checked renames that the name heuristic cannot resolve.
+
+    Members shared with an interface get the interface's yarn name, so a plain name
+    lookup can land on an unrelated class. These are pinned per target version.
+    """
+    with open(OVERRIDES_FILE, encoding="utf-8") as fh:
+        return json.load(fh).get(to, {})
+
+
 def norm(name):
     """Member names drift between yarn versions (text -> getText)."""
     short = name.rsplit("/", 1)[-1]
@@ -210,6 +223,10 @@ def main():
     for to in targets:
         target = Side(to)
         same, retype, rename, manual = classify(src_side, used, target)
+        for k, v in overrides(to).items():
+            rename[k] = v
+            retype.pop(k, None)
+            manual.pop(k, None)
         results[to] = {"same": len(same), "retype": retype, "rename": rename, "manual": manual}
         print("\n=== %s : SAME %d  RETYPE %d  RENAME %d  MANUAL %d ===" %
               (to, len(same), len(retype), len(rename), len(manual)))

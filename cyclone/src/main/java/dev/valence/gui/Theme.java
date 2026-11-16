@@ -1,10 +1,11 @@
 package dev.valence.gui;
 
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
 import dev.valence.config.ValenceConfig;
 import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_10799;
 import net.minecraft.class_2960;
 import net.minecraft.class_332;
 
@@ -447,7 +448,7 @@ public final class Theme {
       color = map(color);
       if (w > 0 && h > 0 && color >>> 24 != 0) {
          if (w >= 4 && h >= 4) {
-            g.method_52707(class_10799.field_56883, FILL[radiusIndex(w, h)], x1, y1, w, h, color);
+            Draw.guiTexture(g, FILL[radiusIndex(w, h)], x1, y1, w, h, color);
          } else {
             g.method_25294(x1, y1, x2, y2, color);
          }
@@ -459,7 +460,7 @@ public final class Theme {
       int h = y2 - y1;
       color = map(color);
       if (w >= 4 && h >= 4 && color >>> 24 != 0) {
-         g.method_52707(class_10799.field_56883, LINE[radiusIndex(w, h)], x1, y1, w, h, color);
+         Draw.guiTexture(g, LINE[radiusIndex(w, h)], x1, y1, w, h, color);
       }
    }
 
@@ -467,7 +468,7 @@ public final class Theme {
       int w = x2 - x1;
       int h = y2 - y1;
       if (w >= 4 && h >= 4 && !(strength <= 0.01F)) {
-         g.method_52707(class_10799.field_56883, SHEEN[radiusIndex(w, h)], x1, y1, w, h, map(withAlpha(-1, strength)));
+         Draw.guiTexture(g, SHEEN[radiusIndex(w, h)], x1, y1, w, h, map(withAlpha(-1, strength)));
       }
    }
 
@@ -478,7 +479,7 @@ public final class Theme {
 
    public static void glass(class_332 g, int x1, int y1, int x2, int y2, int fill, int border, float shadow) {
       if (shadow > 0.0F) {
-         g.method_52707(class_10799.field_56883, SHADOW, x1 - 14, y1 - 12, x2 - x1 + 28, y2 - y1 + 28, withAlpha(-1, shadow));
+         Draw.guiTexture(g, SHADOW, x1 - 14, y1 - 12, x2 - x1 + 28, y2 - y1 + 28, withAlpha(-1, shadow));
       }
 
       round(g, x1, y1, x2, y2, fill);
@@ -488,39 +489,39 @@ public final class Theme {
 
    public static void glow(class_332 g, int x1, int y1, int x2, int y2, int color, float strength) {
       if (!(strength <= 0.01F)) {
-         g.method_52707(class_10799.field_56883, GLOW, x1 - 14, y1 - 14, x2 - x1 + 28, y2 - y1 + 28, map(withAlpha(color, strength)));
+         Draw.guiTexture(g, GLOW, x1 - 14, y1 - 14, x2 - x1 + 28, y2 - y1 + 28, map(withAlpha(color, strength)));
       }
    }
 
    public static void pill(class_332 g, int x1, int y1, int x2, int y2, int color) {
       color = map(color);
       if (x2 - x1 >= 2 && y2 - y1 >= 2 && color >>> 24 != 0) {
-         g.method_52707(class_10799.field_56883, PILL, x1, y1, x2 - x1, y2 - y1, color);
+         Draw.guiTexture(g, PILL, x1, y1, x2 - x1, y2 - y1, color);
       }
    }
 
    public static void pillLine(class_332 g, int x1, int y1, int x2, int y2, int color) {
       color = map(color);
       if (x2 - x1 >= 2 && y2 - y1 >= 2 && color >>> 24 != 0) {
-         g.method_52707(class_10799.field_56883, PILL_LINE, x1, y1, x2 - x1, y2 - y1, color);
+         Draw.guiTexture(g, PILL_LINE, x1, y1, x2 - x1, y2 - y1, color);
       }
    }
 
    public static void swatch(class_332 g, int x1, int y1, int x2, int y2, int color) {
       if (x2 - x1 >= 2 && y2 - y1 >= 2 && color >>> 24 != 0) {
-         g.method_52707(class_10799.field_56883, PILL, x1, y1, x2 - x1, y2 - y1, color);
+         Draw.guiTexture(g, PILL, x1, y1, x2 - x1, y2 - y1, color);
       }
    }
 
    public static void swatchLine(class_332 g, int x1, int y1, int x2, int y2, int color) {
       if (x2 - x1 >= 2 && y2 - y1 >= 2 && color >>> 24 != 0) {
-         g.method_52707(class_10799.field_56883, PILL_LINE, x1, y1, x2 - x1, y2 - y1, color);
+         Draw.guiTexture(g, PILL_LINE, x1, y1, x2 - x1, y2 - y1, color);
       }
    }
 
    public static void swatchGlow(class_332 g, int x1, int y1, int x2, int y2, int color, float strength) {
       if (!(strength <= 0.01F)) {
-         g.method_52707(class_10799.field_56883, GLOW, x1 - 14, y1 - 14, x2 - x1 + 28, y2 - y1 + 28, withAlpha(color, strength));
+         Draw.guiTexture(g, GLOW, x1 - 14, y1 - 14, x2 - x1 + 28, y2 - y1 + 28, withAlpha(color, strength));
       }
    }
 
@@ -542,10 +543,10 @@ public final class Theme {
    }
 
    public static void icon(class_332 g, String name, int x, int y, int size, int color) {
-      g.method_25293(class_10799.field_56883, icon(name), x, y, 0.0F, 0.0F, size, size, 16, 16, 16, 16, map(color));
+      Draw.region(g, icon(name), x, y, 0.0F, 0.0F, size, size, 16, 16, 16, 16, map(color));
    }
 
-   public static void image(class_332 g, class_2960 tex, int x, int y, int w, int h, int texW, int texH, int color) {      g.method_25293(class_10799.field_56883, tex, x, y, 0.0F, 0.0F, w, h, texW, texH, texW, texH, color);
+   public static void image(class_332 g, class_2960 tex, int x, int y, int w, int h, int texW, int texH, int color) {      Draw.region(g, tex, x, y, 0.0F, 0.0F, w, h, texW, texH, texW, texH, color);
    }
 
    public static int withAlpha(int color, float alpha) {

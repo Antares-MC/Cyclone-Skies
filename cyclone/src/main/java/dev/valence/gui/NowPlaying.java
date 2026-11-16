@@ -1,5 +1,6 @@
 package dev.valence.gui;
 
+import dev.valence.compat.Pose;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.hud.Cover;
 import dev.valence.cord.lyrics.SpotifyClient;
@@ -91,11 +92,11 @@ public final class NowPlaying {
       float ct = Theme.easeOutCubic(Math.min(1.0F, since(this.changeNanos) / 0.35F));
       if (empty) {
          g.method_51433(f, f.method_27523(class_2561.method_43471("valence.lyrics.status.nothing").getString(), textW), textX, y + 9, -724737, false);
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(textX, y + 21);
-         g.method_51448().scale(0.8F, 0.8F);
+         Pose.push(g);
+         Pose.translate(g, textX, y + 21);
+         Pose.scale(g, 0.8F, 0.8F);
          g.method_51439(f, class_2561.method_43471("valence.lyrics.status.hint"), 0, 0, -8095322, false);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       } else if (skipping != 0) {
          float k = Theme.easeOutCubic(Math.min(1.0F, since(this.skipStart()) / 0.25F));
          drawTitle(g, f, m.title, m.artist, textX - Math.round(k * 14.0F * skipping), y, textW, 1.0F - 0.7F * k);
@@ -134,9 +135,9 @@ public final class NowPlaying {
       }
 
       int stColor = var10000;
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(textX, y + 31);
-      g.method_51448().scale(0.75F, 0.75F);
+      Pose.push(g);
+      Pose.translate(g, textX, y + 31);
+      Pose.scale(g, 0.75F, 0.75F);
       int sw = f.method_27525(st);
       Theme.pill(g, -2, -2, sw + 14, 9, Theme.withAlpha(stColor, 0.16F));
       Theme.pill(g, 2, 2, 5, 5, stColor);
@@ -147,7 +148,7 @@ public final class NowPlaying {
          g.method_51433(f, time, sw + 22, 0, -8095322, false);
       }
 
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       if (!empty && m.durationMs > 0L) {
          float k = skipping != 0 ? 0.0F : Math.min(1.0F, (float)m.progressNow(0) / (float)m.durationMs);
          float shown = Anim.approach(Anim.key(this.keyGroup, 91), k, skipping != 0 ? 8.0F : 12.0F);
@@ -164,9 +165,9 @@ public final class NowPlaying {
          float press = since(this.pressNanos[i]);
          float squeeze = press < 0.32F ? (float)(Math.sin(Math.min(1.0F, press / 0.32F) * Math.PI) * 0.12F) : 0.0F;
          float s = 1.0F + 0.05F * hv - squeeze;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(bx + size / 2.0F, by + size / 2.0F);
-         g.method_51448().scale(s, s);
+         Pose.push(g);
+         Pose.translate(g, bx + size / 2.0F, by + size / 2.0F);
+         Pose.scale(g, s, s);
          int h2 = size / 2;
          if (i == 1) {
             Theme.glow(g, -h2, -h2, h2, h2, -7643914, 0.3F + 0.35F * hv);
@@ -186,7 +187,7 @@ public final class NowPlaying {
             drawIcon(g, i == 0 ? PREV : NEXT, is, 0.85F + 0.15F * hv, 1.0F);
          }
 
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 
@@ -204,10 +205,10 @@ public final class NowPlaying {
 
    private static void drawIcon(class_332 g, class_2960 icon, int size, float alpha, float scale) {
       if (!(alpha <= 0.02F)) {
-         g.method_51448().pushMatrix();
-         g.method_51448().scale(scale, scale);
+         Pose.push(g);
+         Pose.scale(g, scale, scale);
          Theme.image(g, icon, -size / 2, -size / 2, size, size, 64, 64, Theme.withAlpha(-1, alpha));
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 

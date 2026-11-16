@@ -1,7 +1,8 @@
 package dev.valence.cord.sky;
 
-import dev.valence.cord.config.Config;
+import dev.valence.compat.Fonts;
 import dev.valence.cord.NeonLyrics;
+import dev.valence.cord.config.Config;
 import dev.valence.cord.hud.Gfx;
 import dev.valence.cord.hud.LyricColor;
 import dev.valence.cord.hud.SingleWord;
@@ -556,7 +557,7 @@ public final class FloatWords {
    private static void put(class_327 font, class_4597 buffers, Matrix4f m, class_2561 text, float x, float y, float z, int rgb, float a, class_6415 mode) {
       if (!(a <= 0.03F)) {
          Matrix4f mm = SCR.set(m).translate(x, y, z);
-         font.method_27522(text, 0.0F, 0.0F, Gfx.argbRaw(rgb, a), false, mm, buffers, mode, 0, 15728880);
+         Fonts.draw(font, text, 0.0F, 0.0F, Gfx.argbRaw(rgb, a), false, mm, buffers, mode, 15728880);
       }
    }
 

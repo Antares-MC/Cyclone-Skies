@@ -1,5 +1,7 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.Pose;
+import dev.valence.compat.Wrap;
 import dev.valence.gui.Anim;
 import dev.valence.gui.NowPlaying;
 import dev.valence.gui.Page;
@@ -74,11 +76,11 @@ public class OverviewPage extends Page {
       Theme.outline(g, this.x, this.y, this.x + this.w, this.y + bh, 1086959871);
       Theme.glow(g, this.x + 12, this.y + bh / 2 - 15, this.x + 42, this.y + bh / 2 + 15, -7643914, 0.4F);
       Theme.image(g, Theme.LOGO, this.x + 12, this.y + bh / 2 - 15, 30, 30, 128, 128, -1);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(this.x + 50, this.y + bh / 2.0F - 10.0F);
-      g.method_51448().scale(1.5F, 1.5F);
+      Pose.push(g);
+      Pose.translate(g, this.x + 50, this.y + bh / 2.0F - 10.0F);
+      Pose.scale(g, 1.5F, 1.5F);
       g.method_51433(f, "CycloneSkies", 0, 0, -1, true);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       g.method_51439(f, class_2561.method_43471("valence.menu.tagline"), this.x + 50, this.y + bh / 2 + 5, -4608298, true);
       int top = this.y + bh + 8;
       int cols = 3;
@@ -98,20 +100,20 @@ public class OverviewPage extends Page {
          Theme.pill(g, cx + 6, cy + 6, cx + 24, cy + 24, Theme.lerp(864771318, 2005622006, hv));
          Theme.icon(g, c.icon(), cx + 9, cy + 9, 12, Theme.lerp(-4745985, -1, hv));
          g.method_51439(f, class_2561.method_43471(c.key()), cx + 30, cy + 10, -724737, false);
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(cx + 30, cy + 22);
-         g.method_51448().scale(0.75F, 0.75F);
-         g.method_51440(f, class_2561.method_43471(c.key() + ".desc"), 0, 0, Math.round((cw - 38) / 0.75F), Theme.lerp(-8095322, -4608298, hv), false);
-         g.method_51448().popMatrix();
+         Pose.push(g);
+         Pose.translate(g, cx + 30, cy + 22);
+         Pose.scale(g, 0.75F, 0.75F);
+         Wrap.draw(g, f, class_2561.method_43471(c.key() + ".desc"), 0, 0, Math.round((cw - 38) / 0.75F), Theme.lerp(-8095322, -4608298, hv), false);
+         Pose.pop(g);
          Theme.icon(g, "arrow", cx + cw - 15 + Math.round(hv * 3.0F), cy + chh - 13, 9, Theme.lerp(-8095322, -4745985, hv));
       }
 
       int ny = this.cardsBottom() + 9;
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(this.x + 4, ny - 2);
-      g.method_51448().scale(0.75F, 0.75F);
+      Pose.push(g);
+      Pose.translate(g, this.x + 4, ny - 2);
+      Pose.scale(g, 0.75F, 0.75F);
       g.method_51439(f, class_2561.method_43471("valence.overview.music"), 0, 0, -8095322, false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       this.nowPlaying.render(g, this.x, ny + 7, this.w, mx, my);
       int dw = f.method_1727("discord.gg/2v3hPGXHfp");
       int dx = this.x + this.w / 2 - dw / 2;

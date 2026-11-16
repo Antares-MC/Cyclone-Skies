@@ -1,5 +1,6 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.Pose;
 import dev.valence.config.ValenceConfig;
 import dev.valence.gui.Anim;
 import dev.valence.gui.OptionList;
@@ -193,10 +194,10 @@ public class SkyPage extends Page {
       this.tabSwitch = Math.min(1.0F, this.tabSwitch + Anim.dt() * 5.0F);
       float te = Theme.easeOutCubic(this.tabSwitch);
       float shift = (1.0F - te) * 12.0F * (this.tab == 1 ? 1 : -1);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(shift, 0.0F);
+      Pose.push(g);
+      Pose.translate(g, shift, 0.0F);
       this.renderContent(g, Math.round(mx - shift), my);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       if (te < 0.999F) {
          Theme.round(g, this.x - 4, this.y + 26 - 2, this.x + this.w + 4, this.y + this.h + 2, Theme.withAlpha(-804451817, 1.0F - te));
       }
@@ -269,15 +270,15 @@ public class SkyPage extends Page {
                float ph = Anim.hover(Anim.key(22, i), pHover, false);
                float vis = 0.35F + 0.65F * hv;
                float rise = (1.0F - hv) * 3.0F;
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(0.0F, rise);
+               Pose.push(g);
+               Pose.translate(g, 0.0F, rise);
                Theme.glow(g, pb[0], pb[1], pb[2], pb[3], -7643914, 0.35F * ph);
                Theme.pill(g, pb[0], pb[1], pb[2], pb[3], Theme.withAlpha(Theme.lerp(-1273885666, -7643914, ph), vis));
                Theme.pillLine(g, pb[0], pb[1], pb[2], pb[3], Theme.withAlpha(Theme.lerp(1157627903, -1711276033, ph), vis));
-               g.method_51448().translate(pb[0] + 5, pb[1] + 3.0F);
-               g.method_51448().scale(0.75F, 0.75F);
+               Pose.translate(g, pb[0] + 5, pb[1] + 3.0F);
+               Pose.scale(g, 0.75F, 0.75F);
                g.method_51439(f, class_2561.method_43471("valence.sky.preview"), 0, 0, Theme.withAlpha(-1, Math.min(1.0F, vis + 0.2F)), false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
          }
 

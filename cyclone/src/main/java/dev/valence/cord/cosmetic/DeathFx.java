@@ -1,8 +1,8 @@
 package dev.valence.cord.cosmetic;
 
-import dev.valence.compat.Skins;
 import dev.valence.compat.Buffers;
 import dev.valence.compat.Layers;
+import dev.valence.compat.Skins;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.sky.SkyTextures;

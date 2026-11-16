@@ -1,8 +1,10 @@
 package dev.valence.gui;
 
-import dev.valence.compat.Keys;
-import dev.valence.compat.InputScreen;
 import dev.valence.ValenceClient;
+import dev.valence.compat.InputScreen;
+import dev.valence.compat.Keys;
+import dev.valence.compat.Pose;
+import dev.valence.compat.ScreenBlur;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.lyrics.SpotifyClient;
 import dev.valence.gui.pages.CosmeticsPage;
@@ -136,7 +138,7 @@ public class ValenceScreen extends InputScreen {
          super.method_25420(g, mouseX, mouseY, partialTick);
       } else {
          if (ValenceConfig.get().menuBlur) {
-            this.method_57734(g);
+            ScreenBlur.apply(this, g);
          }
 
          float e = Theme.easeOutCubic(this.open);
@@ -195,8 +197,8 @@ public class ValenceScreen extends InputScreen {
       this.stageIn = this.stageIn + ((stageFits ? 1.0F : 0.0F) - this.stageIn) * Anim.k(7.0F);
       int mouseX = Math.round(rawMouseX / this.ui - this.shift);
       int mouseY = Math.round(rawMouseY / this.ui);
-      g.method_51448().pushMatrix();
-      g.method_51448().scale(this.ui, this.ui);
+      Pose.push(g);
+      Pose.scale(g, this.ui, this.ui);
       RoundedImage.menuScale = this.ui;
       if (this.stageIn > 0.01F) {
          int sx0 = 18;
@@ -214,22 +216,22 @@ public class ValenceScreen extends InputScreen {
             );
       }
 
-      g.method_51448().translate(this.shift, (1.0F - ease) * 14.0F);
+      Pose.translate(g, this.shift, (1.0F - ease) * 14.0F);
       Theme.glass(g, this.px1, this.py1, this.px2, this.py2, Theme.withAlpha(-1207105001, 0.4F + 0.6F * ease), 1086959871, 0.55F * ease);
       Theme.round(g, this.px1 + 5, this.py1 + 5, this.px1 + this.sidebarW, this.py2 - 5, 234881023);
       Theme.outline(g, this.px1 + 5, this.py1 + 5, this.px1 + this.sidebarW, this.py2 - 5, 352321535);
       Theme.glow(g, this.px1 + 12, this.py1 + 12, this.px1 + 36, this.py1 + 36, -7643914, 0.35F);
       Theme.image(g, Theme.LOGO, this.px1 + 11, this.py1 + 11, 26, 26, 128, 128, -1);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(this.px1 + 41, this.py1 + 14);
-      g.method_51448().scale(1.35F, 1.35F);
+      Pose.push(g);
+      Pose.translate(g, this.px1 + 41, this.py1 + 14);
+      Pose.scale(g, 1.35F, 1.35F);
       g.method_51439(font, class_2561.method_43470("CycloneSkies"), 0, 0, -1, false);
-      g.method_51448().popMatrix();
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(this.px1 + 41, this.py1 + 28);
-      g.method_51448().scale(0.7F, 0.7F);
+      Pose.pop(g);
+      Pose.push(g);
+      Pose.translate(g, this.px1 + 41, this.py1 + 28);
+      Pose.scale(g, 0.7F, 0.7F);
       g.method_51439(font, class_2561.method_43471("valence.menu.tagline"), 0, 0, -8095322, false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       this.tabAnim = this.tabAnim + (this.page - this.tabAnim) * Anim.k(16.0F);
       int navY = this.py1 + 50;
       int hlY = Math.round(navY + this.tabAnim * this.itemStep());
@@ -258,20 +260,20 @@ public class ValenceScreen extends InputScreen {
       g.method_25294(this.px1 + 12, vy - 7, this.px1 + this.sidebarW - 7, vy - 6, 352321535);
       Theme.image(g, Theme.LOGO, this.px1 + 12, vy, 16, 16, 128, 128, -1);
       g.method_51433(font, "CycloneSkies", this.px1 + 32, vy, -4608298, false);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(this.px1 + 32, vy + 10);
-      g.method_51448().scale(0.75F, 0.75F);
+      Pose.push(g);
+      Pose.translate(g, this.px1 + 32, vy + 10);
+      Pose.scale(g, 0.75F, 0.75F);
       g.method_51433(font, "v1.9.9", 0, 0, -8095322, false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       Page current = this.pages.get(this.page);
       int hx = this.px1 + this.sidebarW + 14;
       float pe = Theme.easeOutCubic(this.pageAnim);
       float slide = (1.0F - pe) * 10.0F * (this.page >= this.previousPage ? 1 : -1);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(hx, this.py1 + 12 + (1.0F - pe) * 3.0F);
-      g.method_51448().scale(1.4F, 1.4F);
+      Pose.push(g);
+      Pose.translate(g, hx, this.py1 + 12 + (1.0F - pe) * 3.0F);
+      Pose.scale(g, 1.4F, 1.4F);
       g.method_51439(font, class_2561.method_43471(current.nameKey()), 0, 0, Theme.withAlpha(-724737, 0.3F + 0.7F * pe), false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       g.method_51439(font, class_2561.method_43471(current.subtitleKey()), hx, this.py1 + 27, Theme.withAlpha(-8095322, 0.3F + 0.7F * pe), false);
       String[] slogan = class_2561.method_43471("valence.menu.slogan").getString().split("\n");
       int sloganW = 0;
@@ -298,10 +300,10 @@ public class ValenceScreen extends InputScreen {
       Theme.pillLine(g, bx, by, bx + 15, by + 15, Theme.lerp(654311423, -1711295308, ch));
       Theme.icon(g, "close", bx + 4, by + 4, 7, Theme.lerp(-4608298, -1, ch));
       g.method_25294(hx, this.py1 + 39, this.px2 - 14, this.py1 + 40, 352321535);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(slide, 0.0F);
+      Pose.push(g);
+      Pose.translate(g, slide, 0.0F);
       current.render(g, this.closing ? -1000 : Math.round(mouseX - slide), this.closing ? -1000 : mouseY, partialTick);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       float cover = Math.max(1.0F - pe, 1.0F - ease);
       if (cover > 0.001F) {
          Theme.round(g, hx - 4, this.py1 + 41, this.px2 - 6, this.py2 - 6, Theme.withAlpha(-536016361, cover));
@@ -324,7 +326,7 @@ public class ValenceScreen extends InputScreen {
          this.glowX = -1.0F;
       }
 
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       RoundedImage.menuScale = 1.0F;
    }
 

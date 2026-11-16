@@ -1,12 +1,14 @@
 package dev.valence.gui;
 
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Pose;
 import dev.valence.styles.StyleManager;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_10799;
 import net.minecraft.class_2960;
 import net.minecraft.class_332;
 import org.joml.Matrix3x2f;
@@ -367,32 +369,18 @@ public final class Preview3D {
             float nl = (float)Math.sqrt(nx * nx + ny * ny + nz * nz);
             float lambert = nl > 0.0F ? Math.abs(-(nx * LIGHT.x + ny * LIGHT.y + nz * LIGHT.z) / nl) : 1.0F;
             float sh = f.fullBright() ? 1.0F : Math.max(0.5F, Math.min(1.0F, 0.55F + 0.45F * lambert));
-            g.method_51448().pushMatrix();
-            g.method_51448().mul(tmp.set(e1x, e1y, e2x, e2y, x0, y0));
+            Pose.push(g);
+            Pose.mul(g, tmp.set(e1x, e1y, e2x, e2y, x0, y0));
             if (f.tex() == null) {
                g.method_25294(0, 0, 1, 1, shade(f.color(), sh));
             } else {
                int c = (int)(255.0F * sh);
                int color = 0xFF000000 | c << 16 | c << 8 | c;
-               g.method_51448().scale(1.0F / f.uw(), 1.0F / f.vh());
-               g.method_25293(
-                  class_10799.field_56883,
-                  f.tex(),
-                  0,
-                  0,
-                  f.u(),
-                  f.v(),
-                  Math.round(f.uw()),
-                  Math.round(f.vh()),
-                  Math.round(f.uw()),
-                  Math.round(f.vh()),
-                  f.texW(),
-                  f.texH(),
-                  color
-               );
+               Pose.scale(g, 1.0F / f.uw(), 1.0F / f.vh());
+               Draw.region(g, f.tex(), 0, 0, f.u(), f.v(), Math.round(f.uw()), Math.round(f.vh()), Math.round(f.uw()), Math.round(f.vh()), f.texW(), f.texH(), color);
             }
 
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          }
       }
    }

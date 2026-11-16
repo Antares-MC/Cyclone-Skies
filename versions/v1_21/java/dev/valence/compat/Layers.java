@@ -4,14 +4,11 @@ import net.minecraft.class_1921;
 import net.minecraft.class_2960;
 
 /**
- * Version-neutral render-layer factories, Minecraft 1.21.1 - 1.21.10.
+ * Render-layer factories for 1.21 - 1.21.3.
  *
- * <p>On these versions the entity and text layer getters are statics on
- * {@code RenderLayer} rather than on the separate {@code RenderLayers} holder
- * that 1.21.11 introduced. The ones that take a boolean pass
- * {@code affectsOutline}; the 1.21.11 one-argument helpers delegate with
- * {@code true}, so the same value is used here to keep glyph and cosmetic
- * outlines identical to the 1.21.11 build.
+ * <p>{@code RenderLayer.getFireScreenEffect} only appears in 1.21.4; before that the vanilla
+ * fire overlay builds its quads on the plain entity translucent layer, so the low-fire mixin
+ * gets that layer instead.
  */
 public final class Layers {
    private Layers() {
@@ -54,6 +51,6 @@ public final class Layers {
 
    /** Fire overlay, drawn when the player is burning. */
    public static class_1921 fire(class_2960 texture) {
-      return class_1921.method_65217(texture);
+      return class_1921.method_24294(texture, true);
    }
 }

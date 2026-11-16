@@ -1,7 +1,8 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Draw;
 import dev.valence.compat.Fonts;
-import com.mojang.blaze3d.pipeline.RenderPipeline;
+import dev.valence.compat.Pose;
 import dev.valence.cord.NeonLyrics;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_10799;
 import net.minecraft.class_2561;
 import net.minecraft.class_2583;
 import net.minecraft.class_2960;
@@ -184,7 +184,7 @@ public final class Gfx {
       }
 
       try {
-         return Math.max(1, Math.min(2, Math.round(class_310.method_1551().method_22683().method_4495())));
+         return Math.max(1, Math.min(2, (int)Math.round(class_310.method_1551().method_22683().method_4495())));
       } catch (Exception var1) {
          return 1;
       }
@@ -205,8 +205,8 @@ public final class Gfx {
                roundRows(g, x, y, w, h, r, col);
             } else {
                g.method_25294(x, y + r, x + w, y + h - r, col);
-               g.method_51448().pushMatrix();
-               g.method_51448().scale(1.0F / s, 1.0F / s);
+               Pose.push(g);
+               Pose.scale(g, 1.0F / s, 1.0F / s);
                int X = x * s;
                int Y = y * s;
                int W = w * s;
@@ -220,7 +220,7 @@ public final class Gfx {
                   g.method_25294(X + dx, Y + H - i - 1, X + W - dx, Y + H - i, col);
                }
 
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
          }
       }
@@ -228,7 +228,7 @@ public final class Gfx {
 
    private static int fullScale() {
       try {
-         return Math.max(1, Math.min(6, Math.round(class_310.method_1551().method_22683().method_4495())));
+         return Math.max(1, Math.min(6, (int)Math.round(class_310.method_1551().method_22683().method_4495())));
       } catch (Exception var1) {
          return 2;
       }
@@ -242,8 +242,8 @@ public final class Gfx {
          float W = w * s;
          float H = h * s;
          float R = Math.max(0.0F, Math.min(r * s, Math.min(W, H) / 2.0F));
-         g.method_51448().pushMatrix();
-         g.method_51448().scale(1.0F / s, 1.0F / s);
+         Pose.push(g);
+         Pose.scale(g, 1.0F / s, 1.0F / s);
          int x0 = Math.round(X);
          int y0 = Math.round(Y);
          int x1 = Math.round(X + W);
@@ -278,14 +278,13 @@ public final class Gfx {
                try {
                   int col = argb(rgb, a);
                   int n = rq * 2;
-                  RenderPipeline pipe = class_10799.field_56883;
                   if (iw == n && ih == n) {
-                     g.method_25291(pipe, id, x0, y0, 0.0F, 0.0F, n, n, n, n, col);
+                     Draw.texture(g, id, x0, y0, 0.0F, 0.0F, n, n, n, n, col);
                   } else {
-                     g.method_25291(pipe, id, x0, y0, 0.0F, 0.0F, rq, rq, n, n, col);
-                     g.method_25291(pipe, id, x1 - rq, y0, rq, 0.0F, rq, rq, n, n, col);
-                     g.method_25291(pipe, id, x0, y1 - rq, 0.0F, rq, rq, rq, n, n, col);
-                     g.method_25291(pipe, id, x1 - rq, y1 - rq, rq, rq, rq, rq, n, n, col);
+                     Draw.texture(g, id, x0, y0, 0.0F, 0.0F, rq, rq, n, n, col);
+                     Draw.texture(g, id, x1 - rq, y0, rq, 0.0F, rq, rq, n, n, col);
+                     Draw.texture(g, id, x0, y1 - rq, 0.0F, rq, rq, rq, n, n, col);
+                     Draw.texture(g, id, x1 - rq, y1 - rq, rq, rq, rq, rq, n, n, col);
                      if (iw > n) {
                         g.method_25294(x0 + rq, y0, x1 - rq, y0 + rq, col);
                         g.method_25294(x0 + rq, y1 - rq, x1 - rq, y1, col);
@@ -296,7 +295,7 @@ public final class Gfx {
                      }
                   }
 
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                   return;
                } catch (Throwable var32) {
                   Shapes.fail();
@@ -352,7 +351,7 @@ public final class Gfx {
             }
          }
 
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 
@@ -515,10 +514,10 @@ public final class Gfx {
             class_2561 c = comp(s, cur);
             class_327 r = Fonts.renderer(resolve(cur));
             if (shadow && NeonLyrics.cfg().quality > 0) {
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(0.5F, 0.7F);
+               Pose.push(g);
+               Pose.translate(g, 0.5F, 0.7F);
                g.method_51439(r, c, x, y, argb(328458, a * 0.45F), false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
 
             g.method_51439(r, c, x, y, argb(rgb, a), false);

@@ -30,8 +30,8 @@ public abstract class BlockEntityRenderDispatcherMixin {
       class_310 mc = class_310.method_1551();
       if (mc.field_1773 != null) {
          class_243 cam = mc.field_1773.method_19418().method_19326();
-         class_827<?> renderer = ((class_824)(Object)this).method_3550(blockEntity);
-         if (renderer != null && !renderer.method_3563()) {
+         class_827 renderer = ((class_824)(Object)this).method_3550(blockEntity);
+          if (renderer != null && !renderer.method_3563(blockEntity)) {
             if (Occlusion.hideBlock(blockEntity.method_11016(), cam.field_1352, cam.field_1351, cam.field_1350)) {
                ci.cancel();
             }

@@ -8,7 +8,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
-import net.minecraft.class_9779;
 
 @Environment(EnvType.CLIENT)
 public final class BeatGlow {
@@ -18,7 +17,7 @@ public final class BeatGlow {
    private BeatGlow() {
    }
 
-   public static void render(class_332 g, class_9779 delta) {
+   public static void render(class_332 g) {
       Config c = NeonLyrics.cfg();
       class_310 mc = class_310.method_1551();
       long now = System.nanoTime();

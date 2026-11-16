@@ -1,5 +1,6 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Textures;
 import dev.valence.cord.NeonLyrics;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -68,7 +69,7 @@ public final class Shapes {
             ImageIO.write(img, "png", out);
             class_1011 ni = class_1011.method_49277(out.toByteArray());
             id = class_2960.method_60655("valence_cord", "shape/c" + r);
-            class_1043 tex = new class_1043(() -> "neonlyrics_circle", ni);
+            class_1043 tex = Textures.named("neonlyrics_circle", ni);
             class_310.method_1551().method_1531().method_4616(id, tex);
             CIRCLES.put(r, id);
             return id;

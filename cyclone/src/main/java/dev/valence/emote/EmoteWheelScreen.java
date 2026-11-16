@@ -1,13 +1,15 @@
 package dev.valence.emote;
 
-import dev.valence.compat.Keys;
+import dev.valence.compat.Draw;
 import dev.valence.compat.InputScreen;
+import dev.valence.compat.Keys;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Pose;
 import dev.valence.gui.Theme;
 import dev.valence.gui.UiSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.class_10799;
 import net.minecraft.class_2561;
 import net.minecraft.class_2960;
 import net.minecraft.class_304;
@@ -157,14 +159,14 @@ public final class EmoteWheelScreen extends InputScreen {
             float fw = rr * 0.2F * (1.0F + 0.12F * k);
             float fh = rr * 0.24F * (1.0F + 0.12F * k);
             EmoteFigure.draw(g, ix - fw, iy - fh - rr * 0.04F, ix + fw, iy + fh * 0.55F, id, figureTime, 20.0F, (0.75F + 0.25F * k) * ease * pa);
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(ix, iy + rr * 0.135F);
+            Pose.push(g);
+            Pose.translate(g, ix, iy + rr * 0.135F);
             float ns = Math.min(0.75F, rr * 0.36F / Math.max(1, this.field_22793.method_1727(e.name())));
-            g.method_51448().scale(ns, ns);
+            Pose.scale(g, ns, ns);
             String name = e.name();
             int nw = this.field_22793.method_1727(name);
             g.method_51433(this.field_22793, name, -nw / 2, 0, (int)(a * (0.75F + 0.25F * k)) << 24 | (k > 0.5F ? 16777215 : 14998783), true);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          }
       }
 
@@ -173,17 +175,17 @@ public final class EmoteWheelScreen extends InputScreen {
       Emotes.Emote he = Emotes.get(this.hovered);
       String title = he != null ? he.name() : "Emotes";
       float ts = he != null && this.field_22793.method_1727(title) > r * 0.62F ? r * 0.62F / this.field_22793.method_1727(title) : 1.0F;
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(cx, cy - 10.0F);
-      g.method_51448().scale(ts, ts);
+      Pose.push(g);
+      Pose.translate(g, cx, cy - 10.0F);
+      Pose.scale(g, ts, ts);
       g.method_51433(this.field_22793, title, -this.field_22793.method_1727(title) / 2, 0, alpha << 24 | (he != null ? 16777215 : 12168918), true);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       String pg = page + 1 + " / " + Emotes.pages();
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(cx, cy + 3.0F);
-      g.method_51448().scale(0.75F, 0.75F);
+      Pose.push(g);
+      Pose.translate(g, cx, cy + 3.0F);
+      Pose.scale(g, 0.75F, 0.75F);
       g.method_51433(this.field_22793, pg, -this.field_22793.method_1727(pg) / 2, 0, (int)(alpha * 0.8F) << 24 | 12168918, false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       int pages = Emotes.pages();
 
       for (int i = 0; i < pages; i++) {
@@ -195,11 +197,11 @@ public final class EmoteWheelScreen extends InputScreen {
       String hint = this.clickMode
          ? "Click an emote  •  Scroll for more"
          : "Release " + this.key.method_16007().getString() + " on an emote  •  Scroll for more";
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(cx, cy + r * 1.32F + 6.0F);
-      g.method_51448().scale(0.8F, 0.8F);
+      Pose.push(g);
+      Pose.translate(g, cx, cy + r * 1.32F + 6.0F);
+      Pose.scale(g, 0.8F, 0.8F);
       g.method_51433(this.field_22793, hint, -this.field_22793.method_1727(hint) / 2, 0, (int)(alpha * 0.75F) << 24 | 12168918, false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       int pw = 104;
       int ph = 150;
       int px = (int)(cx + r * 1.32F + 16.0F);
@@ -213,15 +215,15 @@ public final class EmoteWheelScreen extends InputScreen {
    }
 
    private static void tex(class_332 g, class_2960 id, float cx, float cy, float r, float angle, int argb) {
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(cx, cy);
+      Pose.push(g);
+      Pose.translate(g, cx, cy);
       if (angle != 0.0F) {
-         g.method_51448().rotate(angle);
+         Pose.rotate(g, angle);
       }
 
-      g.method_51448().scale(r / 128.0F, r / 128.0F);
-      g.method_25293(class_10799.field_56883, id, -128, -128, 0.0F, 0.0F, 256, 256, 256, 256, 256, 256, argb);
-      g.method_51448().popMatrix();
+      Pose.scale(g, r / 128.0F, r / 128.0F);
+      Draw.region(g, id, -128, -128, 0.0F, 0.0F, 256, 256, 256, 256, 256, 256, argb);
+      Pose.pop(g);
    }
 
    private static int lerpRgb(int a, int b, float k) {

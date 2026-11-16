@@ -2,6 +2,7 @@ package dev.valence.cord.cosmetic;
 
 import dev.valence.compat.Buffers;
 import dev.valence.compat.Layers;
+import dev.valence.compat.Textures;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.sky.SkyTextures;
 import java.awt.BasicStroke;
@@ -866,7 +867,7 @@ final class DeathCards {
          g.dispose();
          ByteArrayOutputStream out = new ByteArrayOutputStream();
          ImageIO.write(img, "png", out);
-         class_310.method_1551().method_1531().method_4616(CARDS, new class_1043(() -> "neonlyrics_cards", class_1011.method_49277(out.toByteArray())));
+         class_310.method_1551().method_1531().method_4616(CARDS, Textures.named("neonlyrics_cards", class_1011.method_49277(out.toByteArray())));
          cardsReady = true;
       } catch (Throwable var9) {
          NeonLyrics.LOG.warn("Karten-Bild konnte nicht gemalt werden", var9);

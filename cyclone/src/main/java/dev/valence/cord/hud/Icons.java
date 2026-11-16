@@ -1,5 +1,6 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Pose;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_332;
@@ -19,10 +20,10 @@ public final class Icons {
          G = g;
          C = rgb;
          A = a;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(cx - size / 2.0F, cy - size / 2.0F);
+         Pose.push(g);
+         Pose.translate(g, cx - size / 2.0F, cy - size / 2.0F);
          float s = size / 16.0F / 4.0F;
-         g.method_51448().scale(s, s);
+         Pose.scale(g, s, s);
          switch (icon) {
             case HOME:
                line(2.0F, 8.0F, 8.0F, 2.5F);
@@ -123,7 +124,7 @@ public final class Icons {
                line(4.9F, 9.0F, 11.1F, 9.0F, 1.2F);
          }
 
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 
@@ -136,11 +137,11 @@ public final class Icons {
       float dy = (y1 - y0) * 4.0F;
       float len = (float)Math.sqrt(dx * dx + dy * dy);
       int hw = Math.max(1, Math.round(w * 4.0F / 2.0F));
-      G.method_51448().pushMatrix();
-      G.method_51448().translate(x0 * 4.0F, y0 * 4.0F);
-      G.method_51448().rotate((float)Math.atan2(dy, dx));
+      Pose.push(G);
+      Pose.translate(G, x0 * 4.0F, y0 * 4.0F);
+      Pose.rotate(G, (float)Math.atan2(dy, dx));
       G.method_25294(-hw + 1, -hw, Math.round(len) + hw - 1, hw, Gfx.argb(C, A));
-      G.method_51448().popMatrix();
+      Pose.pop(G);
    }
 
    private static void box(float x0, float y0, float x1, float y1) {

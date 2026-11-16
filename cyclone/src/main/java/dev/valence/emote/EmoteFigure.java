@@ -1,5 +1,8 @@
 package dev.valence.emote;
 
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Pose;
 import dev.valence.compat.Skins;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_10799;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
@@ -82,15 +84,15 @@ public final class EmoteFigure {
             EmoteFigure.Face f = FACES.get(i);
             Matrix3x2f m = new Matrix3x2f(f.ex * scale, f.ey * scale, f.fx * scale, f.fy * scale, cx + f.ox * scale, cy + f.oy * scale);
             int col = (f.color >>> 24) * a / 255 << 24 | f.color & 16777215;
-            g.method_51448().pushMatrix();
-            g.method_51448().mul(m);
+            Pose.push(g);
+            Pose.mul(g, m);
             if (f.tex != null) {
-               g.method_25293(class_10799.field_56883, f.tex, 0, 0, f.u, f.v, f.w, f.h, f.w, f.h, 64, 64, col);
+               Draw.region(g, f.tex, 0, 0, f.u, f.v, f.w, f.h, f.w, f.h, 64, 64, col);
             } else {
                g.method_25294(0, 0, 1, 1, col);
             }
 
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          }
       }
    }

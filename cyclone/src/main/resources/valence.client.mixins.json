@@ -22,7 +22,9 @@
   "EmoteCameraMixin",
   "EmoteTurnMixin",
   "CapeMixin",
-  "DrawContextThemeMixin"
+  "DrawContextThemeMixin",
+  "HudSuppressMixin",
+  "ScreenBlurAccessor"
  ],
  "injectors": {
   "defaultRequire": 1

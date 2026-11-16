@@ -1,5 +1,6 @@
 package dev.valence.perf;
 
+import dev.valence.compat.States;
 import dev.valence.config.ValenceConfig;
 import java.util.Iterator;
 import java.util.Map;
@@ -258,7 +259,7 @@ public final class Occlusion {
 
          if (y >= level.method_31607() && y <= level.method_31600()) {
             class_2680 st = level.method_8320(mp.method_10103(x, y, z));
-            if (st.method_26225() && st.method_26216()) {
+            if (st.method_26225() && States.opaqueFullCube(st, level, mp.method_10103(x, y, z))) {
                return false;
             }
          }

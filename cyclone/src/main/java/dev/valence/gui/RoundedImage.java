@@ -1,6 +1,9 @@
 package dev.valence.gui;
 
 import dev.valence.ValenceClient;
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Textures;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -11,7 +14,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_1011;
 import net.minecraft.class_1043;
-import net.minecraft.class_10799;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
@@ -88,7 +90,7 @@ public final class RoundedImage {
          trim();
       }
 
-      g.method_25293(class_10799.field_56883, b.id(), x, y, 0.0F, 0.0F, w, h, b.pw(), b.ph(), b.pw(), b.ph(), color);
+      Draw.region(g, b.id(), x, y, 0.0F, 0.0F, w, h, b.pw(), b.ph(), b.pw(), b.ph(), color);
    }
 
    public static void forget(String srcKeyPrefix) {
@@ -171,7 +173,7 @@ public final class RoundedImage {
       }
 
       class_2960 id = Theme.id("dynamic/rounded/" + counter++);
-      class_310.method_1551().method_1531().method_4616(id, new class_1043(() -> "CycloneSkies rounded image", out));
+      class_310.method_1551().method_1531().method_4616(id, Textures.named("CycloneSkies rounded image", out));
       return new RoundedImage.Baked(id, pw, ph);
    }
 

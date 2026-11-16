@@ -1,5 +1,6 @@
 package dev.valence.cord.sky;
 
+import dev.valence.compat.Textures;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.hud.Anim;
 import java.awt.image.BufferedImage;
@@ -113,7 +114,7 @@ public final class SkyTextures {
          spritePending = null;
 
          try {
-            class_310.method_1551().method_1531().method_4616(SPRITES, new class_1043(() -> "neonlyrics_sprites", sp));
+            class_310.method_1551().method_1531().method_4616(SPRITES, Textures.named("neonlyrics_sprites", sp));
             spritesReady = true;
          } catch (Throwable var2) {
             spritesFailed = true;

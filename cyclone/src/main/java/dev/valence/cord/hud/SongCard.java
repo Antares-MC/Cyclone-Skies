@@ -1,5 +1,6 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Pose;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.sky.SongIntro;
@@ -11,7 +12,6 @@ import net.minecraft.class_2561;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
 import net.minecraft.class_332;
-import net.minecraft.class_9779;
 
 @Environment(EnvType.CLIENT)
 public final class SongCard {
@@ -56,7 +56,7 @@ public final class SongCard {
       return shownAt;
    }
 
-   public static void render(class_332 g, class_9779 delta) {
+   public static void render(class_332 g) {
       class_310 mc = class_310.method_1551();
       Config c = NeonLyrics.cfg();
       long start = shownAt;
@@ -87,20 +87,20 @@ public final class SongCard {
                float rise = ph.out() * 5.0F;
                float oldA = Gfx.alpha;
                Gfx.alpha = 1.0F;
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(g.method_51421() / 2.0F, g.method_51443() * 0.7F - 46.0F * scale);
-               g.method_51448().scale(scale, scale);
+               Pose.push(g);
+               Pose.translate(g, g.method_51421() / 2.0F, g.method_51443() * 0.7F - 46.0F * scale);
+               Pose.scale(g, scale, scale);
                float len = half * ph.lines() * (1.0F - 0.6F * ph.out());
                line(g, len, -16.0F - rise, lineCol, a * 0.9F);
                line(g, len * 0.82F, 24.0F - rise, lineCol, a * 0.9F);
                String label = "N O W   P L A Y I N G";
                float la = a * ph.label() * 0.75F;
                if (la > 0.02F) {
-                  g.method_51448().pushMatrix();
-                  g.method_51448().translate(0.0F, -27.0F - rise + (1.0F - ph.label()) * 3.0F);
-                  g.method_51448().scale(0.62F, 0.62F);
+                  Pose.push(g);
+                  Pose.translate(g, 0.0F, -27.0F - rise + (1.0F - ph.label()) * 3.0F);
+                  Pose.scale(g, 0.62F, 0.62F);
                   g.method_51433(font, label, -font.method_1727(label) / 2, 0, Gfx.argbRaw(lineCol, la), false);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                }
 
                float ta = a * ph.title();
@@ -108,38 +108,38 @@ public final class SongCard {
                   float pop = 1.0F + 0.12F * (1.0F - ph.title());
                   class_2561 comp = Gfx.comp(t, Gfx.LYRICS);
                   int w = Gfx.w(t, Gfx.LYRICS);
-                  g.method_51448().pushMatrix();
-                  g.method_51448().translate(0.0F, -2.0F - rise + (1.0F - ph.title()) * 6.0F);
-                  g.method_51448().scale(ts * pop, ts * pop);
-                  g.method_51448().translate(-w / 2.0F, -4.5F);
+                  Pose.push(g);
+                  Pose.translate(g, 0.0F, -2.0F - rise + (1.0F - ph.title()) * 6.0F);
+                  Pose.scale(g, ts * pop, ts * pop);
+                  Pose.translate(g, -w / 2.0F, -4.5F);
                   if (c.lyricsGlow) {
                      for (int q = 0; q < 4; q++) {
                         double ang = q * Math.PI / 2.0 + (Math.PI / 4);
-                        g.method_51448().pushMatrix();
-                        g.method_51448().translate((float)Math.cos(ang) * 0.8F, (float)Math.sin(ang) * 0.8F);
+                        Pose.push(g);
+                        Pose.translate(g, (float)Math.cos(ang) * 0.8F, (float)Math.sin(ang) * 0.8F);
                         g.method_51439(font, comp, 0, 0, Gfx.argbRaw(color, ta * 0.2F), false);
-                        g.method_51448().popMatrix();
+                        Pose.pop(g);
                      }
                   } else {
-                     g.method_51448().pushMatrix();
-                     g.method_51448().translate(0.6F, 0.8F);
+                     Pose.push(g);
+                     Pose.translate(g, 0.6F, 0.8F);
                      g.method_51439(font, comp, 0, 0, Gfx.argbRaw(Gfx.lerpColor(color, 328714, 0.85F), ta * 0.5F), false);
-                     g.method_51448().popMatrix();
+                     Pose.pop(g);
                   }
 
                   g.method_51439(font, comp, 0, 0, Gfx.argbRaw(Gfx.lerpColor(color, 16777215, 0.3F), ta), false);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                }
 
                float aa = a * ph.artist() * 0.85F;
                if (aa > 0.02F && !ar.isBlank()) {
-                  g.method_51448().pushMatrix();
-                  g.method_51448().translate(-aw / 2.0F, 11.0F - rise + (1.0F - ph.artist()) * 4.0F);
+                  Pose.push(g);
+                  Pose.translate(g, -aw / 2.0F, 11.0F - rise + (1.0F - ph.artist()) * 4.0F);
                   g.method_51433(font, ar, 0, 0, Gfx.argbRaw(16777215, aa), false);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                }
 
-               g.method_51448().popMatrix();
+               Pose.pop(g);
                Gfx.alpha = oldA;
             }
          }
@@ -157,11 +157,11 @@ public final class SongCard {
             float sa = a * (edge < 0.35F ? edge / 0.35F : 1.0F);
             if (!(sa < 0.02F)) {
                float x0 = -half + i * step;
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(x0, y - 0.5F);
-               g.method_51448().scale(step / 10.0F, 0.1F);
+               Pose.push(g);
+               Pose.translate(g, x0, y - 0.5F);
+               Pose.scale(g, step / 10.0F, 0.1F);
                g.method_25294(0, 0, 10, 10, Gfx.argbRaw(rgb, sa));
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
          }
       }

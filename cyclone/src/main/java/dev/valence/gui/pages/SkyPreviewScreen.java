@@ -1,7 +1,8 @@
 package dev.valence.gui.pages;
 
-import dev.valence.compat.Keys;
 import dev.valence.compat.InputScreen;
+import dev.valence.compat.Keys;
+import dev.valence.compat.Pose;
 import dev.valence.compat.Sky;
 import dev.valence.config.ValenceConfig;
 import dev.valence.gui.Anim;
@@ -203,8 +204,8 @@ public class SkyPreviewScreen extends InputScreen {
 
          class_327 f = this.field_22793;
          float e = Theme.easeOutCubic(this.fade);
-         g.method_51448().pushMatrix();
-         g.method_51448().scale(this.ui, this.ui);
+         Pose.push(g);
+         Pose.scale(g, this.ui, this.ui);
          RoundedImage.menuScale = this.ui;
          class_2561 label = class_2561.method_43471("valence.sky.preview.title");
          int lw = f.method_27525(label) + 21;
@@ -214,8 +215,8 @@ public class SkyPreviewScreen extends InputScreen {
          Theme.pill(g, 18, ly + 6, 22, ly + 10, Theme.withAlpha(-4745985, e));
          g.method_51439(f, label, 27, ly + 4, Theme.withAlpha(-724737, e), false);
          float slide = (1.0F - e) * 24.0F;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(slide, 0.0F);
+         Pose.push(g);
+         Pose.translate(g, slide, 0.0F);
          Theme.glass(g, this.panelX1, this.panelY1, this.panelX2, this.panelY2, Theme.withAlpha(-1005778409, e), Theme.withAlpha(1439281407, e), 0.6F * e);
          Theme.icon(g, "gear", this.panelX1 + 9, this.panelY1 + 7, 9, Theme.withAlpha(-4745985, e));
          g.method_51439(f, class_2561.method_43471("valence.sky.preview.settings"), this.panelX1 + 22, this.panelY1 + 8, Theme.withAlpha(-724737, e), false);
@@ -223,7 +224,7 @@ public class SkyPreviewScreen extends InputScreen {
             this.options.render(g, Math.round(mouseX - slide), mouseY);
          }
 
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          int bw = Math.min(460, this.W - 32);
          int bh = 48;
          int bx = (this.W - bw) / 2;
@@ -236,20 +237,20 @@ public class SkyPreviewScreen extends InputScreen {
          List<SkyDefinition> all = SkyRegistry.all();
          int idx = all.indexOf(this.sky) + 1;
          class_2561 name = class_2561.method_43471("valence.sky.name." + this.sky.id);
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(bx + 58, by + 11);
-         g.method_51448().scale(1.3F, 1.3F);
+         Pose.push(g);
+         Pose.translate(g, bx + 58, by + 11);
+         Pose.scale(g, 1.3F, 1.3F);
          g.method_51439(f, name, 0, 0, Theme.withAlpha(-1, e), false);
-         g.method_51448().popMatrix();
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(bx + 58, by + 28);
-         g.method_51448().scale(0.75F, 0.75F);
+         Pose.pop(g);
+         Pose.push(g);
+         Pose.translate(g, bx + 58, by + 28);
+         Pose.scale(g, 0.75F, 0.75F);
          boolean noSky = this.field_22787.field_1687 != null && Sky.noSky(this.field_22787.field_1687);
          class_2561 hint = noSky
             ? class_2561.method_43471("valence.sky.preview.nosky")
             : class_2561.method_43469("valence.sky.preview.hint", new Object[]{idx, all.size()});
          g.method_51439(f, hint, 0, 0, Theme.withAlpha(noSky ? -278748 : -8095322, e), false);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          boolean current = ValenceConfig.get().skyEnabled && this.sky.id.equals(ValenceConfig.get().skyId);
          class_2561 applyText = class_2561.method_43471(current ? "valence.sky.preview.active" : "valence.sky.preview.apply");
          class_2561 backText = class_2561.method_43471("valence.sky.preview.back");
@@ -262,7 +263,7 @@ public class SkyPreviewScreen extends InputScreen {
             OptionList.accentButton(g, ax, by + 16, ax + aw, by + 32, applyText, mouseX, mouseY, Anim.key(40, 3));
          }
 
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          RoundedImage.menuScale = 1.0F;
       }
    }
@@ -270,14 +271,14 @@ public class SkyPreviewScreen extends InputScreen {
    private void arrowButton(class_332 g, int x, int y, float hover, boolean left, float e) {
       Theme.pill(g, x, y, x + 18, y + 18, Theme.withAlpha(Theme.lerp(536870911, 1720409334, hover), e));
       Theme.pillLine(g, x, y, x + 18, y + 18, Theme.withAlpha(Theme.lerp(654311423, 1439281407, hover), e));
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(x + 9, y + 9);
+      Pose.push(g);
+      Pose.translate(g, x + 9, y + 9);
       if (left) {
-         g.method_51448().rotate((float) Math.PI);
+         Pose.rotate(g, (float) Math.PI);
       }
 
       Theme.icon(g, "arrow", -4, -4, 8, Theme.withAlpha(-1, e));
-      g.method_51448().popMatrix();
+      Pose.pop(g);
    }
 
    private static boolean inside(double mx, double my, int x1, int y1, int x2, int y2) {

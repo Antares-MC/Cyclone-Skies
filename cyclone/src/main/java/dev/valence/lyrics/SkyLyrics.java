@@ -1,9 +1,12 @@
 package dev.valence.lyrics;
 
 import dev.valence.compat.Buffers;
+import dev.valence.compat.Draw;
 import dev.valence.compat.Fonts;
-import dev.valence.compat.Sky;
 import dev.valence.compat.Layers;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Pose;
+import dev.valence.compat.Sky;
 import dev.valence.config.ValenceConfig;
 import dev.valence.gui.Theme;
 import dev.valence.license.License;
@@ -13,7 +16,6 @@ import java.util.Locale;
 import java.util.Random;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_10799;
 import net.minecraft.class_2338;
 import net.minecraft.class_243;
 import net.minecraft.class_2561;
@@ -767,29 +769,15 @@ public final class SkyLyrics {
                float sc = base * st[1] * 2.6F;
                float cosY = (float)Math.cos(b.yaw);
                float sinY = (float)Math.sin(b.yaw);
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(g.method_51421() * (0.5F + b.ox * 0.3F), g.method_51443() * (0.3F - b.oy * 0.13F) - st[2] * 4.0F);
-               g.method_51448().mul(new Matrix3x2f(cosY, sinY * 0.22F, 0.0F, 1.0F, 0.0F, 0.0F));
-               g.method_51448().rotate(b.roll);
-               g.method_51448().scale(sc, sc);
+               Pose.push(g);
+               Pose.translate(g, g.method_51421() * (0.5F + b.ox * 0.3F), g.method_51443() * (0.3F - b.oy * 0.13F) - st[2] * 4.0F);
+               Pose.mul(g, new Matrix3x2f(cosY, sinY * 0.22F, 0.0F, 1.0F, 0.0F, 0.0F));
+               Pose.rotate(g, b.roll);
+               Pose.scale(g, sc, sc);
                int iw = Math.round(b.width);
                if (cfg.lyricsGlow > 0.01F) {
                   int hw = Math.round(b.width / 0.53F / 2.0F + 2.0F);
-                  g.method_25293(
-                     class_10799.field_56883,
-                     GLOW,
-                     -hw,
-                     -11,
-                     0.0F,
-                     0.0F,
-                     hw * 2,
-                     21,
-                     128,
-                     48,
-                     128,
-                     48,
-                     tint(b.glowColor, Math.min(1.0F, a * cfg.lyricsGlow * 0.42F))
-                  );
+                  Draw.region(g, GLOW, -hw, -11, 0.0F, 0.0F, hw * 2, 21, 128, 48, 128, 48, tint(b.glowColor, Math.min(1.0F, a * cfg.lyricsGlow * 0.42F)));
                }
 
                if (b.outline != null) {
@@ -801,7 +789,7 @@ public final class SkyLyrics {
                }
 
                g.method_51430(font, b.main, -iw / 2, -4, alphaColor(a), false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
          }
       }
@@ -1000,20 +988,18 @@ public final class SkyLyrics {
                         float a = lineAlpha * Math.min(1.0F, k * 1.6F);
                         if (!(a < 0.03F)) {
                            float animScale = (0.62F + 0.38F * easeOutBack(k)) * base * e.fit * w.scale;
-                           g.method_51448().pushMatrix();
-                           g.method_51448().translate(cx, cy);
-                           g.method_51448().mul(new Matrix3x2f(cosY, sinY * 0.22F, 0.0F, 1.0F, 0.0F, 0.0F));
-                           g.method_51448().rotate(e.roll);
-                           g.method_51448().translate(w.x * base * e.fit, (w.y - e.lift) * base * e.fit + (1.0F - k) * 6.0F);
-                           g.method_51448().rotate(w.rot);
-                           g.method_51448().scale(animScale, animScale);
+                           Pose.push(g);
+                           Pose.translate(g, cx, cy);
+                           Pose.mul(g, new Matrix3x2f(cosY, sinY * 0.22F, 0.0F, 1.0F, 0.0F, 0.0F));
+                           Pose.rotate(g, e.roll);
+                           Pose.translate(g, w.x * base * e.fit, (w.y - e.lift) * base * e.fit + (1.0F - k) * 6.0F);
+                           Pose.rotate(g, w.rot);
+                           Pose.scale(g, animScale, animScale);
                            int iw = Math.round(w.width);
                            if (cfg.lyricsGlow > 0.01F) {
                               float ga = a * cfg.lyricsGlow * (0.32F + 0.45F * (1.0F - k));
                               int hw = Math.round(w.width / 0.53F / 2.0F + 2.0F);
-                              g.method_25293(
-                                 class_10799.field_56883, GLOW, -hw, -11, 0.0F, 0.0F, hw * 2, 21, 128, 48, 128, 48, tint(e.glowColor, Math.min(1.0F, ga))
-                              );
+                              Draw.region(g, GLOW, -hw, -11, 0.0F, 0.0F, hw * 2, 21, 128, 48, 128, 48, tint(e.glowColor, Math.min(1.0F, ga)));
                            }
 
                            if (w.outline != null) {
@@ -1025,7 +1011,7 @@ public final class SkyLyrics {
                            }
 
                            g.method_51430(font, w.main, -iw / 2, -4, alphaColor(a), false);
-                           g.method_51448().popMatrix();
+                           Pose.pop(g);
                         }
                      }
                   }

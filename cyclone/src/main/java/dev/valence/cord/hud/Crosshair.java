@@ -1,12 +1,12 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Hud;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.lyrics.NowPlaying;
 import dev.valence.cord.lyrics.SpotifyClient;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
 
@@ -15,16 +15,23 @@ public final class Crosshair {
    private Crosshair() {
    }
 
-   public static HudElement wrap(HudElement original) {
-      return (g, delta) -> {
+   public static Hud.Element wrap(Hud.Element original) {
+      return g -> {
          Config c = NeonLyrics.cfg();
          class_310 mc = class_310.method_1551();
          if (c.crosshair > 0 && mc.field_1724 != null && mc.field_1690.method_31044().method_31034() && !mc.field_1690.field_1842) {
             draw(g, c);
          } else {
-            original.render(g, delta);
+            original.render(g);
          }
       };
+   }
+
+   /** True while the styled crosshair replaces the vanilla one. */
+   public static boolean suppressing() {
+      Config c = NeonLyrics.cfg();
+      class_310 mc = class_310.method_1551();
+      return c.crosshair > 0 && mc.field_1724 != null && mc.field_1690.method_31044().method_31034() && !mc.field_1690.field_1842;
    }
 
    private static void draw(class_332 g, Config c) {

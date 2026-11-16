@@ -1,5 +1,8 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Textures;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Storage;
 import dev.valence.gui.RoundedImage;
@@ -16,7 +19,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.class_1011;
 import net.minecraft.class_1043;
 import net.minecraft.class_1060;
-import net.minecraft.class_10799;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
@@ -165,7 +167,7 @@ public final class Cover {
             class_1011 b = class_1011.method_49277(p.square());
             class_1060 tm = class_310.method_1551().method_1531();
             if (tex == null) {
-               tex = new class_1043(() -> "neonlyrics_cover", a);
+               tex = Textures.named("neonlyrics_cover", a);
                tm.method_4616(ID, tex);
             } else {
                tex.method_4526(a);
@@ -173,7 +175,7 @@ public final class Cover {
             }
 
             if (texSq == null) {
-               texSq = new class_1043(() -> "neonlyrics_cover_sq", b);
+               texSq = Textures.named("neonlyrics_cover_sq", b);
                tm.method_4616(ID_SQ, texSq);
             } else {
                texSq.method_4526(b);
@@ -203,7 +205,7 @@ public final class Cover {
          }
 
          float in = Anim.outCubic(Anim.since(shownAt, 350L));
-         g.method_25291(class_10799.field_56883, ID, x, y, 0.0F, 0.0F, size, size, size, size, Gfx.argb(16777215, alpha * in));
+         Draw.texture(g, ID, x, y, 0.0F, 0.0F, size, size, size, size, Gfx.argb(16777215, alpha * in));
          return in > 0.5F;
       } catch (Throwable var6) {
          ready = false;
@@ -223,7 +225,7 @@ public final class Cover {
          if (px != null) {
             RoundedImage.drawNative(g, "cover@" + shownAt, px, x, y, size, size, Gfx.argb(16777215, alpha * in));
          } else {
-            g.method_25291(class_10799.field_56883, ID_SQ, x, y, 0.0F, 0.0F, size, size, size, size, Gfx.argb(16777215, alpha * in));
+            Draw.texture(g, ID_SQ, x, y, 0.0F, 0.0F, size, size, size, size, Gfx.argb(16777215, alpha * in));
          }
 
          return true;

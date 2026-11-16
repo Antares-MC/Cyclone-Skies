@@ -1,5 +1,6 @@
 package dev.valence.cord.live;
 
+import dev.valence.compat.Links;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.util.Fx;
@@ -14,9 +15,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.class_124;
-import net.minecraft.class_2558;
 import net.minecraft.class_2561;
-import net.minecraft.class_2583;
 import net.minecraft.class_5250;
 import net.minecraft.class_310;
 
@@ -75,7 +74,7 @@ public final class LiveNotifier {
          class_5250 prefix = class_2561.method_43470("[CycloneSkies] ").method_27692(class_124.field_1075);
          class_2561 link = class_2561.method_43470(msg + " [Open Stream]")
             .method_27692(class_124.field_1060)
-            .method_27696(class_2583.field_24360.method_10958(new class_2558.class_10608(URI.create(url))));
+            .method_27696(Links.openUrl(url));
          mc.field_1705.method_1743().method_1812(prefix.method_10852(link));
       }
       Fx.info("LIVE: " + (title != null ? title : "Stream started"));

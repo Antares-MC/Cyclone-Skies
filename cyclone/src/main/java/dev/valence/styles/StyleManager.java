@@ -1,6 +1,7 @@
 package dev.valence.styles;
 
 import dev.valence.ValenceClient;
+import dev.valence.compat.Textures;
 import dev.valence.config.ValenceConfig;
 import dev.valence.license.License;
 import java.io.ByteArrayInputStream;
@@ -284,8 +285,8 @@ public final class StyleManager {
       class_2960 id = class_2960.method_60655("valence", "dynamic/style/t" + n);
       class_2960 mid = class_2960.method_60655("valence", "dynamic/style/m" + n);
       String label = key;
-      class_310.method_1551().method_1531().method_4616(id, new class_1043(() -> "CycloneSkies style " + label, img));
-      class_310.method_1551().method_1531().method_4616(mid, new class_1043(() -> "CycloneSkies style mirror " + label, mirror));
+      class_310.method_1551().method_1531().method_4616(id, Textures.named("CycloneSkies style " + label, img));
+      class_310.method_1551().method_1531().method_4616(mid, Textures.named("CycloneSkies style mirror " + label, mirror));
       StyleManager.Tex t = new StyleManager.Tex(id, mid, w, h, px, frames);
       TEXTURES.put(key, t);
       return t;
@@ -320,7 +321,7 @@ public final class StyleManager {
          try {
             class_1011 img = class_1011.method_4309(new ByteArrayInputStream(bytes));
             id = class_2960.method_60655("valence", "dynamic/style/icon" + counter++);
-            class_310.method_1551().method_1531().method_4616(id, new class_1043(() -> "CycloneSkies pack icon", img));
+            class_310.method_1551().method_1531().method_4616(id, Textures.named("CycloneSkies pack icon", img));
          } catch (IOException | RuntimeException ignored) {
             id = null;
          }

@@ -1,7 +1,7 @@
 package dev.valence.sky;
 
-import dev.valence.compat.Buffers;
 import dev.valence.ValenceClient;
+import dev.valence.compat.Buffers;
 import dev.valence.compat.Layers;
 import dev.valence.config.ValenceConfig;
 import dev.valence.license.License;

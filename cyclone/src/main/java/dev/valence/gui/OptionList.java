@@ -1,5 +1,7 @@
 package dev.valence.gui;
 
+import dev.valence.compat.Pose;
+import dev.valence.compat.Wrap;
 import dev.valence.config.ValenceConfig;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -404,11 +406,11 @@ public class OptionList {
 
             Theme.pill(g, sx - grow, sy - grow, sx + 10 + grow, sy + 10 + grow, shown);
             if (isAuto) {
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(sx + 5.0F - 1.6F, sy + 2.0F);
-               g.method_51448().scale(0.75F, 0.75F);
+               Pose.push(g);
+               Pose.translate(g, sx + 5.0F - 1.6F, sy + 2.0F);
+               Pose.scale(g, 0.75F, 0.75F);
                g.method_51433(font(), "A", 0, 0, -1, false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
 
             Theme.pillLine(g, sx - grow, sy - grow, sx + 10 + grow, sy + 10 + grow, 872415231);
@@ -490,13 +492,13 @@ public class OptionList {
             float press = Math.max(0.0F, 1.0F - (float)(System.nanoTime() - this.changeNanos) / 1.8E8F);
             boolean pressedSide = side == 0 == this.slideDir < 0;
             float s = 1.0F + 0.08F * hv - (pressedSide ? 0.12F * (float)Math.sin(press * Math.PI) : 0.0F);
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(cx, y + 13);
-            g.method_51448().scale(s, s);
+            Pose.push(g);
+            Pose.translate(g, cx, y + 13);
+            Pose.scale(g, s, s);
             Theme.pill(g, -8, -7, 8, 7, Theme.lerp(352321535, -7643914, hv));
-            g.method_51448().rotate((float)Math.toRadians(side == 0 ? 180.0 : 0.0));
+            Pose.rotate(g, (float)Math.toRadians(side == 0 ? 180.0 : 0.0));
             Theme.icon(g, "arrow", -4, -4, 8, Theme.lerp(-8095322, -1, hv));
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          }
 
          int tx0 = bx + 22;
@@ -644,11 +646,11 @@ public class OptionList {
          g.method_27534(f, this.text, x + w / 2, y + 10, Theme.lerp(-4608298, -724737, hover));
          int cx = x + w / 2 + f.method_27525(this.text) / 2 + 9;
          int cy = y + 14;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(cx, cy);
-         g.method_51448().rotate((float)Math.toRadians(90.0F * turn));
+         Pose.push(g);
+         Pose.translate(g, cx, cy);
+         Pose.rotate(g, (float)Math.toRadians(90.0F * turn));
          Theme.icon(g, "arrow", -4, -4, 8, Theme.lerp(-8095322, -4745985, Math.max(hover, turn)));
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
 
       @Override
@@ -712,11 +714,11 @@ public class OptionList {
       @Override
       public void render(class_332 g, int x, int y, int w, int mx, int my) {
          this.lastW = w;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x + 6, y + 2);
-         g.method_51448().scale(0.85F, 0.85F);
-         g.method_51440(font(), (class_5348)this.text.get(), 0, 0, Math.round((w - 12) / 0.85F), -8095322, false);
-         g.method_51448().popMatrix();
+         Pose.push(g);
+         Pose.translate(g, x + 6, y + 2);
+         Pose.scale(g, 0.85F, 0.85F);
+         Wrap.draw(g, font(), (class_5348)this.text.get(), 0, 0, Math.round((w - 12) / 0.85F), -8095322, false);
+         Pose.pop(g);
       }
    }
 
@@ -772,11 +774,11 @@ public class OptionList {
                g, sx, by, sx + bw, by + bh, on ? Theme.withAlpha(p.accentLight(), 0.85F) : Theme.withAlpha(0xFFFFFF, 0.10F + 0.10F * hv)
             );
             class_2561 name = class_2561.method_43471(p.nameKey());
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(sx + 14 + (bw - 18) / 2.0F, by + 7.5F);
-            g.method_51448().scale(0.8F, 0.8F);
+            Pose.push(g);
+            Pose.translate(g, sx + 14 + (bw - 18) / 2.0F, by + 7.5F);
+            Pose.scale(g, 0.8F, 0.8F);
             g.method_27534(f, name, -f.method_27525(name) / 2, 0, Theme.withAlpha(0xFF000000 | p.text(), on ? 1.0F : 0.62F + 0.3F * hv));
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          }
       }
 
@@ -862,9 +864,9 @@ public class OptionList {
          int tx = x + 8 + Math.round(hover * 1.5F);
          if (desc != null) {
             g.method_51439(f, label, tx, y + 5, -724737, false);
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(tx, y + 15);
-            g.method_51448().scale(0.75F, 0.75F);
+            Pose.push(g);
+            Pose.translate(g, tx, y + 15);
+            Pose.scale(g, 0.75F, 0.75F);
             int maxW = Math.round((w - (tx - x) - 46) / 0.75F);
             String d = desc.getString();
             if (f.method_1727(d) > maxW) {
@@ -872,7 +874,7 @@ public class OptionList {
             }
 
             g.method_51433(f, d, 0, 0, Theme.lerp(-8095322, -4608298, hover), false);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          } else {
             g.method_51439(f, label, tx, y + (h - 3) / 2 - 3, -724737, false);
          }
@@ -933,11 +935,11 @@ public class OptionList {
             float hv = Anim.hover(this.key(10 + i), hov && i != sel);
             float near = 1.0F - Math.min(1.0F, Math.abs(pos - i));
             int col = Theme.lerp(Theme.lerp(-8095322, -724737, hv), -1, near);
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(cx, sy + 4.5F);
-            g.method_51448().scale(0.85F, 0.85F);
+            Pose.push(g);
+            Pose.translate(g, cx, sy + 4.5F);
+            Pose.scale(g, 0.85F, 0.85F);
             g.method_27534(f, this.names.get(i), 0, 0, col);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          }
       }
 

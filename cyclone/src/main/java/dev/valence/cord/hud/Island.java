@@ -1,5 +1,6 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Pose;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.lyrics.NowPlaying;
@@ -14,7 +15,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
 import net.minecraft.class_640;
-import net.minecraft.class_9779;
 
 @Environment(EnvType.CLIENT)
 public final class Island {
@@ -45,7 +45,7 @@ public final class Island {
       noteTime = System.currentTimeMillis();
    }
 
-   public static void render(class_332 g, class_9779 delta) {
+   public static void render(class_332 g) {
       class_310 mc = class_310.method_1551();
       Config c = NeonLyrics.cfg();
       if (!mc.field_1690.field_1842 && mc.field_1724 != null && c.islandEnabled && !(mc.field_1755 instanceof ValenceScreen)) {
@@ -200,15 +200,15 @@ public final class Island {
          float slide = ph * 0.75F;
          if (e < 1.0F && prevKind != Island.Kind.IDLE && !prevText.isEmpty()) {
             Gfx.alpha = show * (1.0F - e) * (1.0F - e);
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(0.0F, -e * slide);
+            Pose.push(g);
+            Pose.translate(g, 0.0F, -e * slide);
             drawSimple(g, prevKind, prevText, px, top, pw, ph, acc, np, now, false);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          }
 
          Gfx.alpha = show * e;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(0.0F, (1.0F - e) * slide);
+         Pose.push(g);
+         Pose.translate(g, 0.0F, (1.0F - e) * slide);
          switch (kind) {
             case IDLE:
                float br = 0.5F + 0.5F * (float)Math.sin(now / 900.0);
@@ -221,7 +221,7 @@ public final class Island {
                drawSimple(g, kind, text, px, top, pw, ph, acc, np, now, true);
          }
 
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          if ((kind == Island.Kind.LYRIC || kind == Island.Kind.SONG) && np.durationMs > 0L) {
             float frac = Math.max(0.0F, Math.min(1.0F, (float)np.progressNow(0) / (float)np.durationMs));
             float lx0 = fx + fr;
@@ -241,11 +241,11 @@ public final class Island {
 
             if (tr != null) {
                Gfx.alpha = show * e;
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(cx, top + ph + 4);
-               g.method_51448().scale(0.85F, 0.85F);
+               Pose.push(g);
+               Pose.translate(g, cx, top + ph + 4);
+               Pose.scale(g, 0.85F, 0.85F);
                Gfx.center(g, Gfx.ellipsize(tr, Math.round(pw / 0.85F)), 0, 0, 14275058, 0.9F, true);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
          }
 

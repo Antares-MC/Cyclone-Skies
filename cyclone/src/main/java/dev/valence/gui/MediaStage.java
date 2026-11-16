@@ -1,5 +1,6 @@
 package dev.valence.gui;
 
+import dev.valence.compat.Pose;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.hud.Cover;
@@ -56,9 +57,9 @@ public final class MediaStage {
          }
 
          float ls = vr * 0.62F;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(vcx, vcy);
-         g.method_51448().rotate((float)Math.toRadians(this.spin));
+         Pose.push(g);
+         Pose.translate(g, vcx, vcy);
+         Pose.rotate(g, (float)Math.toRadians(this.spin));
          Gfx.aaRound(g, -vr * 0.92F, -0.75F, vr * 1.84F, 1.5F, 0.75F, 16777215, 0.05F);
          Gfx.aaRound(g, -0.75F, -vr * 0.92F, 1.5F, vr * 1.84F, 0.75F, 16777215, 0.03F);
          if (!Cover.draw(g, Math.round(-ls / 2.0F), Math.round(-ls / 2.0F), Math.round(ls), 1.0F)) {
@@ -66,27 +67,27 @@ public final class MediaStage {
          }
 
          Gfx.aaCircle(g, 0.0F, 0.0F, 2.2F, 789518, 1.0F);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          float pop = 0.94F + 0.06F * trackIn;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x + cs / 2.0F, cy + cs / 2.0F);
-         g.method_51448().scale(pop, pop);
+         Pose.push(g);
+         Pose.translate(g, x + cs / 2.0F, cy + cs / 2.0F);
+         Pose.scale(g, pop, pop);
          Gfx.aaRound(g, -cs / 2.0F - 2.0F, -cs / 2.0F + 4.0F, cs + 4, cs + 4, 10.0F, 0, 0.35F);
          if (!Cover.drawSquare(g, -cs / 2, -cs / 2, cs, 1.0F)) {
             Gfx.aaRound(g, -cs / 2.0F, -cs / 2.0F, cs, cs, 8.0F, 1973798, 1.0F);
             Icons.draw(g, Icons.Icon.LYRICS, 0.0F, 0.0F, cs * 0.26F, 4539725, 1.0F);
          }
 
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          int ty = cy + cs + 14;
          float meta = trackIn;
          int lift = Math.round((1.0F - meta) * 8.0F);
          float ts = 1.35F;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x, ty + lift);
-         g.method_51448().scale(ts, ts);
+         Pose.push(g);
+         Pose.translate(g, x, ty + lift);
+         Pose.scale(g, ts, ts);
          Gfx.textBold(g, Gfx.ellipsize(np.title, Math.round(w / ts)), 0, 0, 16052479, meta, true);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          Gfx.text(g, Gfx.ellipsize(np.artist, w), x, ty + 15 + lift, 9406376, meta, false);
          if ("last".equals(np.trackId)) {
             Gfx.text(g, Gfx.ellipsize(class_2561.method_43471("valence.stage.last").getString(), w), x, ty + 33, 7235208, 1.0F, false);

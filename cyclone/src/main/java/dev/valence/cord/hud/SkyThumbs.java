@@ -1,5 +1,8 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Textures;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Storage;
 import dev.valence.cord.sky.LiveSky;
@@ -24,7 +27,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_1011;
 import net.minecraft.class_1043;
-import net.minecraft.class_10799;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
@@ -86,7 +88,7 @@ public final class SkyThumbs {
       if (px != null) {
          RoundedImage.drawNative(g, "thumb:" + p.name() + "@" + shown, px, x, y, w, h, Gfx.argb(16777215, alpha));
       } else {
-         g.method_25291(class_10799.field_56883, id(p), x, y, 0.0F, 0.0F, w, h, w, h, Gfx.argb(16777215, alpha));
+         Draw.texture(g, id(p), x, y, 0.0F, 0.0F, w, h, w, h, Gfx.argb(16777215, alpha));
       }
 
       return true;
@@ -147,7 +149,7 @@ public final class SkyThumbs {
             try {
                SkyPreset p = SkyPreset.valueOf(d.name());
                String old = SHOWN.get(d.name());
-               class_310.method_1551().method_1531().method_4616(id(p), new class_1043(() -> "cycloneskies_thumb_" + d.name(), d.img()));
+               class_310.method_1551().method_1531().method_4616(id(p), Textures.named("cycloneskies_thumb_" + d.name(), d.img()));
                PIXELS.put(d.name(), d.img());
                if (old != null) {
                   RoundedImage.forget("thumb:" + d.name() + "@" + old);

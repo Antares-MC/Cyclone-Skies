@@ -1,5 +1,6 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Pose;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.lyrics.LyricTiming;
@@ -15,7 +16,6 @@ import net.minecraft.class_2561;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
 import net.minecraft.class_332;
-import net.minecraft.class_9779;
 
 @Environment(EnvType.CLIENT)
 public final class ScreenLyrics {
@@ -30,7 +30,7 @@ public final class ScreenLyrics {
    private ScreenLyrics() {
    }
 
-   public static void render(class_332 g, class_9779 delta) {
+   public static void render(class_332 g) {
       class_310 mc = class_310.method_1551();
       Config c = NeonLyrics.cfg();
       if (c.lyricsSky && c.lyricsStyle == 2 && !mc.field_1690.field_1842 && mc.field_1724 != null && !(mc.field_1755 instanceof ValenceScreen)) {
@@ -125,9 +125,9 @@ public final class ScreenLyrics {
 
          if (c.lyricsReveal != 2 || starts == null && live) {
             int rowH = 12;
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(g.method_51421() / 2.0F, baseY - (rows.size() - 1) * rowH * scale);
-            g.method_51448().scale(scale, scale);
+            Pose.push(g);
+            Pose.translate(g, g.method_51421() / 2.0F, baseY - (rows.size() - 1) * rowH * scale);
+            Pose.scale(g, scale, scale);
             int shadow = Gfx.lerpColor(col, 328714, 0.85F);
 
             for (int r = 0; r < rows.size(); r++) {
@@ -160,43 +160,43 @@ public final class ScreenLyrics {
                   float a = alpha * e;
                   class_2561 comp = Gfx.comp(word, Gfx.LYRICS);
                   int wcol = LyricColor.word(c, col, k, words.length);
-                  g.method_51448().pushMatrix();
+                  Pose.push(g);
                   switch (c.lyricsAnim) {
                      case 1:
                         float ps = 1.0F + 0.35F * (1.0F - e);
-                        g.method_51448().translate(x + ww / 2.0F, y + 4.5F);
-                        g.method_51448().scale(ps, ps);
-                        g.method_51448().translate(-ww / 2.0F, -4.5F);
+                        Pose.translate(g, x + ww / 2.0F, y + 4.5F);
+                        Pose.scale(g, ps, ps);
+                        Pose.translate(g, -ww / 2.0F, -4.5F);
                         break;
                      case 2:
-                        g.method_51448().translate(x - (1.0F - e) * 8.0F, y);
+                        Pose.translate(g, x - (1.0F - e) * 8.0F, y);
                         break;
                      default:
-                        g.method_51448().translate(x, y + (1.0F - e) * 3.0F);
+                        Pose.translate(g, x, y + (1.0F - e) * 3.0F);
                   }
 
                   if (c.lyricsGlow) {
                      for (int q = 0; q < 4; q++) {
                         double ang = q * Math.PI / 2.0 + (Math.PI / 4);
-                        g.method_51448().pushMatrix();
-                        g.method_51448().translate((float)Math.cos(ang) * 0.8F, (float)Math.sin(ang) * 0.8F);
+                        Pose.push(g);
+                        Pose.translate(g, (float)Math.cos(ang) * 0.8F, (float)Math.sin(ang) * 0.8F);
                         g.method_51439(font, comp, 0, 0, Gfx.argbRaw(wcol, a * 0.18F), false);
-                        g.method_51448().popMatrix();
+                        Pose.pop(g);
                      }
                   } else {
-                     g.method_51448().pushMatrix();
-                     g.method_51448().translate(0.6F, 0.8F);
+                     Pose.push(g);
+                     Pose.translate(g, 0.6F, 0.8F);
                      g.method_51439(font, comp, 0, 0, Gfx.argbRaw(shadow, a * 0.55F), false);
-                     g.method_51448().popMatrix();
+                     Pose.pop(g);
                   }
 
                   g.method_51439(font, comp, 0, 0, Gfx.argbRaw(wcol, a), false);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                   x += ww + space;
                }
             }
 
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          } else {
             drawSingle(g, font, line, starts, prog, now, col, scale * 1.35F, baseY, alpha, c, live);
          }
@@ -261,28 +261,28 @@ public final class ScreenLyrics {
                int ww = Gfx.w(word, Gfx.LYRICS);
                class_2561 comp = Gfx.comp(word, Gfx.LYRICS);
                int wcol = LyricColor.word(c, col, k, words.length);
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(px, py);
-               g.method_51448().rotate((float)Math.toRadians(SingleWord.tilt(seed, k)));
-               g.method_51448().scale(sc, sc);
-               g.method_51448().translate(-ww / 2.0F, -4.5F);
+               Pose.push(g);
+               Pose.translate(g, px, py);
+               Pose.rotate(g, (float)Math.toRadians(SingleWord.tilt(seed, k)));
+               Pose.scale(g, sc, sc);
+               Pose.translate(g, -ww / 2.0F, -4.5F);
                if (c.lyricsGlow) {
                   for (int q = 0; q < 4; q++) {
                      double ang = q * Math.PI / 2.0 + (Math.PI / 4);
-                     g.method_51448().pushMatrix();
-                     g.method_51448().translate((float)Math.cos(ang) * 0.8F, (float)Math.sin(ang) * 0.8F);
+                     Pose.push(g);
+                     Pose.translate(g, (float)Math.cos(ang) * 0.8F, (float)Math.sin(ang) * 0.8F);
                      g.method_51439(font, comp, 0, 0, Gfx.argbRaw(wcol, a * 0.18F), false);
-                     g.method_51448().popMatrix();
+                     Pose.pop(g);
                   }
                } else {
-                  g.method_51448().pushMatrix();
-                  g.method_51448().translate(0.6F, 0.8F);
+                  Pose.push(g);
+                  Pose.translate(g, 0.6F, 0.8F);
                   g.method_51439(font, comp, 0, 0, Gfx.argbRaw(shadow, a * 0.55F), false);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                }
 
                g.method_51439(font, comp, 0, 0, Gfx.argbRaw(wcol, a), false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             }
          }
       }

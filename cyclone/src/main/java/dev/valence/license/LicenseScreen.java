@@ -1,6 +1,7 @@
 package dev.valence.license;
 
 import dev.valence.compat.InputScreen;
+import dev.valence.compat.Pose;
 import dev.valence.gui.Anim;
 import dev.valence.gui.OptionList;
 import dev.valence.gui.Theme;
@@ -182,11 +183,11 @@ public class LicenseScreen extends InputScreen {
       List<class_5481> lines = f.method_1728(text, Math.round(maxW / scale));
 
       for (int i = 0; i < lines.size(); i++) {
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(cx, y + i * 10 * scale);
-         g.method_51448().scale(scale, scale);
+         Pose.push(g);
+         Pose.translate(g, cx, y + i * 10 * scale);
+         Pose.scale(g, scale, scale);
          g.method_35719(f, lines.get(i), 0, 0, color);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 
@@ -201,21 +202,21 @@ public class LicenseScreen extends InputScreen {
       float shake = this.shakeAt == 0L ? 0.0F : Math.max(0.0F, 1.0F - (float)(now - this.shakeAt) / 420.0F);
       float fsx = (float)Math.sin((now - this.shakeAt) / 22.0) * 6.0F * shake * shake;
       float good = this.successAt == 0L ? 0.0F : Math.min(1.0F, (float)(now - this.successAt) / 250.0F);
-      g.method_51448().pushMatrix();
+      Pose.push(g);
       float sc = 0.94F + 0.06F * open;
-      g.method_51448().translate(this.field_22789 / 2.0F, this.field_22790 / 2.0F + (1.0F - open) * 10.0F);
-      g.method_51448().scale(sc, sc);
-      g.method_51448().translate(-this.field_22789 / 2.0F, -this.field_22790 / 2.0F);
+      Pose.translate(g, this.field_22789 / 2.0F, this.field_22790 / 2.0F + (1.0F - open) * 10.0F);
+      Pose.scale(g, sc, sc);
+      Pose.translate(g, -this.field_22789 / 2.0F, -this.field_22790 / 2.0F);
       Theme.glass(g, x1, y1, x1 + 280, y1 + 190, Theme.withAlpha(-1207105001, 0.4F + 0.6F * open), Theme.withAlpha(1086959871, open), 0.55F * open);
       Theme.sheen(g, x1, y1, x1 + 280, y1 + 40, 0.35F * open);
       float pulse = 0.3F + 0.1F * (float)Math.sin(now / 600.0);
       Theme.glow(g, lx - 15, y1 + 14, lx + 15, y1 + 44, -7643914, pulse * open);
       Theme.image(g, Theme.LOGO, lx - 14, y1 + 15, 28, 28, 128, 128, Theme.withAlpha(-1, open));
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(lx, y1 + 50);
-      g.method_51448().scale(1.6F, 1.6F);
+      Pose.push(g);
+      Pose.translate(g, lx, y1 + 50);
+      Pose.scale(g, 1.6F, 1.6F);
       g.method_27534(f, class_2561.method_43470("CYCLONESKIES").method_27694(s -> s.method_10982(true)), 0, 0, Theme.withAlpha(-1, open));
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       this.centered(g, f, class_2561.method_43471("valence.license.subtitle"), lx, y1 + 69, 0.8F, 250, Theme.withAlpha(-4608298, open));
       int fx1 = x1 + 34;
       int fy1 = y1 + 92;
@@ -225,8 +226,8 @@ public class LicenseScreen extends InputScreen {
       int line = Theme.lerp(872415231, -1433707274, fh);
       line = Theme.lerp(line, -495247, shake);
       line = Theme.lerp(line, -9508952, good);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(fsx, 0.0F);
+      Pose.push(g);
+      Pose.translate(g, fsx, 0.0F);
       if (fh > 0.01F && good == 0.0F && shake == 0.0F) {
          Theme.glow(g, fx1, fy1, fx2, fy2, -7643914, 0.25F * fh * open);
       }
@@ -243,7 +244,7 @@ public class LicenseScreen extends InputScreen {
       Theme.pillLine(g, fx1, fy1, fx2, fy2, Theme.withAlpha(line, open));
       int iconCol = good > 0.0F ? -9508952 : Theme.lerp(Theme.lerp(-8095322, -4745985, fh), -495247, shake);
       Theme.icon(g, good > 0.0F ? "check" : "star", fx1 + 8, fy1 + 7, 10, Theme.withAlpha(iconCol, open));
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       this.field.method_46421(Math.round(fx1 + 24 + fsx));
       this.field.method_46419(fy1 + 8);
       this.field.method_25358(fx2 - fx1 - 32);
@@ -269,15 +270,15 @@ public class LicenseScreen extends InputScreen {
       int ty = y1 + 158;
       if (!this.message.isEmpty()) {
          float ma = Math.min(1.0F, (float)(now - this.messageAt) / 200.0F) * open;
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(fsx, (1.0F - ma) * 3.0F);
+         Pose.push(g);
+         Pose.translate(g, fsx, (1.0F - ma) * 3.0F);
          this.centered(g, f, class_2561.method_43470(this.message), lx, ty, 0.8F, 250, Theme.withAlpha(this.messageColor, ma));
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       } else {
          this.centered(g, f, class_2561.method_43471("valence.license.hint"), lx, ty, 0.7F, 250, Theme.withAlpha(-8095322, open));
       }
 
-      g.method_51448().popMatrix();
+      Pose.pop(g);
    }
 
    private boolean overButton(double mx, double my) {

@@ -1,12 +1,14 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
+import dev.valence.compat.Pose;
 import dev.valence.cord.NeonLyrics;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents.AfterInit;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents.AfterRender;
-import net.minecraft.class_10799;
 import net.minecraft.class_442;
 
 @Environment(EnvType.CLIENT)
@@ -43,30 +45,18 @@ public final class StartupIntro {
                                  float in = Anim.outBack(Math.min(1.0F, t / 0.6F));
                                  float glow = (float)(0.5 + 0.5 * Math.sin(t * 4.0F));
                                  int acc = Theme.accent();
-                                 g.method_51448().pushMatrix();
-                                 g.method_51448().translate(sw / 2.0F, sh / 2.0F - 6.0F);
+                                 Pose.push(g);
+                                 Pose.translate(g, sw / 2.0F, sh / 2.0F - 6.0F);
                                  float sc = 1.9F * (0.7F + 0.3F * in);
-                                 g.method_51448().scale(sc, sc);
+                                 Pose.scale(g, sc, sc);
                                  String logo = "CYCLONESKIES";
                                  int lw = Gfx.w(logo, Gfx.BOLD);
                                  Gfx.alpha = out * Math.min(1.0F, t / 0.3F);
                                  Gfx.aaRound(g, -lw / 2.0F - 8.0F, -7.0F, lw + 16, 17.0F, 8.5F, acc, 0.18F + 0.12F * glow);
                                  Gfx.textBold(g, logo, -lw / 2, -3, 16777215, 1.0F, false);
-                                 g.method_51448().popMatrix();
+                                 Pose.pop(g);
                                  int ls = Math.round(28.0F * (0.7F + 0.3F * in));
-                                 g.method_25291(
-                                    class_10799.field_56883,
-                                    dev.valence.gui.Theme.LOGO,
-                                    sw / 2 - ls / 2,
-                                    sh / 2 - 34 - ls,
-                                    0.0F,
-                                    0.0F,
-                                    ls,
-                                    ls,
-                                    ls,
-                                    ls,
-                                    Gfx.argb(16777215, 1.0F)
-                                 );
+                                 Draw.texture(g, dev.valence.gui.Theme.LOGO, sw / 2 - ls / 2, sh / 2 - 34 - ls, 0.0F, 0.0F, ls, ls, ls, ls, Gfx.argb(16777215, 1.0F));
                                  String sub = "Minecraft, but beautiful";
                                  int n = Math.max(0, Math.min(sub.length(), (int)((t - 0.5F) / 0.03F)));
                                  Gfx.center(g, sub.substring(0, n), sw / 2, sh / 2 + 22, 10326968, out, false);

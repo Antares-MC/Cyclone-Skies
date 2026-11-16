@@ -5,21 +5,19 @@ import net.minecraft.class_2583;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
+import net.minecraft.class_327.class_6415;
+import net.minecraft.class_4597;
+import org.joml.Matrix4f;
 
 /**
- * Selectable fonts.
+ * Selectable fonts for 1.21 and 1.21.1.
  *
- * <p>1.21.11 draws every glyph with the single vanilla text renderer and picks a font
- * by attaching a {@code StyleSpriteSource} to the text style. From 1.21.9 on the font
- * manager can also build a separate {@code TextRenderer} per font id. Before 1.21.9
- * neither is true: a {@code TextRenderer} is built from a storage lookup that the font
- * manager keeps private, and there is no per-style override, so a font cannot be
- * selected at all.
+ * <p>These versions cannot select a font at all: a {@code TextRenderer} is built from a
+ * storage lookup the font manager keeps private, and there is no per-style override, so the
+ * font picker is inert rather than drawing glyphs from the wrong atlas.
  *
- * <p>This is the 1.21.2 - 1.21.8 implementation. The entry remembers which font was
- * asked for, but every lookup resolves to the vanilla renderer and every style is
- * returned unchanged, so the font picker is inert on these versions rather than
- * drawing glyphs from the wrong atlas.
+ * <p>The glyph submitter also still takes a plain string here, and carries a trailing
+ * see-through flag that later versions folded into the layer argument.
  */
 public final class Fonts {
    /** One selectable font, by resource id. */
@@ -47,5 +45,11 @@ public final class Fonts {
    /** The renderer that measures and draws this font. */
    public static class_327 renderer(Entry e) {
       return class_310.method_1551().field_1772;
+   }
+
+   /** Draws one text component with the given renderer. */
+   public static void draw(class_327 font, class_2561 text, float x, float y, int color, boolean shadow,
+                           Matrix4f matrix, class_4597 buffers, class_6415 layer, int light) {
+      font.method_27522(text.getString(), x, y, color, shadow, matrix, buffers, layer, 0, light, false);
    }
 }

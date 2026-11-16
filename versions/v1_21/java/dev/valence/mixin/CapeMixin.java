@@ -1,10 +1,10 @@
 package dev.valence.mixin;
 
 import dev.valence.cosmetics.Capes;
+import dev.valence.emote.EmoteManager;
+import dev.valence.emote.EmoteState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_10055;
-import net.minecraft.class_1007;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_742;
@@ -12,34 +12,42 @@ import net.minecraft.class_8685;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Replaces the local player's cape texture with the selected cosmetic cape, or hides the
- * cape entirely when a pair of wings is worn.
+ * Swaps in the cosmetic cape by rewriting the player's skin lookup.
  *
- * <p>This is the 1.21.2 - 1.21.8 version. The cape lean and flap fields were added to
- * the render state after 1.21.8, so here the cape keeps vanilla's own motion and only the
- * texture and visibility are changed.
+ * <p>This is the 1.21 and 1.21.1 version. These versions have no render state to attach
+ * per-frame data to, and the cape feature renderer reads the cape texture from the skin
+ * record on every frame. Replacing the record's cape entry therefore keeps vanilla's own
+ * lean and flap motion while drawing our texture, and an empty cape hides it outright
+ * when a pair of wings is worn.
+ *
+ * <p>The same lookup is the only per-frame hook the player renderer makes, so the active
+ * emote is refreshed here as well.
  */
 @Environment(EnvType.CLIENT)
-@Mixin(class_1007.class)
+@Mixin(class_742.class)
 public abstract class CapeMixin {
-   @Inject(method = "method_62604(Lnet/minecraft/class_742;Lnet/minecraft/class_10055;F)V", at = @At("TAIL"))
-   private void valence$cape(class_742 entity, class_10055 state, float partialTick, CallbackInfo ci) {
-      if (entity == class_310.method_1551().field_1724) {
-         if (dev.valence.cosmetics.Cosmetics.wings() != null) {
-            state.field_53532 = false;
-            return;
-         }
+   @Inject(method = "method_52814", at = @At("RETURN"), cancellable = true)
+   private void valence$cape(CallbackInfoReturnable<class_8685> cir) {
+      class_742 self = (class_742)(Object)this;
+      EmoteManager.fill(self, (EmoteState)(Object)self);
+      if (self != class_310.method_1551().field_1724) {
+         return;
+      }
 
-         Capes.Cape cape = Capes.active();
-         if (cape != null) {
-            class_2960 tex = cape.textureNow();
-            class_8685 s = state.field_53520;
-            state.field_53520 = new class_8685(s.comp_1626(), s.comp_1911(), tex, s.comp_1628(), s.comp_1629(), s.comp_1630());
-            state.field_53532 = true;
-         }
+      class_8685 skin = cir.getReturnValue();
+      if (dev.valence.cosmetics.Cosmetics.wings() != null) {
+         cir.setReturnValue(new class_8685(skin.comp_1626(), skin.comp_1911(), (class_2960)null,
+                                            skin.comp_1628(), skin.comp_1629(), skin.comp_1630()));
+         return;
+      }
+
+      Capes.Cape cape = Capes.active();
+      if (cape != null) {
+         cir.setReturnValue(new class_8685(skin.comp_1626(), skin.comp_1911(), cape.textureNow(),
+                                            skin.comp_1628(), skin.comp_1629(), skin.comp_1630()));
       }
    }
 }

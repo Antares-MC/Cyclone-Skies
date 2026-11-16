@@ -1,5 +1,6 @@
 package dev.valence.cosmetics;
 
+import dev.valence.compat.Textures;
 import dev.valence.gui.Theme;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
@@ -57,7 +58,7 @@ public final class CosmeticPreview {
       if (t.id == null) {
          try {
             t.id = class_2960.method_60655("valence", "preview/" + t.key.replace(':', '_').replace('.', '_').replace('@', '_').toLowerCase());
-            t.tex = new class_1043(() -> "valence_preview", SIZE, SIZE, false);
+            t.tex = Textures.blank("valence_preview", SIZE, SIZE, false);
             class_310.method_1551().method_1531().method_4616(t.id, t.tex);
          } catch (Throwable var11) {
             LOGGER.warn("[preview] register failed for {}", key, var11);

@@ -1,8 +1,9 @@
 package dev.valence.cord.sky;
 
 import dev.valence.compat.Buffers;
-import dev.valence.compat.WorldRenderHook;
+import dev.valence.compat.Fonts;
 import dev.valence.compat.Layers;
+import dev.valence.compat.WorldRenderHook;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.cosmetic.Accessories;
@@ -1876,9 +1877,7 @@ public final class WorldSky {
    private static void word(class_327 font, class_4597 buffers, Matrix4f m, String w, float x, float y, float z, int rgb, float a, boolean through) {
       if (!(a <= 0.03F)) {
          Matrix4f mm = SCR.set(m).translate(x, y, z);
-         font.method_27522(
-            lyricComp(w), 0.0F, 0.0F, Gfx.argbRaw(rgb, a), false, mm, buffers, through ? class_6415.field_33994 : class_6415.field_33993, 0, 15728880
-         );
+         Fonts.draw(font, lyricComp(w), 0.0F, 0.0F, Gfx.argbRaw(rgb, a), false, mm, buffers, through ? class_6415.field_33994 : class_6415.field_33993, 15728880);
       }
    }
 

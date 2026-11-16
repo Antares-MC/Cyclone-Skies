@@ -1,6 +1,9 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.Draw;
+import dev.valence.compat.Pipes;
 import dev.valence.compat.PlayerPreview;
+import dev.valence.compat.Pose;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cosmetics.Capes;
 import dev.valence.cosmetics.CosmeticPreview;
@@ -14,9 +17,6 @@ import dev.valence.gui.ValenceScreen;
 import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_10017;
-import net.minecraft.class_10042;
-import net.minecraft.class_10799;
 import net.minecraft.class_1799;
 import net.minecraft.class_1802;
 import net.minecraft.class_2561;
@@ -132,11 +132,11 @@ public class CosmeticsPage extends Page {
          }
 
          if (i == 0) {
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(this.x + 7, ry + 2);
-            g.method_51448().scale(0.95F, 0.95F);
+            Pose.push(g);
+            Pose.translate(g, this.x + 7, ry + 2);
+            Pose.scale(g, 0.95F, 0.95F);
             g.method_51427(CAPE_ICON, 0, 0);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
          } else {
             Theme.icon(g, i == 1 ? "hat" : "wings", this.x + 8, ry + 3, 13, on ? -4745985 : -8095322);
          }
@@ -188,11 +188,11 @@ public class CosmeticsPage extends Page {
             if (i == 0) {
                Theme.icon(g, "close", tx + TILE_W / 2 - 7, ty + 20, 14, -8095322);
                class_2561 none = class_2561.method_43471("valence.styles.cosmetics.none");
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(tx + TILE_W / 2.0F, ty + 42.0F);
-               g.method_51448().scale(0.7F, 0.7F);
+               Pose.push(g);
+               Pose.translate(g, tx + TILE_W / 2.0F, ty + 42.0F);
+               Pose.scale(g, 0.7F, 0.7F);
                g.method_51439(f, none, -f.method_27525(none) / 2, 0, -4608298, false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
             } else {
                this.drawTile(g, f, i, tx, ty, hover || sel);
             }
@@ -214,11 +214,11 @@ public class CosmeticsPage extends Page {
             float grow = 1.0F + 0.05F * 0.0F;
             int aw = 36;
             int ah = 58;
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(tx + TILE_W / 2.0F, ty + 3 + ah / 2.0F);
-            g.method_51448().scale(grow, grow);
+            Pose.push(g);
+            Pose.translate(g, tx + TILE_W / 2.0F, ty + 3 + ah / 2.0F);
+            Pose.scale(g, grow, grow);
             drawCapeArt(g, cape, -aw / 2, -ah / 2, aw, ah, animate);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
             if (cape.frames() > 1) {
                Theme.pill(g, tx + 3, ty + 3, tx + 9, ty + 9, -7643914);
             }
@@ -241,11 +241,11 @@ public class CosmeticsPage extends Page {
 
    private void label(class_332 g, class_327 f, String name, int tx, int ty) {
       String s = f.method_27523(name, TILE_W - 6);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(tx + TILE_W / 2.0F, ty + TILE_H - 13);
-      g.method_51448().scale(0.7F, 0.7F);
+      Pose.push(g);
+      Pose.translate(g, tx + TILE_W / 2.0F, ty + TILE_H - 13);
+      Pose.scale(g, 0.7F, 0.7F);
       g.method_51433(f, s, -f.method_1727(s) / 2, 0, -4608298, false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
    }
 
    private boolean isSelected(int i) {
@@ -338,11 +338,11 @@ public class CosmeticsPage extends Page {
    }
 
    private void subtitle(class_332 g, class_327 f, String text, float cx, int y, int color) {
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(cx, y);
-      g.method_51448().scale(0.75F, 0.75F);
+      Pose.push(g);
+      Pose.translate(g, cx, y);
+      Pose.scale(g, 0.75F, 0.75F);
       g.method_51433(f, text, -f.method_1727(text) / 2, 0, color, false);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
    }
 
    private void hint(class_332 g, class_327 f, String key, int px, int pw) {
@@ -350,22 +350,22 @@ public class CosmeticsPage extends Page {
       List<class_5481> lines = f.method_1728(hint, (int)((pw - 12) / 0.7F));
 
       for (int i = 0; i < lines.size(); i++) {
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(px + pw / 2.0F, this.y + this.h - 8 - (lines.size() - i) * 7);
-         g.method_51448().scale(0.7F, 0.7F);
+         Pose.push(g);
+         Pose.translate(g, px + pw / 2.0F, this.y + this.h - 8 - (lines.size() - i) * 7);
+         Pose.scale(g, 0.7F, 0.7F);
          g.method_51430(f, lines.get(i), -f.method_30880(lines.get(i)) / 2, 0, -8095322, false);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 
    private static void drawCapeArt(class_332 g, Capes.Cape cape, int x0, int y0, int w, int h, boolean animate) {
       int s = cape.scale();
       class_2960 tex = animate ? cape.textureNow() : cape.texture(0);
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(x0, y0);
-      g.method_51448().scale(w / (10.0F * s), h / (16.0F * s));
-      g.method_25302(class_10799.field_56883, tex, 0, 0, s, s, 10 * s, 16 * s, 10 * s, 16 * s, 64 * s, 32 * s);
-      g.method_51448().popMatrix();
+      Pose.push(g);
+      Pose.translate(g, x0, y0);
+      Pose.scale(g, w / (10.0F * s), h / (16.0F * s));
+      Draw.scaled(g, tex, 0, 0, s, s, 10 * s, 16 * s, 10 * s, 16 * s, 64 * s, 32 * s);
+      Pose.pop(g);
    }
 
    private void drawPlayerBack(class_332 g, int x0, int y0, int x1, int y1) {

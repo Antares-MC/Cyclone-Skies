@@ -1,5 +1,6 @@
 package dev.valence;
 
+import dev.valence.compat.Hud;
 import dev.valence.compat.Keys;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.NeonLyrics;
@@ -20,8 +21,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.EndTick;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.class_2960;
 import net.minecraft.class_304;
 import net.minecraft.class_3675;
@@ -99,9 +98,9 @@ public class ValenceClient implements ClientModInitializer {
                }
             }
          );
-      HudElementRegistry.attachElementAfter(VanillaHudElements.SUBTITLES, class_2960.method_60655("valence", "hud"), (g, d) -> {
+      Hud.afterSubtitles(class_2960.method_60655("valence", "hud"), g -> {
          if (License.active()) {
-            ValenceHud.render(g, d);
+            ValenceHud.render(g);
             EmoteManager.renderHud(g);
          }
       });

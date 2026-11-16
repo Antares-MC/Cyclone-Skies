@@ -2,6 +2,7 @@ package dev.valence.cord.cosmetic;
 
 import dev.valence.compat.Buffers;
 import dev.valence.compat.Layers;
+import dev.valence.compat.Textures;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.lyrics.NowPlaying;
@@ -132,7 +133,7 @@ public final class Accessories {
 
          ByteArrayOutputStream out = new ByteArrayOutputStream();
          ImageIO.write(img, "png", out);
-         class_310.method_1551().method_1531().method_4616(WHITE, new class_1043(() -> "neonlyrics_white", class_1011.method_49277(out.toByteArray())));
+         class_310.method_1551().method_1531().method_4616(WHITE, Textures.named("neonlyrics_white", class_1011.method_49277(out.toByteArray())));
          whiteReady = true;
       } catch (Throwable var3) {
          whiteFailed = true;

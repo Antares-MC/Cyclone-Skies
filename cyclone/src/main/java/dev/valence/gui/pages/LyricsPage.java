@@ -1,6 +1,7 @@
 package dev.valence.gui.pages;
 
 import dev.valence.compat.Fonts;
+import dev.valence.compat.Pose;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
@@ -475,11 +476,11 @@ public class LyricsPage extends Page {
                float hv = Anim.hover(this.key(1 + i), hovered);
                Theme.card(g, x, ry, x + w, ry + 30, hv, false);
                g.method_51433(f, f.method_27523("„" + e.line + "“", w - 34), x + 8, ry + 6, -724737, false);
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(x + 8, ry + 18);
-               g.method_51448().scale(0.75F, 0.75F);
+               Pose.push(g);
+               Pose.translate(g, x + 8, ry + 18);
+               Pose.scale(g, 0.75F, 0.75F);
                g.method_51433(f, f.method_27523(e.title + (e.artist.isBlank() ? "" : " · " + e.artist), Math.round((w - 40) / 0.75F)), 0, 0, -8095322, false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
                int bx = x + w - 22;
                boolean bh = inside(mx, my, bx, ry + 7, bx + 16, ry + 23);
                Theme.pill(g, bx, ry + 7, bx + 16, ry + 23, bh ? 1442070366 : 587202559);
@@ -527,11 +528,11 @@ public class LyricsPage extends Page {
       @Override
       public void render(class_332 g, int x, int y, int w, int mx, int my) {
          class_327 f = font();
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x + 4, y + 3);
-         g.method_51448().scale(0.85F, 0.85F);
+         Pose.push(g);
+         Pose.translate(g, x + 4, y + 3);
+         Pose.scale(g, 0.85F, 0.85F);
          g.method_51439(f, class_2561.method_43471("valence.lyrics.font"), 0, 0, -4608298, false);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          int cw = (w - 16) / 5;
          String current = ValenceConfig.get().lyricsFont;
 
@@ -637,12 +638,12 @@ public class LyricsPage extends Page {
             }
 
             class_2561 label = class_2561.method_43470(name).method_27696(st);
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(cx + cw / 2.0F, cy + 12.0F - 4.0F - hv);
+            Pose.push(g);
+            Pose.translate(g, cx + cw / 2.0F, cy + 12.0F - 4.0F - hv);
             float sc = 1.1F + 0.06F * hv;
-            g.method_51448().scale(sc, sc);
+            Pose.scale(g, sc, sc);
             g.method_27534(f, label, 0, 0, -1);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
             Theme.pill(g, cx + cw / 2 - 12, cy + 24 - 5, cx + cw / 2, cy + 24 - 3, p.colorA());
             Theme.pill(g, cx + cw / 2, cy + 24 - 5, cx + cw / 2 + 12, cy + 24 - 3, p.colorB());
          }

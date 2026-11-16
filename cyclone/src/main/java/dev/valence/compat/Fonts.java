@@ -7,6 +7,9 @@ import net.minecraft.class_2583;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
+import net.minecraft.class_327.class_6415;
+import net.minecraft.class_4597;
+import org.joml.Matrix4f;
 
 /**
  * Selectable fonts.
@@ -44,5 +47,16 @@ public final class Fonts {
    /** The renderer that measures and draws this font. */
    public static class_327 renderer(Entry e) {
       return class_310.method_1551().field_1772;
+   }
+
+   /**
+    * Draws one text component with the given renderer.
+    *
+    * <p>The text-component overload of the glyph submitter arrived in 1.21.2; before that
+    * only a plain string could be submitted, so the overlay flattens the component first.
+    */
+   public static void draw(class_327 font, class_2561 text, float x, float y, int color, boolean shadow,
+                           Matrix4f matrix, class_4597 buffers, class_6415 layer, int light) {
+      font.method_27522(text, x, y, color, shadow, matrix, buffers, layer, 0, light);
    }
 }

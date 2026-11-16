@@ -1,5 +1,6 @@
 package dev.valence.compat;
 
+import dev.valence.compat.Pose;
 import net.minecraft.class_10017;
 import net.minecraft.class_10042;
 import net.minecraft.class_310;
@@ -44,8 +45,8 @@ public final class PlayerPreview {
                l.field_53453 = 1.0F;
             }
 
-            Vector2f a = g.method_51448().transformPosition(new Vector2f(x0, y0));
-            Vector2f b = g.method_51448().transformPosition(new Vector2f(x1, y1));
+            Vector2f a = Pose.project(g, new Vector2f(x0, y0));
+            Vector2f b = Pose.project(g, new Vector2f(x1, y1));
             x0 = Math.round(a.x);
             y0 = Math.round(a.y);
             x1 = Math.round(b.x);

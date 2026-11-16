@@ -1,8 +1,8 @@
 package dev.valence.cosmetics;
 
 import dev.valence.compat.Buffers;
-import dev.valence.compat.WorldRenderHook;
 import dev.valence.compat.Layers;
+import dev.valence.compat.WorldRenderHook;
 import dev.valence.cord.cosmetic.Accessories;
 import dev.valence.license.License;
 import java.util.HashMap;

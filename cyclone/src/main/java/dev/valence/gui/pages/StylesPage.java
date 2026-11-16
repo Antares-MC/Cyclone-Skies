@@ -1,5 +1,7 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.Pose;
+import dev.valence.compat.Wrap;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.hud.GlassHotbar;
@@ -165,11 +167,11 @@ public class StylesPage extends Page {
          Theme.round(g, this.x + 3, ry, this.x + 112 - 3, ry + 19 - 1, Theme.withAlpha(486539263, hv));
       }
 
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(this.x + 6, ry + 1);
-      g.method_51448().scale(0.95F, 0.95F);
+      Pose.push(g);
+      Pose.translate(g, this.x + 6, ry + 1);
+      Pose.scale(g, 0.95F, 0.95F);
       g.method_51427(HOTBAR_ICON, 0, 0);
-      g.method_51448().popMatrix();
+      Pose.pop(g);
       g.method_51439(
          f,
          class_2561.method_43471("valence.styles.hotbar"),
@@ -192,11 +194,11 @@ public class StylesPage extends Page {
             Theme.round(g, this.x + 3, ryx, this.x + 112 - 3, ryx + 19 - 1, Theme.withAlpha(486539263, hvx));
          }
 
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(this.x + 6, ryx + 1);
-         g.method_51448().scale(0.95F, 0.95F);
+         Pose.push(g);
+         Pose.translate(g, this.x + 6, ryx + 1);
+         Pose.scale(g, 0.95F, 0.95F);
          g.method_51427(this.icons[i], 0, 0);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          class_2561 name = class_2561.method_43471(c.nameKey());
          g.method_51433(
             f, f.method_27523(name.getString(), 66), this.x + 25 + Math.round(hvx * 2.0F), ryx + 6, sel ? -1 : Theme.lerp(-4608298, -724737, hvx), false
@@ -250,18 +252,18 @@ public class StylesPage extends Page {
                int img = 42;
                this.drawPreview(g, cat, st.id(), tx + (tileW - img) / 2, ty + 4, img, hoverx);
                String txt = f.method_27523(st.name(), (int)((tileW - 6) / 0.8F));
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(tx + tileW / 2.0F, ty + tileH - 11);
-               g.method_51448().scale(0.8F, 0.8F);
+               Pose.push(g);
+               Pose.translate(g, tx + tileW / 2.0F, ty + tileH - 11);
+               Pose.scale(g, 0.8F, 0.8F);
                g.method_25300(f, txt, 0, 0, sel ? -1 : Theme.lerp(-4608298, -724737, hvx));
-               g.method_51448().popMatrix();
+               Pose.pop(g);
                if (st.source() != null) {
-                  g.method_51448().pushMatrix();
-                  g.method_51448().translate(tx + 4, ty + 4);
-                  g.method_51448().scale(0.55F, 0.55F);
+                  Pose.push(g);
+                  Pose.translate(g, tx + 4, ty + 4);
+                  Pose.scale(g, 0.55F, 0.55F);
                   Theme.pill(g, -3, -2, 30, 9, -1718919946);
                   g.method_51433(f, "PACK", 1, 0, -1, false);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                } else if (st.builtIn()) {
                   Theme.pill(g, tx + 5, ty + 5, tx + 10, ty + 10, st.swatch());
                }
@@ -278,11 +280,11 @@ public class StylesPage extends Page {
             Theme.card(g, gx, ey, gx + gw, ey + 64, 285212671, 536870911);
             Theme.icon(g, "folder", gx + 8, ey + 8, 12, -4745985);
             g.method_51439(f, class_2561.method_43471("valence.styles.empty.title"), gx + 26, ey + 10, -724737, false);
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(gx + 8, ey + 26);
-            g.method_51448().scale(0.8F, 0.8F);
-            g.method_51440(f, class_2561.method_43471("valence.styles.empty.text"), 0, 0, Math.round((gw - 16) / 0.8F), -8095322, false);
-            g.method_51448().popMatrix();
+            Pose.push(g);
+            Pose.translate(g, gx + 8, ey + 26);
+            Pose.scale(g, 0.8F, 0.8F);
+            Wrap.draw(g, f, class_2561.method_43471("valence.styles.empty.text"), 0, 0, Math.round((gw - 16) / 0.8F), -8095322, false);
+            Pose.pop(g);
          }
 
          g.method_44380();
@@ -299,11 +301,11 @@ public class StylesPage extends Page {
                }
             }
 
-            g.method_51448().pushMatrix();
-            g.method_51448().translate(ix + 7, this.y + 6);
-            g.method_51448().scale(0.75F, 0.75F);
+            Pose.push(g);
+            Pose.translate(g, ix + 7, this.y + 6);
+            Pose.scale(g, 0.75F, 0.75F);
             g.method_51439(f, class_2561.method_43471(this.hovered != null ? "valence.styles.preview" : "valence.styles.active"), 0, 0, -8095322, false);
-            g.method_51448().popMatrix();
+            Pose.pop(g);
             int nameX = ix + 7;
             class_2960 packIcon = showStyle == null ? null : StyleManager.icon(showStyle.id());
             if (packIcon != null) {
@@ -322,27 +324,27 @@ public class StylesPage extends Page {
             int ty = by + box + 6;
             if (showStyle != null && showStyle.source() != null) {
                class_2561 info = class_2561.method_43469("valence.styles.pack.info", new Object[]{showStyle.source().count(cat), cat.textures().size()});
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(ix + 7, ty);
-               g.method_51448().scale(0.75F, 0.75F);
-               g.method_51440(f, info, 0, 0, Math.round((ry - 14) / 0.75F), -8095322, false);
-               g.method_51448().popMatrix();
+               Pose.push(g);
+               Pose.translate(g, ix + 7, ty);
+               Pose.scale(g, 0.75F, 0.75F);
+               Wrap.draw(g, f, info, 0, 0, Math.round((ry - 14) / 0.75F), -8095322, false);
+               Pose.pop(g);
             } else {
                String key = showStyle != null && showStyle.builtIn() ? "valence.styles.desc.builtin" : "valence.styles.desc.vanilla";
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(ix + 7, ty);
-               g.method_51448().scale(0.75F, 0.75F);
-               g.method_51440(f, class_2561.method_43471(key), 0, 0, Math.round((ry - 14) / 0.75F), -8095322, false);
-               g.method_51448().popMatrix();
+               Pose.push(g);
+               Pose.translate(g, ix + 7, ty);
+               Pose.scale(g, 0.75F, 0.75F);
+               Wrap.draw(g, f, class_2561.method_43471(key), 0, 0, Math.round((ry - 14) / 0.75F), -8095322, false);
+               Pose.pop(g);
             }
 
             if ("totem".equals(cat.id())) {
                int sy = this.y + bodyH - 66;
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(ix + 7, sy);
-               g.method_51448().scale(0.75F, 0.75F);
+               Pose.push(g);
+               Pose.translate(g, ix + 7, sy);
+               Pose.scale(g, 0.75F, 0.75F);
                g.method_51439(f, class_2561.method_43471("valence.styles.totem.pop"), 0, 0, -4608298, false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
                int segW = (ry - 14) / 3;
                int idx = Math.max(0, Math.min(2, ValenceConfig.get().totemPop));
                Theme.pill(g, ix + 7, sy + 10, ix + 7 + segW * 3, sy + 24, 603979776);
@@ -352,19 +354,19 @@ public class StylesPage extends Page {
 
                for (int i = 0; i < 3; i++) {
                   class_2561 lbl = class_2561.method_43471("valence.styles.totem.pop." + i);
-                  g.method_51448().pushMatrix();
-                  g.method_51448().translate(ix + 7 + i * segW + segW / 2.0F, sy + 14);
-                  g.method_51448().scale(0.75F, 0.75F);
+                  Pose.push(g);
+                  Pose.translate(g, ix + 7 + i * segW + segW / 2.0F, sy + 14);
+                  Pose.scale(g, 0.75F, 0.75F);
                   g.method_27534(f, lbl, 0, 0, i == idx ? -1 : -8095322);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                }
 
                sy = this.y + bodyH - 34;
-               g.method_51448().pushMatrix();
-               g.method_51448().translate(ix + 7, sy);
-               g.method_51448().scale(0.75F, 0.75F);
+               Pose.push(g);
+               Pose.translate(g, ix + 7, sy);
+               Pose.scale(g, 0.75F, 0.75F);
                g.method_51439(f, class_2561.method_43471("valence.styles.totem.size"), 0, 0, -4608298, false);
-               g.method_51448().popMatrix();
+               Pose.pop(g);
                segW = (ry - 14) / 3;
                idx = Math.max(0, TOTEM_SIZES.indexOf(ValenceConfig.get().styleTotemSize));
                Theme.pill(g, ix + 7, sy + 10, ix + 7 + segW * 3, sy + 24, 603979776);
@@ -374,11 +376,11 @@ public class StylesPage extends Page {
 
                for (int i = 0; i < 3; i++) {
                   class_2561 lbl = class_2561.method_43471("valence.styles.totem." + TOTEM_SIZES.get(i));
-                  g.method_51448().pushMatrix();
-                  g.method_51448().translate(ix + 7 + i * segW + segW / 2.0F, sy + 14);
-                  g.method_51448().scale(0.75F, 0.75F);
+                  Pose.push(g);
+                  Pose.translate(g, ix + 7 + i * segW + segW / 2.0F, sy + 14);
+                  Pose.scale(g, 0.75F, 0.75F);
                   g.method_27534(f, lbl, 0, 0, i == idx ? -1 : -8095322);
-                  g.method_51448().popMatrix();
+                  Pose.pop(g);
                }
             }
          }
@@ -435,11 +437,11 @@ public class StylesPage extends Page {
       bx = this.smallButton(g, f, mx, my, bx + 4, by, "refresh", class_2561.method_43471("valence.styles.rescan"), 2);
       bx = this.smallButton(g, f, mx, my, bx + 4, by, "close", class_2561.method_43471("valence.styles.reset"), 3);
       if (dirty) {
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(bx + 8, by + 6);
-         g.method_51448().scale(0.75F, 0.75F);
+         Pose.push(g);
+         Pose.translate(g, bx + 8, by + 6);
+         Pose.scale(g, 0.75F, 0.75F);
          g.method_51439(f, class_2561.method_43471("valence.styles.unsaved"), 0, 0, -278748, false);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 

@@ -1,9 +1,11 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Hud;
+import dev.valence.compat.Pose;
+import dev.valence.compat.Slots;
 import dev.valence.cord.NeonLyrics;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.class_1661;
 import net.minecraft.class_1799;
 import net.minecraft.class_310;
@@ -17,16 +19,22 @@ public final class GlassHotbar {
    private GlassHotbar() {
    }
 
-   public static HudElement wrap(HudElement original) {
-      return (g, delta) -> {
+   public static Hud.Element wrap(Hud.Element original) {
+      return g -> {
          class_310 mc = class_310.method_1551();
          int style = NeonLyrics.cfg().hotbarStyle;
          if (style > 0 && mc.field_1724 != null && !mc.field_1724.method_7325()) {
             render(g, mc, style);
          } else {
-            original.render(g, delta);
+            original.render(g);
          }
       };
+   }
+
+   /** True while the styled hotbar replaces the vanilla one. */
+   public static boolean suppressing() {
+      class_310 mc = class_310.method_1551();
+      return NeonLyrics.cfg().hotbarStyle > 0 && mc.field_1724 != null && !mc.field_1724.method_7325();
    }
 
    private static void render(class_332 g, class_310 mc, int style) {
@@ -37,7 +45,7 @@ public final class GlassHotbar {
       int x = g.method_51421() / 2 - w / 2;
       int y = g.method_51443() - h - 1;
       class_1661 inv = mc.field_1724.method_31548();
-      float sx = sel.target(inv.method_67532()).get();
+      float sx = sel.target(Slots.selected(inv)).get();
       class_1799[] items = new class_1799[9];
 
       for (int i = 0; i < 9; i++) {
@@ -56,9 +64,9 @@ public final class GlassHotbar {
          items[i] = mc.field_1724 != null ? mc.field_1724.method_31548().method_5438(i) : class_1799.field_8037;
       }
 
-      g.method_51448().pushMatrix();
-      g.method_51448().translate(x, y);
-      g.method_51448().scale(scale, scale);
+      Pose.push(g);
+      Pose.translate(g, x, y);
+      Pose.scale(g, scale, scale);
       float old = Gfx.alpha;
       Gfx.alpha = 1.0F;
       if (style == 0) {
@@ -81,7 +89,7 @@ public final class GlassHotbar {
       }
 
       Gfx.alpha = old;
-      g.method_51448().popMatrix();
+      Pose.pop(g);
    }
 
    private static void drawBar(class_332 g, class_310 mc, int style, int x, int y, class_1799[] items, float sx, class_1799 off, boolean decorations) {

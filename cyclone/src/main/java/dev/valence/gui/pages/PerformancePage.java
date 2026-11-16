@@ -1,5 +1,6 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.Pose;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
@@ -277,34 +278,34 @@ public class PerformancePage extends Page {
          Theme.card(g, x, y + 2, x + w, y + 42, 0.0F, false);
          int fps = class_310.method_1551().method_47599();
          this.shown = this.shown < 0.0F ? fps : this.shown + (fps - this.shown) * Anim.k(6.0F);
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x + 9, y + 7);
-         g.method_51448().scale(0.7F, 0.7F);
+         Pose.push(g);
+         Pose.translate(g, x + 9, y + 7);
+         Pose.scale(g, 0.7F, 0.7F);
          g.method_51439(f, class_2561.method_43471("valence.perf.now"), 0, 0, -8095322, false);
-         g.method_51448().popMatrix();
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x + 9, y + 16);
-         g.method_51448().scale(2.0F, 2.0F);
+         Pose.pop(g);
+         Pose.push(g);
+         Pose.translate(g, x + 9, y + 16);
+         Pose.scale(g, 2.0F, 2.0F);
          String num = String.valueOf(Math.round(this.shown));
          g.method_51433(f, num, 0, 0, -1, false);
-         g.method_51448().popMatrix();
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x + 13 + f.method_1727(num) * 2, y + 26);
-         g.method_51448().scale(0.75F, 0.75F);
+         Pose.pop(g);
+         Pose.push(g);
+         Pose.translate(g, x + 13 + f.method_1727(num) * 2, y + 26);
+         Pose.scale(g, 0.75F, 0.75F);
          g.method_51433(f, "FPS", 0, 0, -8095322, false);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
          Config c = NeonLyrics.cfg();
          int lv = AutoPerf.level();
          class_2561 st = !c.autoPerf
             ? class_2561.method_43471("neonlyrics.perf.auto.off")
             : (lv == 0 ? class_2561.method_43471("valence.perf.allfine") : class_2561.method_43469("neonlyrics.perf.auto.level", new Object[]{lv, 6}));
          String mod = class_2561.method_43469("valence.perf.modcost", new Object[]{String.format(Locale.ROOT, "%.1f", AutoPerf.modMs())}).getString();
-         g.method_51448().pushMatrix();
-         g.method_51448().translate(x + w - 9, y + 17);
-         g.method_51448().scale(0.75F, 0.75F);
+         Pose.push(g);
+         Pose.translate(g, x + w - 9, y + 17);
+         Pose.scale(g, 0.75F, 0.75F);
          g.method_51433(f, mod, -f.method_1727(mod), 0, -4608298, false);
          g.method_51439(f, st, -f.method_27525(st), 11, lv == 0 ? -11870592 : -278748, false);
-         g.method_51448().popMatrix();
+         Pose.pop(g);
       }
    }
 }
