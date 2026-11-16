@@ -1,0 +1,30 @@
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.fabricmc.net/' }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'cycloneskies-versions'
+
+// Minecraft 1.21.x: intermediary mappings exist for every release.
+include 'v1_21'
+include 'v1_21_1'
+include 'v1_21_2'
+include 'v1_21_3'
+include 'v1_21_4'
+include 'v1_21_5'
+include 'v1_21_6'
+include 'v1_21_7'
+include 'v1_21_8'
+include 'v1_21_9'
+include 'v1_21_10'
+include 'v1_21_11'
+
+// Minecraft 26.x ships deobfuscated (no client_mappings) and has no
+// intermediary/yarn publication, so those targets are built against official
+// names with the non-remapping Loom plugin.
+include 'v26_1'
+include 'v26_1_1'
+include 'v26_1_2'
+include 'v26_2'

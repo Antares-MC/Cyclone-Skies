@@ -2,8 +2,6 @@ package dev.valence.gui;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_11905;
-import net.minecraft.class_11908;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
 import net.minecraft.class_332;
@@ -48,11 +46,11 @@ public abstract class Page {
       return false;
    }
 
-   public boolean keyPressed(class_11908 event) {
+   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
       return false;
    }
 
-   public boolean charTyped(class_11905 event) {
+   public boolean charTyped(char chr, int modifiers) {
       return false;
    }
 

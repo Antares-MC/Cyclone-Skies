@@ -1,5 +1,6 @@
 package dev.valence.license;
 
+import dev.valence.compat.InputScreen;
 import dev.valence.gui.Anim;
 import dev.valence.gui.OptionList;
 import dev.valence.gui.Theme;
@@ -10,8 +11,6 @@ import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_1109;
-import net.minecraft.class_11908;
-import net.minecraft.class_11909;
 import net.minecraft.class_2561;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
@@ -24,7 +23,7 @@ import net.minecraft.class_5481;
 import net.minecraft.class_6880;
 
 @Environment(EnvType.CLIENT)
-public class LicenseScreen extends class_437 {
+public class LicenseScreen extends InputScreen {
    private static final int W = 280;
    private static final int H = 190;
    private static final int OK_COLOR = -9508952;
@@ -287,18 +286,18 @@ public class LicenseScreen extends class_437 {
       return mx >= lx - 62 && mx < lx + 62 && my >= by1 && my < by1 + 20;
    }
 
-   public boolean method_25402(class_11909 event, boolean doubleClick) {
-      if (event.method_74245() == 0 && this.overButton(event.comp_4798(), event.comp_4799())) {
+   protected boolean onClick(double x, double y, int button, Object raw, boolean doubleClick) {
+      if (button == 0 && this.overButton(x, y)) {
          this.redeem();
          return true;
       } else {
-         return super.method_25402(event, doubleClick);
+         return false;
       }
    }
 
-   public boolean method_25404(class_11908 event) {
-      if (event.comp_4795() != 257 && event.comp_4795() != 335) {
-         return super.method_25404(event);
+   protected boolean onKey(int keyCode, int scanCode, int modifiers) {
+      if (keyCode != 257 && keyCode != 335) {
+         return false;
       }
 
       this.redeem();

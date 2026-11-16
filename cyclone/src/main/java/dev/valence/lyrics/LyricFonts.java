@@ -1,11 +1,10 @@
 package dev.valence.lyrics;
 
+import dev.valence.compat.Fonts;
 import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_11719;
 import net.minecraft.class_2960;
-import net.minecraft.class_11719.class_11721;
 
 @Environment(EnvType.CLIENT)
 public final class LyricFonts {
@@ -41,8 +40,8 @@ public final class LyricFonts {
 
    @Environment(EnvType.CLIENT)
    public record LyricFont(String id, String displayName, class_2960 fontId) {
-      public class_11719 description() {
-         return new class_11721(this.fontId);
+      public Fonts.Entry description() {
+         return Fonts.of(this.fontId);
       }
    }
 }

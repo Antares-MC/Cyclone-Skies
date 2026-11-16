@@ -1,0 +1,76 @@
+// Shared configuration for every multi-version module.
+//
+// Each module compiles the SAME CycloneSkies sources, transformed for its
+// Minecraft version:
+//
+//   versions/gen/<module>/java    generated tree: the 1.21.11 sources with the
+//                                 per-version intermediary renames applied
+//   versions/<module>/java        hand-written overlay (version-specific
+//                                 compatibility code, mixin variants); a file
+//                                 here replaces the generated one
+//   cyclone/src/main/resources    shared assets, lang, mixin configs
+//
+// The generated tree is produced by versions/tools/xlate.py; see
+// versions/README.md.
+
+apply plugin: 'net.fabricmc.fabric-loom-remap'
+
+def repoRoot = rootProject.projectDir.parentFile
+def sharedJava = new File(repoRoot, 'cyclone/src/main/java')
+def sharedRes = new File(repoRoot, 'cyclone/src/main/resources')
+def genJava = new File(rootProject.projectDir, "gen/${project.name}/java")
+def overlayJava = new File(projectDir, 'java')
+
+version = rootProject.findProperty('mod_version') ?: '1.9.9'
+group = rootProject.findProperty('maven_group') ?: 'dev.valence'
+base {
+    archivesName = "cycloneskies-${project.minecraft_version}"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:intermediary:${project.minecraft_version}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+sourceSets {
+    main {
+        java {
+            setSrcDirs([genJava, overlayJava])
+        }
+        resources {
+            setSrcDirs([sharedRes])
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = Integer.parseInt(project.java_release)
+}
+
+java {
+    def rel = Integer.parseInt(project.java_release)
+    sourceCompatibility = JavaVersion.toVersion(rel)
+    targetCompatibility = JavaVersion.toVersion(rel)
+}
+
+// Fail early with an actionable message instead of a wall of javac errors.
+tasks.register('checkGenerated') {
+    doLast {
+        if (!genJava.isDirectory() || genJava.listFiles() == null || genJava.listFiles().length == 0) {
+            throw new GradleException(
+                "Missing generated sources for ${project.name}.\n" +
+                "Run:  python versions/tools/xlate.py 1.21.11 ${project.minecraft_version} --emit ${genJava}")
+        }
+    }
+}
+
+tasks.named('compileJava') {
+    dependsOn 'checkGenerated'
+}

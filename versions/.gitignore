@@ -1,0 +1,18 @@
+# Per-version build output
+build/
+.gradle/
+
+# Generated source trees. These are produced from the shared source by
+# versions/tools/xlate.py and carry no hand edits; a fresh clone regenerates
+# them with:
+#
+#   python versions/tools/xlate.py 1.21.11 <target> \
+#       --emit versions/gen/v<target>/java --overlay versions/v<target>/java
+#
+# The v<target>/java overlay trees are hand written and ARE committed.
+gen/
+
+# Python bytecode
+__pycache__/
+*.pyc
+

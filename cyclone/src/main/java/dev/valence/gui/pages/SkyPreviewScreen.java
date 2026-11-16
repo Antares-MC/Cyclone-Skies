@@ -1,5 +1,8 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.Keys;
+import dev.valence.compat.InputScreen;
+import dev.valence.compat.Sky;
 import dev.valence.config.ValenceConfig;
 import dev.valence.gui.Anim;
 import dev.valence.gui.OptionList;
@@ -13,17 +16,14 @@ import dev.valence.sky.ValenceSky;
 import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_11908;
-import net.minecraft.class_11909;
 import net.minecraft.class_2561;
 import net.minecraft.class_327;
 import net.minecraft.class_332;
 import net.minecraft.class_437;
 import net.minecraft.class_746;
-import net.minecraft.class_2874.class_12326;
 
 @Environment(EnvType.CLIENT)
-public class SkyPreviewScreen extends class_437 {
+public class SkyPreviewScreen extends InputScreen {
    private final class_437 parent;
    private SkyDefinition sky;
    private float startYaw;
@@ -244,7 +244,7 @@ public class SkyPreviewScreen extends class_437 {
          g.method_51448().pushMatrix();
          g.method_51448().translate(bx + 58, by + 28);
          g.method_51448().scale(0.75F, 0.75F);
-         boolean noSky = this.field_22787.field_1687 != null && this.field_22787.field_1687.method_8597().comp_5220() == class_12326.field_64385;
+         boolean noSky = this.field_22787.field_1687 != null && Sky.noSky(this.field_22787.field_1687);
          class_2561 hint = noSky
             ? class_2561.method_43471("valence.sky.preview.nosky")
             : class_2561.method_43469("valence.sky.preview.hint", new Object[]{idx, all.size()});
@@ -284,11 +284,11 @@ public class SkyPreviewScreen extends class_437 {
       return mx >= x1 && mx < x2 && my >= y1 && my < y2;
    }
 
-   public boolean method_25402(class_11909 event, boolean doubleClick) {
-      double mx = event.comp_4798() / this.ui;
-      double my = event.comp_4799() / this.ui;
+   protected boolean onClick(double x, double y, int button, Object raw, boolean doubleClick) {
+      double mx = x / this.ui;
+      double my = y / this.ui;
       if (inside(mx, my, this.panelX1, this.panelY1, this.panelX2, this.panelY2)) {
-         this.draggingOption = this.options.mouseClicked(mx, my, event.method_74245());
+         this.draggingOption = this.options.mouseClicked(mx, my, button);
          return true;
       } else {
          int bw = Math.min(460, this.W - 32);
@@ -332,12 +332,12 @@ public class SkyPreviewScreen extends class_437 {
       this.method_25419();
    }
 
-   public boolean method_25403(class_11909 event, double dx, double dy) {
+   protected boolean onDrag(double x, double y, int button, Object raw, double dx, double dy) {
       if (this.draggingOption) {
-         return this.options.mouseDragged(event.comp_4798() / this.ui, event.comp_4799() / this.ui);
+         return this.options.mouseDragged(x / this.ui, y / this.ui);
       }
 
-      if (event.method_74245() != 0) {
+      if (button != 0) {
          return false;
       }
 
@@ -354,14 +354,14 @@ public class SkyPreviewScreen extends class_437 {
       return true;
    }
 
-   public boolean method_25406(class_11909 event) {
+   protected boolean onRelease(double x, double y, int button, Object raw) {
       if (this.draggingOption) {
          this.draggingOption = false;
          this.options.mouseReleased();
          return true;
       } else {
          this.dragging = false;
-         return super.method_25406(event);
+         return false;
       }
    }
 
@@ -373,8 +373,8 @@ public class SkyPreviewScreen extends class_437 {
          : super.method_25401(rmx, rmy, scrollX, scrollY);
    }
 
-   public boolean method_25404(class_11908 event) {
-      int key = event.comp_4795();
+   protected boolean onKey(int keyCode, int scanCode, int modifiers) {
+      int key = keyCode;
       if (key == 263) {
          this.step(-1);
          return true;
@@ -386,7 +386,7 @@ public class SkyPreviewScreen extends class_437 {
       }
 
       if (key != 257 && key != 335) {
-         return super.method_25404(event);
+         return false;
       }
 
       this.applySky();

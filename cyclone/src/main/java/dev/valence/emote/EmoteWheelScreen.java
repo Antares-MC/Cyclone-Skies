@@ -1,13 +1,13 @@
 package dev.valence.emote;
 
+import dev.valence.compat.Keys;
+import dev.valence.compat.InputScreen;
 import dev.valence.gui.Theme;
 import dev.valence.gui.UiSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.class_10799;
-import net.minecraft.class_11908;
-import net.minecraft.class_11909;
 import net.minecraft.class_2561;
 import net.minecraft.class_2960;
 import net.minecraft.class_304;
@@ -18,7 +18,7 @@ import net.minecraft.class_3675.class_306;
 import net.minecraft.class_3675.class_307;
 
 @Environment(EnvType.CLIENT)
-public final class EmoteWheelScreen extends class_437 {
+public final class EmoteWheelScreen extends InputScreen {
    private static final class_2960 WEDGE = class_2960.method_60655("valence", "textures/emote/wedge.png");
    private static final class_2960 RIM = class_2960.method_60655("valence", "textures/emote/rim.png");
    private static final class_2960 DISC = class_2960.method_60655("valence", "textures/emote/disc.png");
@@ -49,10 +49,7 @@ public final class EmoteWheelScreen extends class_437 {
 
    private boolean keyHeld() {
       try {
-         class_306 k = KeyBindingHelper.getBoundKeyOf(this.key);
-         return k.method_1442() != class_307.field_1668
-            ? false
-            : k.method_1444() >= 0 && class_3675.method_15987(this.field_22787.method_22683(), k.method_1444());
+         return Keys.defaultPressed(this.key);
       } catch (Throwable e) {
          return false;
       }
@@ -247,11 +244,11 @@ public final class EmoteWheelScreen extends class_437 {
       return true;
    }
 
-   public boolean method_25402(class_11909 event, boolean doubleClick) {
-      if (event.method_74245() == 0) {
-         this.pick(this.slotAt(event.comp_4798(), event.comp_4799()));
+   protected boolean onClick(double x, double y, int button, Object raw, boolean doubleClick) {
+      if (button == 0) {
+         this.pick(this.slotAt(x, y));
          return true;
-      } else if (event.method_74245() == 1) {
+      } else if (button == 1) {
          this.method_25419();
          return true;
       } else {
@@ -259,12 +256,12 @@ public final class EmoteWheelScreen extends class_437 {
       }
    }
 
-   public boolean method_25404(class_11908 event) {
-      if (this.clickMode && this.key.method_1417(event)) {
+   protected boolean onKey(int keyCode, int scanCode, int modifiers) {
+      if (this.clickMode && Keys.matches(this.key, keyCode, scanCode)) {
          this.method_25419();
          return true;
       } else {
-         return super.method_25404(event);
+         return false;
       }
    }
 }

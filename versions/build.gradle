@@ -1,0 +1,6 @@
+plugins {
+    id 'net.fabricmc.fabric-loom-remap' version '1.14-SNAPSHOT' apply false
+}
+
+// Every version module supplies its own minecraft_version / fabric_api_version.
+// See versions/common.gradle for the shared configuration.

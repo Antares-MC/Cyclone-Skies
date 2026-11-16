@@ -1,5 +1,9 @@
 package dev.valence.lyrics;
 
+import dev.valence.compat.Buffers;
+import dev.valence.compat.Fonts;
+import dev.valence.compat.Sky;
+import dev.valence.compat.Layers;
 import dev.valence.config.ValenceConfig;
 import dev.valence.gui.Theme;
 import dev.valence.license.License;
@@ -10,7 +14,6 @@ import java.util.Random;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_10799;
-import net.minecraft.class_12249;
 import net.minecraft.class_2338;
 import net.minecraft.class_243;
 import net.minecraft.class_2561;
@@ -26,7 +29,6 @@ import net.minecraft.class_4597;
 import net.minecraft.class_5250;
 import net.minecraft.class_5481;
 import net.minecraft.class_9799;
-import net.minecraft.class_2874.class_12326;
 import net.minecraft.class_327.class_6415;
 import net.minecraft.class_4597.class_4598;
 import org.joml.Matrix3x2f;
@@ -80,7 +82,7 @@ public final class SkyLyrics {
          default -> SkyLyrics.Mode.SKY;
       };
       class_310 mc = class_310.method_1551();
-      if (m == SkyLyrics.Mode.SKY && mc.field_1687 != null && mc.field_1687.method_8597().comp_5220() == class_12326.field_64385) {
+      if (m == SkyLyrics.Mode.SKY && mc.field_1687 != null && Sky.noSky(mc.field_1687)) {
          m = SkyLyrics.Mode.SCREEN;
       }
 
@@ -279,7 +281,7 @@ public final class SkyLyrics {
    }
 
    private static class_2583 baseStyle() {
-      return class_2583.field_24360.method_27704(LyricFonts.byId(ValenceConfig.get().lyricsFont).description());
+      return Fonts.apply(class_2583.field_24360, LyricFonts.byId(ValenceConfig.get().lyricsFont).description());
    }
 
    private static void build(SkyLyrics.Entry e, class_327 font) {
@@ -688,7 +690,7 @@ public final class SkyLyrics {
          m.translate(0.0F, -st[2] * 3.0F, 0.0F).scale(sc, sc, 1.0F);
          int light = 15728880;
          if (cfg.lyricsGlow > 0.01F) {
-            class_4588 vc = buffers.method_73477(mode == class_6415.field_33994 ? class_12249.method_76028(GLOW) : class_12249.method_76022(GLOW));
+            class_4588 vc = Buffers.get(buffers, mode == class_6415.field_33994 ? Layers.textSeeThrough(GLOW) : Layers.text(GLOW));
             float ga = a * cfg.lyricsGlow * 0.42F;
             float hw = b.width / 0.53F / 2.0F + 2.0F;
             float hh = 10.5F;
@@ -824,7 +826,7 @@ public final class SkyLyrics {
       if (!(lineAlpha <= 0.01F)) {
          int light = 15728880;
          if (cfg.lyricsGlow > 0.01F) {
-            class_4588 vc = buffers.method_73477(mode == class_6415.field_33994 ? class_12249.method_76028(GLOW) : class_12249.method_76022(GLOW));
+            class_4588 vc = Buffers.get(buffers, mode == class_6415.field_33994 ? Layers.textSeeThrough(GLOW) : Layers.text(GLOW));
 
             for (SkyLyrics.Word w : e.layout) {
                float k = appear(t, w);
@@ -847,7 +849,7 @@ public final class SkyLyrics {
          if (e.title && e.layout.length > 2) {
             float k = Theme.easeOutCubic(Math.max(0.0F, (float)(t - 300L) / 700.0F));
             if (k > 0.0F) {
-               class_4588 vc = buffers.method_73477(mode == class_6415.field_33994 ? class_12249.method_76028(GLOW) : class_12249.method_76022(GLOW));
+               class_4588 vc = Buffers.get(buffers, mode == class_6415.field_33994 ? Layers.textSeeThrough(GLOW) : Layers.text(GLOW));
                SkyLyrics.Word title = e.layout[1];
                float hw = title.width * title.scale * 0.5F * k + 4.0F;
                float yy = 8.84F - e.lift;

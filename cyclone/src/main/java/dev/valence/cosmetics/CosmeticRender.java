@@ -1,14 +1,14 @@
 package dev.valence.cosmetics;
 
+import dev.valence.compat.Buffers;
+import dev.valence.compat.WorldRenderHook;
+import dev.valence.compat.Layers;
 import dev.valence.cord.cosmetic.Accessories;
 import dev.valence.license.License;
 import java.util.HashMap;
 import java.util.Map;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext;
-import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
-import net.minecraft.class_12249;
 import net.minecraft.class_1944;
 import net.minecraft.class_2338;
 import net.minecraft.class_243;
@@ -36,11 +36,11 @@ public final class CosmeticRender {
    public static void register() {
       if (!registered) {
          registered = true;
-         WorldRenderEvents.AFTER_ENTITIES.register(CosmeticRender::render);
+         WorldRenderHook.afterEntities(CosmeticRender::render);
       }
    }
 
-   private static void render(WorldRenderContext ctx) {
+   private static void render(WorldRenderHook.Frame ctx) {
       class_310 mc = class_310.method_1551();
       if (mc.field_1724 == null || mc.field_1687 == null) {
          return;
@@ -76,14 +76,14 @@ public final class CosmeticRender {
       try {
          Matrix4f base = new Matrix4f(ctx.matrices().method_23760().method_23761());
          class_4597 buffers = ctx.consumers();
-         class_243 cam = ctx.worldState().field_63082.field_63078;
+         class_243 cam = ctx.camera();
          float pt = mc.method_61966().method_60637(false);
          class_243 pos = pl.method_30950(pt);
          float yaw = class_3532.method_17821(pt, pl.field_6241, pl.field_6259);
          float pitch = pl.method_5695(pt);
          int light = light(mc, pos);
          float time = (float)(System.nanoTime() / 1.0E9);
-         class_4588 vc = buffers.method_73477(class_12249.method_75994(Accessories.WHITE));
+         class_4588 vc = Buffers.get(buffers, Layers.cutout(Accessories.WHITE));
          CosmeticRender.Emitter e = new CosmeticRender.Emitter(
             base,
             buffers,
@@ -232,7 +232,7 @@ public final class CosmeticRender {
          class_4588 out = tex == null
             ? this.vc
             : this.textured.computeIfAbsent(
-               CosmeticTextures.id(tex), id -> this.buffers.method_73477(class_12249.method_75994(id))
+               CosmeticTextures.id(tex), id -> Buffers.get(this.buffers, Layers.cutout(id))
             );
          int frames = tex == null ? 1 : Math.max(1, tex.frames());
          float inv = 1.0F / frames;

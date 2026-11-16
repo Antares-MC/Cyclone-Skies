@@ -1,5 +1,8 @@
 package dev.valence.cord.sky;
 
+import dev.valence.compat.Buffers;
+import dev.valence.compat.WorldRenderHook;
+import dev.valence.compat.Layers;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.cosmetic.Accessories;
@@ -22,8 +25,6 @@ import java.util.Map;
 import java.util.Random;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext;
-import net.minecraft.class_12249;
 import net.minecraft.class_1937;
 import net.minecraft.class_243;
 import net.minecraft.class_2561;
@@ -162,7 +163,7 @@ public final class WorldSky {
       return AutoPerf.quality();
    }
 
-   public static void render(WorldRenderContext ctx) {
+   public static void render(WorldRenderHook.Frame ctx) {
       AutoPerf.frame();
       AutoPerf.begin();
 
@@ -173,7 +174,7 @@ public final class WorldSky {
       }
    }
 
-   private static void renderSky(WorldRenderContext ctx) {
+   private static void renderSky(WorldRenderHook.Frame ctx) {
       class_310 mc = class_310.method_1551();
       if (License.active()) {
          if (mc.field_1724 != null && mc.field_1687 != null) {
@@ -237,7 +238,7 @@ public final class WorldSky {
             if (p != null && vis > 0.01F) {
                SkyTextures.update();
                float strength = p.strength * c.skyStrength * vis * night;
-               quads = buffers.method_73477(class_12249.method_76023());
+               quads = Buffers.get(buffers, Layers.quads());
                if (c.fxSkyColor || cover > 0.01F) {
                   drawDome(p, strength, cover * vis, mc);
                }
@@ -245,7 +246,7 @@ public final class WorldSky {
                LiveSky.MAIN.prepare(p, aurora1(p), aurora2(p), t, c);
                drawLiveSky(vis * liveFade(p), night * (0.92F + 0.08F * calm) * (1.0F + 0.12F * beat), mc);
                quads = null;
-               quads = buffers.method_73477(class_12249.method_76023());
+               quads = Buffers.get(buffers, Layers.quads());
                if (p.stars > 0.0F && c.fxStars && AutoPerf.allow(5)) {
                   drawStars(p, vis * night * (0.85F + 0.3F * beat), t);
                }
@@ -271,8 +272,8 @@ public final class WorldSky {
                   && c.weatherAmount > 0.01F
                   && p.weather != SkyPreset.Weather.NONE
                   && out > 0.01F) {
-                  class_243 cam = ctx.worldState().field_63082.field_63078;
-                  class_4588 ts = buffers.method_73477(class_12249.method_76022(SkyTextures.SPRITES));
+                  class_243 cam = ctx.camera();
+                  class_4588 ts = Buffers.get(buffers, Layers.text(SkyTextures.SPRITES));
                   drawWeather(ts, p.weather, c.weatherAmount * (AutoPerf.allow(3) ? 1.0F : 0.5F), out, dt, t, cam);
                }
             }
@@ -280,7 +281,7 @@ public final class WorldSky {
             int lyricCol = c.lyricsColor >= 0 ? LYRIC_COLORS[Math.floorMod(c.lyricsColor, LYRIC_COLORS.length)] : (p == null ? Theme.accent() : p.lyricColor);
             lastDt = dt;
             lastLyricCol = lyricCol;
-            class_243 camV = ctx.worldState().field_63082.field_63078;
+            class_243 camV = ctx.camera();
             if (c.trail > 0 || c.aura) {
                SkyTextures.update();
                drawPlayerFx(mc, c, buffers, camV, pt, t, p);
@@ -293,7 +294,7 @@ public final class WorldSky {
       }
    }
 
-   public static void renderLyrics(WorldRenderContext ctx) {
+   public static void renderLyrics(WorldRenderHook.Frame ctx) {
       class_310 mc = class_310.method_1551();
       if (mc.field_1724 != null && mc.field_1687 != null && ctx.matrices() != null && ctx.consumers() != null) {
          if (License.active()) {
@@ -1518,7 +1519,7 @@ public final class WorldSky {
             }
 
             if (!TRAIL.isEmpty()) {
-               class_4588 ts = buffers.method_73477(class_12249.method_76022(SkyTextures.SPRITES));
+               class_4588 ts = Buffers.get(buffers, Layers.text(SkyTextures.SPRITES));
 
                for (double[] q : TRAIL) {
                   float age = (float)((now - q[3]) / 1300.0);
@@ -1541,7 +1542,7 @@ public final class WorldSky {
          }
 
          if (c.aura) {
-            quads = buffers.method_73477(class_12249.method_76023());
+            quads = Buffers.get(buffers, Layers.quads());
             double fx0 = pos.field_1352 - cam.field_1352;
             double fy0 = pos.field_1351 + 0.03 - cam.field_1351;
             double fz0 = pos.field_1350 - cam.field_1350;

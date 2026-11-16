@@ -1,5 +1,6 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.PlayerPreview;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cosmetics.Capes;
 import dev.valence.cosmetics.CosmeticPreview;
@@ -368,39 +369,7 @@ public class CosmeticsPage extends Page {
    }
 
    private void drawPlayerBack(class_332 g, int x0, int y0, int x1, int y1) {
-      class_310 mc = class_310.method_1551();
-      if (mc.field_1724 != null) {
-         try {
-            class_897<? super class_746, ?> renderer = mc.method_1561().method_3953(mc.field_1724);
-            class_10017 state = renderer.method_62425(mc.field_1724, 1.0F);
-            state.field_61820 = 15728880;
-            state.field_61823.clear();
-            state.field_61821 = 0;
-            float turn = (float)Math.sin(System.currentTimeMillis() / 1400.0) * 28.0F;
-            if (state instanceof class_10042 l) {
-               l.field_53446 = turn;
-               l.field_53447 = 0.0F;
-               l.field_53448 = 6.0F;
-               l.field_53329 = l.field_53329 / l.field_53453;
-               l.field_53330 = l.field_53330 / l.field_53453;
-               l.field_53453 = 1.0F;
-            }
-
-            Vector2f a = g.method_51448().transformPosition(new Vector2f(x0, y0));
-            Vector2f b = g.method_51448().transformPosition(new Vector2f(x1, y1));
-            x0 = Math.round(a.x);
-            y0 = Math.round(a.y);
-            x1 = Math.round(b.x);
-            y1 = Math.round(b.y);
-            int size = (int)Math.min((y1 - y0) / 2.5F, (x1 - x0) / 1.25F);
-            Quaternionf q = new Quaternionf().rotateZ((float) Math.PI);
-            Quaternionf q2 = new Quaternionf().rotateX((float)Math.toRadians(-8.0));
-            q.mul(q2);
-            Vector3f off = new Vector3f(0.0F, state.field_53330 / 2.0F + 0.0625F, 0.0F);
-            g.method_70856(state, size, off, q, q2, x0, y0, x1, y1);
-         } catch (Throwable var16) {
-         }
-      }
+      PlayerPreview.drawBack(g, x0, y0, x1, y1);
    }
 
    @Override

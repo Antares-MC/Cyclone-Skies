@@ -106,8 +106,7 @@ public final class EmoteManager {
                      lastFlash = flash;
                      mc.method_1483().method_4873(class_1109.method_4757((class_3414)class_3417.field_15015.comp_349(), 1.9F, 1.0F));
                      mc.method_1483().method_4873(class_1109.method_4757(class_3417.field_17484, 1.25F, 1.0F));
-                     p.method_73183()
-                        .method_8486(
+                     mc.field_1687.method_8486(
                            p.method_23317(), p.method_23318() + 1.6, p.method_23321(), class_3417.field_17484, class_3419.field_15248, 1.6F, 1.4F, false
                         );
                   }

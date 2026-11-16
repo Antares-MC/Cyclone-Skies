@@ -1,5 +1,7 @@
 package dev.valence.mixin;
 
+import dev.valence.compat.EmoteBatch;
+import dev.valence.compat.Layers;
 import dev.valence.emote.EmoteAnimator;
 import dev.valence.emote.EmoteLimbs;
 import dev.valence.emote.EmotePose;
@@ -11,7 +13,6 @@ import net.minecraft.class_10042;
 import net.minecraft.class_10055;
 import net.minecraft.class_11659;
 import net.minecraft.class_12075;
-import net.minecraft.class_12249;
 import net.minecraft.class_4587;
 import net.minecraft.class_7920;
 import net.minecraft.class_922;
@@ -34,7 +35,7 @@ public abstract class EmoteBodyMixin {
          if (p != null) {
             float w = st.valence$weight();
             int light = state.field_61820;
-            EmoteProps.Emitter out = EmoteProps.worldEmitter(col, light);
+            EmoteProps.Emitter out = EmoteProps.worldEmitter(EmoteBatch.of(col), light);
 
             try {
                EmoteProps.world(ps, out, p, w, st.valence$time());
@@ -55,9 +56,9 @@ public abstract class EmoteBodyMixin {
                boolean[] overlay = new boolean[]{av.field_53531, av.field_53530, av.field_53546, av.field_53545};
                ps.method_22903();
                ps.method_46416(0.0F, -1.501F, 0.0F);
-               col.method_73483(ps, class_12249.method_76000(av.field_53520.comp_1626().comp_3627()), (pose, vc) -> {
+               col.method_73483(ps, Layers.translucent(av.field_53520.comp_1626().comp_3627()), (pose, vc) -> {
                   class_4587 local = new class_4587();
-                  local.method_23760().method_66521(pose);
+                  local.method_23760().method_23761().set(pose.method_23761());
                   EmoteLimbs.draw(local, copy, w, slim, overlay, EmoteLimbs.vertices(vc, light));
                });
                ps.method_22909();

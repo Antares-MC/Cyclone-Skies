@@ -1,5 +1,6 @@
 package dev.valence.cord.hud;
 
+import dev.valence.compat.Fonts;
 import com.mojang.blaze3d.pipeline.RenderPipeline;
 import dev.valence.cord.NeonLyrics;
 import java.util.ArrayList;
@@ -9,14 +10,12 @@ import java.util.Map;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_10799;
-import net.minecraft.class_11719;
 import net.minecraft.class_2561;
 import net.minecraft.class_2583;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
 import net.minecraft.class_332;
-import net.minecraft.class_11719.class_11721;
 
 @Environment(EnvType.CLIENT)
 public final class Gfx {
@@ -77,9 +76,9 @@ public final class Gfx {
       "Caveat",
       "Minecraft"
    };
-   private static final class_11719[][] FD = new class_11719[FONT_IDS.length][3];
+   private static final Fonts.Entry[][] FD = new Fonts.Entry[FONT_IDS.length][3];
    private static Gfx.Role cur;
-   private static final Map<class_11719, Map<String, Integer>> WIDTHS;
+   private static final Map<Fonts.Entry, Map<String, Integer>> WIDTHS;
 
    private Gfx() {
    }
@@ -439,7 +438,7 @@ public final class Gfx {
       return i >= 0 && i < FONT_IDS.length;
    }
 
-   private static class_11719 resolve(Gfx.Role r) {
+   private static Fonts.Entry resolve(Gfx.Role r) {
       if (r == Gfx.Role.LYRICS) {
          int i = Math.floorMod(NeonLyrics.cfg().lyricsFont, FONT_IDS.length);
          return FD[i][2];
@@ -450,17 +449,19 @@ public final class Gfx {
 
    public static void textIn(class_332 g, String s, int x, int y, int rgb, float a, int fontIdx, boolean bold) {
       if (!(a * alpha < 0.03F)) {
-         class_2561 c = fontIdx >= 0 && fontIdx < FONT_IDS.length
-            ? class_2561.method_43470(s).method_27696(class_2583.field_24360.method_27704(FD[fontIdx][bold ? 1 : 0]))
-            : class_2561.method_43470(s);
-         g.method_51439(font(), c, x, y, argb(rgb, a), false);
+         Fonts.Entry fe = fontIdx >= 0 && fontIdx < FONT_IDS.length ? FD[fontIdx][bold ? 1 : 0] : null;
+         class_2561 c = Fonts.apply(class_2561.method_43470(s), fe);
+         g.method_51439(Fonts.renderer(fe), c, x, y, argb(rgb, a), false);
       }
    }
 
    public static int wIn(String s, int fontIdx, boolean bold) {
-      return fontIdx >= 0 && fontIdx < FONT_IDS.length
-         ? font().method_27525(class_2561.method_43470(s).method_27696(class_2583.field_24360.method_27704(FD[fontIdx][bold ? 1 : 0])))
-         : font().method_1727(s);
+      if (fontIdx >= 0 && fontIdx < FONT_IDS.length) {
+         Fonts.Entry fe = FD[fontIdx][bold ? 1 : 0];
+         return Fonts.renderer(fe).method_27525(Fonts.apply(class_2561.method_43470(s), fe));
+      } else {
+         return font().method_1727(s);
+      }
    }
 
    public static Gfx.Role useFont(Gfx.Role f) {
@@ -470,8 +471,7 @@ public final class Gfx {
    }
 
    public static class_2561 comp(String s, Gfx.Role r) {
-      class_11719 f = resolve(r);
-      return f != null ? class_2561.method_43470(s).method_27696(class_2583.field_24360.method_27704(f)) : class_2561.method_43470(s);
+      return Fonts.apply(class_2561.method_43470(s), resolve(r));
    }
 
    public static int w(String s) {
@@ -480,7 +480,7 @@ public final class Gfx {
 
    public static int w(String s, Gfx.Role r) {
       if (s != null && !s.isEmpty()) {
-         class_11719 f = resolve(r);
+         Fonts.Entry f = resolve(r);
          if (f == null) {
             return font().method_1727(s);
          }
@@ -492,7 +492,7 @@ public final class Gfx {
                m.clear();
             }
 
-            v = font().method_27525(comp(s, r));
+            v = Fonts.renderer(f).method_27525(comp(s, r));
             m.put(s, v);
          }
 
@@ -513,14 +513,15 @@ public final class Gfx {
             g.method_51433(font(), s, x, y, argb(rgb, a), shadow);
          } else {
             class_2561 c = comp(s, cur);
+            class_327 r = Fonts.renderer(resolve(cur));
             if (shadow && NeonLyrics.cfg().quality > 0) {
                g.method_51448().pushMatrix();
                g.method_51448().translate(0.5F, 0.7F);
-               g.method_51439(font(), c, x, y, argb(328458, a * 0.45F), false);
+               g.method_51439(r, c, x, y, argb(328458, a * 0.45F), false);
                g.method_51448().popMatrix();
             }
 
-            g.method_51439(font(), c, x, y, argb(rgb, a), false);
+            g.method_51439(r, c, x, y, argb(rgb, a), false);
          }
       }
    }
@@ -596,7 +597,7 @@ public final class Gfx {
 
       for (int i = 0; i < FONT_IDS.length; i++) {
          for (int k = 0; k < 3; k++) {
-            FD[i][k] = new class_11721(class_2960.method_60655("valence_cord", FONT_IDS[i] + kinds[k]));
+            FD[i][k] = Fonts.of(class_2960.method_60655("valence_cord", FONT_IDS[i] + kinds[k]));
          }
       }
 

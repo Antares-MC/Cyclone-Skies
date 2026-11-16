@@ -1,5 +1,7 @@
 package dev.valence.gui;
 
+import dev.valence.compat.Keys;
+import dev.valence.compat.InputScreen;
 import dev.valence.ValenceClient;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.lyrics.SpotifyClient;
@@ -16,16 +18,13 @@ import dev.valence.gui.pages.StylesPage;
 import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_11905;
-import net.minecraft.class_11908;
-import net.minecraft.class_11909;
 import net.minecraft.class_2561;
 import net.minecraft.class_327;
 import net.minecraft.class_332;
 import net.minecraft.class_437;
 
 @Environment(EnvType.CLIENT)
-public class ValenceScreen extends class_437 {
+public class ValenceScreen extends InputScreen {
    private static int lastPage = 0;
    private static final int NAV_Y = 50;
    private static final int ITEM_H_MAX = 22;
@@ -342,21 +341,18 @@ public class ValenceScreen extends class_437 {
       return rawY / this.ui;
    }
 
-   private class_11909 scaled(class_11909 e) {
-      return new class_11909(this.mx(e.comp_4798()), this.my(e.comp_4799()), e.comp_4800());
-   }
-
-   public boolean method_25402(class_11909 event, boolean doubleClick) {
+   @Override
+   protected boolean onClick(double x, double y, int button, Object raw, boolean doubleClick) {
       if (this.closing) {
          return true;
       }
 
-      if (this.stageIn > 0.5F && this.stage.click(event.comp_4798() / this.ui, event.comp_4799() / this.ui)) {
+      if (this.stageIn > 0.5F && this.stage.click(x / this.ui, y / this.ui)) {
          return true;
       }
 
-      double mx = this.mx(event.comp_4798());
-      double my = this.my(event.comp_4799());
+      double mx = this.mx(x);
+      double my = this.my(y);
       int bx = this.px2 - 24;
       int by = this.py1 + 9;
       if (mx >= bx && mx < bx + 15 && my >= by && my < by + 15) {
@@ -379,37 +375,38 @@ public class ValenceScreen extends class_437 {
          }
       }
 
-      return this.pages.get(this.page).mouseClicked(mx, my, event.method_74245()) ? true : super.method_25402(this.scaled(event), doubleClick);
+      return this.pages.get(this.page).mouseClicked(mx, my, button) || this.passClick(mx, my, button, raw, doubleClick);
    }
 
-   public boolean method_25406(class_11909 event) {
-      return this.pages.get(this.page).mouseReleased(this.mx(event.comp_4798()), this.my(event.comp_4799()), event.method_74245())
-         ? true
-         : super.method_25406(this.scaled(event));
+   @Override
+   protected boolean onRelease(double x, double y, int button, Object raw) {
+      return this.pages.get(this.page).mouseReleased(this.mx(x), this.my(y), button) || this.passRelease(this.mx(x), this.my(y), button, raw);
    }
 
-   public boolean method_25403(class_11909 event, double dx, double dy) {
-      return this.pages.get(this.page).mouseDragged(this.mx(event.comp_4798()), this.my(event.comp_4799()), event.method_74245())
-         ? true
-         : super.method_25403(this.scaled(event), dx / this.ui, dy / this.ui);
+   @Override
+   protected boolean onDrag(double x, double y, int button, Object raw, double dx, double dy) {
+      return this.pages.get(this.page).mouseDragged(this.mx(x), this.my(y), button)
+         || this.passDrag(this.mx(x), this.my(y), button, raw, dx / this.ui, dy / this.ui);
    }
 
    public boolean method_25401(double mx, double my, double scrollX, double scrollY) {
       return this.pages.get(this.page).mouseScrolled(this.mx(mx), this.my(my), scrollY) ? true : super.method_25401(this.mx(mx), this.my(my), scrollX, scrollY);
    }
 
-   public boolean method_25404(class_11908 event) {
-      if (this.pages.get(this.page).keyPressed(event)) {
+   @Override
+   protected boolean onKey(int keyCode, int scanCode, int modifiers) {
+      if (this.pages.get(this.page).keyPressed(keyCode, scanCode, modifiers)) {
          return true;
-      } else if (ValenceClient.OPEN_MENU != null && ValenceClient.OPEN_MENU.method_1417(event)) {
+      } else if (Keys.matches(ValenceClient.OPEN_MENU, keyCode, scanCode)) {
          this.method_25419();
          return true;
       } else {
-         return super.method_25404(event);
+         return this.passKey(keyCode, scanCode, modifiers);
       }
    }
 
-   public boolean method_25400(class_11905 event) {
-      return this.pages.get(this.page).charTyped(event) ? true : super.method_25400(event);
+   @Override
+   protected boolean onChar(char chr, int modifiers) {
+      return this.pages.get(this.page).charTyped(chr, modifiers) || this.passChar(chr, modifiers);
    }
 }

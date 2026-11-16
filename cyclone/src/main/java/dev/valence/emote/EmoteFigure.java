@@ -1,5 +1,6 @@
 package dev.valence.emote;
 
+import dev.valence.compat.Skins;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +14,6 @@ import net.minecraft.class_332;
 import net.minecraft.class_4587;
 import net.minecraft.class_742;
 import net.minecraft.class_7833;
-import net.minecraft.class_7920;
 import net.minecraft.class_4587.class_4665;
 import org.joml.Matrix3x2f;
 import org.joml.Matrix4f;
@@ -65,8 +65,8 @@ public final class EmoteFigure {
       class_310 mc = class_310.method_1551();
       if (e != null && mc.field_1724 != null && !(alpha <= 0.01F)) {
          class_742 pl = mc.field_1724;
-         class_2960 skin = pl.method_52814().comp_1626().comp_3627();
-         boolean slim = pl.method_52814().comp_1629() == class_7920.field_41122;
+         class_2960 skin = Skins.texture(pl);
+         boolean slim = Skins.slim(pl);
          float[] fit = FIT.computeIfAbsent(id * 31 + Math.round(yaw), k -> fit(e, yaw, slim));
          float bw = fit[2] - fit[0];
          float bh = fit[3] - fit[1];

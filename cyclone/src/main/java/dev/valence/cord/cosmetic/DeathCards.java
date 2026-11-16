@@ -1,5 +1,7 @@
 package dev.valence.cord.cosmetic;
 
+import dev.valence.compat.Buffers;
+import dev.valence.compat.Layers;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.sky.SkyTextures;
 import java.awt.BasicStroke;
@@ -17,7 +19,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_1011;
 import net.minecraft.class_1043;
-import net.minecraft.class_12249;
 import net.minecraft.class_243;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
@@ -242,7 +243,7 @@ final class DeathCards {
             .rotateY(-f.yaw);
          int light = DeathFx.light(mc, f.ox, f.oy + 1.0, f.oz);
          boolean firstPerson = f.self && mc.field_1690.method_31044().method_31034();
-         class_4588 g = buffers.method_73477(class_12249.method_76023());
+         class_4588 g = Buffers.get(buffers, Layers.quads());
 
          for (int i = 0; i < 8; i++) {
             if (!(t < appear(i) + 0.05F) && !(t > 2.75F)) {
@@ -299,7 +300,7 @@ final class DeathCards {
             ringFlat(g, m, 0.0F, 1.1F, 0.0F, 0.2F + DeathFx.eo(as) * 1.6F, 0.3F + DeathFx.eo(as) * 1.75F, 16724048, 0.85F * (1.0F - as));
          }
 
-         class_4588 w = buffers.method_73477(class_12249.method_75994(Accessories.WHITE));
+         class_4588 w = Buffers.get(buffers, Layers.cutout(Accessories.WHITE));
          if (t >= 2.05F && !firstPerson) {
             for (int j = 0; j < SLICES.length; j++) {
                Matrix4f pm = pieceMatrix(m, s, j, t);
@@ -394,7 +395,7 @@ final class DeathCards {
             }
          }
 
-         class_4588 cv = buffers.method_73477(class_12249.method_75994(CARDS));
+         class_4588 cv = Buffers.get(buffers, Layers.cutout(CARDS));
 
          for (int ixxx = 0; ixxx < 8; ixxx++) {
             if (card(ixxx, t, C) && !(C[5] <= 0.01F)) {
@@ -404,7 +405,7 @@ final class DeathCards {
          }
 
          if (!firstPerson && f.skin != null) {
-            class_4588 sk = buffers.method_73477(class_12249.method_75994(f.skin));
+            class_4588 sk = Buffers.get(buffers, Layers.cutout(f.skin));
             int bl = DeathFx.light(mc, f.ox, f.oy + 1.2, f.oz);
             if (t < 2.05F) {
                float e = (float)(0.8 * Math.exp(-t * 10.0F));
@@ -446,7 +447,7 @@ final class DeathCards {
          }
 
          if (SkyTextures.spritesReady()) {
-            class_4588 sp = buffers.method_73477(class_12249.method_76022(SkyTextures.SPRITES));
+            class_4588 sp = Buffers.get(buffers, Layers.text(SkyTextures.SPRITES));
             float rx = DeathFx.AX[0];
             float ry = DeathFx.AX[1];
             float rz = DeathFx.AX[2];

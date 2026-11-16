@@ -1,5 +1,6 @@
 package dev.valence;
 
+import dev.valence.compat.Keys;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.live.LiveNotifier;
@@ -25,7 +26,6 @@ import net.minecraft.class_2960;
 import net.minecraft.class_304;
 import net.minecraft.class_3675;
 import net.minecraft.class_437;
-import net.minecraft.class_304.class_11900;
 import net.minecraft.class_3675.class_307;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +35,6 @@ public class ValenceClient implements ClientModInitializer {
    public static final String MOD_ID = "cycloneskies";
    public static final String VERSION = "1.9.9";
    public static final Logger LOGGER = LoggerFactory.getLogger("CycloneSkies");
-   public static final class_11900 CATEGORY = class_11900.method_74698(class_2960.method_60655("valence", "main"));
    public static class_304 OPEN_MENU;
    public static class_304 MEDIA_NEXT;
    public static class_304 MEDIA_PREV;
@@ -49,15 +48,15 @@ public class ValenceClient implements ClientModInitializer {
       SkyRegistry.load();
       NeonLyrics.init();
       LiveNotifier.init();
-      OPEN_MENU = KeyBindingHelper.registerKeyBinding(new class_304("key.valence.open_menu", class_307.field_1668, 75, CATEGORY));
-      MEDIA_NEXT = KeyBindingHelper.registerKeyBinding(new class_304("key.valence.media_next", class_307.field_1668, 295, CATEGORY));
+      OPEN_MENU = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.open_menu", 75));
+      MEDIA_NEXT = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.media_next", 295));
       MEDIA_PREV = KeyBindingHelper.registerKeyBinding(
-         new class_304("key.valence.media_prev", class_307.field_1668, class_3675.field_16237.method_1444(), CATEGORY)
+         Keys.bind("key.valence.media_prev", -1)
       );
       MEDIA_PLAY = KeyBindingHelper.registerKeyBinding(
-         new class_304("key.valence.media_play", class_307.field_1668, class_3675.field_16237.method_1444(), CATEGORY)
+         Keys.bind("key.valence.media_play", -1)
       );
-      EMOTE = KeyBindingHelper.registerKeyBinding(new class_304("key.valence.emote", class_307.field_1668, 66, CATEGORY));
+      EMOTE = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.emote", 66));
       ClientTickEvents.END_CLIENT_TICK
          .register(
             (EndTick)client -> {

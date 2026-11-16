@@ -12,8 +12,6 @@ import java.util.function.IntSupplier;
 import java.util.function.Supplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_11905;
-import net.minecraft.class_11908;
 import net.minecraft.class_2561;
 import net.minecraft.class_310;
 import net.minecraft.class_327;
@@ -179,12 +177,12 @@ public class OptionList {
       return false;
    }
 
-   public boolean keyPressed(class_11908 event) {
-      return this.ownsFocus() && OptionList.TextField.focused.key(event);
+   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+      return this.ownsFocus() && OptionList.TextField.focused.keyDown(keyCode, scanCode, modifiers);
    }
 
-   public boolean charTyped(class_11905 event) {
-      return this.ownsFocus() && OptionList.TextField.focused.type(event);
+   public boolean charTyped(char chr, int modifiers) {
+      return this.ownsFocus() && OptionList.TextField.focused.typed(chr, modifiers);
    }
 
    public static OptionList.Cycle choice(class_2561 label, List<class_2561> names, IntSupplier get, IntConsumer set, boolean arrows) {
@@ -1106,8 +1104,8 @@ public class OptionList {
          return false;
       }
 
-      boolean key(class_11908 e) {
-         int k = e.comp_4795();
+      boolean keyDown(int keyCode, int scanCode, int modifiers) {
+         int k = keyCode;
          if (k == 256 || k == 257 || k == 335) {
             focused = null;
             save();
@@ -1121,7 +1119,7 @@ public class OptionList {
             }
 
             return true;
-         } else if (e.method_74243()) {
+         } else if (keyCode == 86 && (modifiers & 2) != 0) {
             String clip = class_310.method_1551().field_1774.method_1460().trim().replace("\n", "");
             this.set.accept(this.cut(this.get.get() + clip));
             return true;
@@ -1130,12 +1128,12 @@ public class OptionList {
          }
       }
 
-      boolean type(class_11905 e) {
-         if (e.comp_4793() < 32) {
+      boolean typed(char chr, int modifiers) {
+         if (chr < 32) {
             return false;
          }
 
-         this.set.accept(this.cut(this.get.get() + e.method_74226()));
+         this.set.accept(this.cut(this.get.get() + chr));
          return true;
       }
 

@@ -1,5 +1,7 @@
 package dev.valence.cord.cosmetic;
 
+import dev.valence.compat.Buffers;
+import dev.valence.compat.Layers;
 import dev.valence.cord.sky.SkyTextures;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +9,6 @@ import java.util.List;
 import java.util.Random;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_12249;
 import net.minecraft.class_243;
 import net.minecraft.class_310;
 import net.minecraft.class_4588;
@@ -87,10 +88,10 @@ final class DeathHard {
 
          s.simT = t;
          s.pose(t);
-         class_4588 g = buffers.method_73477(class_12249.method_76023());
+         class_4588 g = Buffers.get(buffers, Layers.quads());
          s.glow(c, g, t);
          s.drawPools(g, c.m, t);
-         class_4588 w = buffers.method_73477(class_12249.method_75994(Accessories.WHITE));
+         class_4588 w = Buffers.get(buffers, Layers.cutout(Accessories.WHITE));
          s.solid(c, w, t);
          if (s.blood != null) {
             s.blood.draw(w, c.m, s.fade(t), c.light);
@@ -101,12 +102,12 @@ final class DeathHard {
          }
 
          if (f.skin != null && !c.firstPerson) {
-            class_4588 sk = buffers.method_73477(class_12249.method_75994(f.skin));
+            class_4588 sk = Buffers.get(buffers, Layers.cutout(f.skin));
             s.skin(c, sk, t);
          }
 
          if (SkyTextures.spritesReady()) {
-            class_4588 sp = buffers.method_73477(class_12249.method_76022(SkyTextures.SPRITES));
+            class_4588 sp = Buffers.get(buffers, Layers.text(SkyTextures.SPRITES));
             s.sprites(c, sp, t);
          }
       }

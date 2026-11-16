@@ -1,6 +1,8 @@
 package dev.valence.sky;
 
+import dev.valence.compat.Buffers;
 import dev.valence.ValenceClient;
+import dev.valence.compat.Layers;
 import dev.valence.config.ValenceConfig;
 import dev.valence.license.License;
 import dev.valence.sky.classic.G;
@@ -15,7 +17,6 @@ import java.util.Map;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.class_12249;
 import net.minecraft.class_2960;
 import net.minecraft.class_310;
 import net.minecraft.class_4588;
@@ -287,7 +288,7 @@ public final class ValenceSky implements SkyCanvas {
          int end = l + 1 < this.layerCount ? this.layerStart[l + 1] : this.recCount;
          if (end - start >= 4) {
             if (this.vc == null) {
-               this.vc = this.buffers.method_73477(class_12249.method_75988(IDS.get(this.layerTex[l]), true));
+               this.vc = Buffers.get(this.buffers, Layers.beacon(IDS.get(this.layerTex[l]), true));
             }
 
             for (int i = start; i < end; i++) {

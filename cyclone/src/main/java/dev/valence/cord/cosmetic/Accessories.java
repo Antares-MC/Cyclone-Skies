@@ -1,5 +1,7 @@
 package dev.valence.cord.cosmetic;
 
+import dev.valence.compat.Buffers;
+import dev.valence.compat.Layers;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.lyrics.NowPlaying;
@@ -14,7 +16,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_1011;
 import net.minecraft.class_1043;
-import net.minecraft.class_12249;
 import net.minecraft.class_1944;
 import net.minecraft.class_2338;
 import net.minecraft.class_243;
@@ -172,7 +173,7 @@ public final class Accessories {
                NowPlaying np = SpotifyClient.now();
                float beat = np.playing ? np.beatPulse(np.progressNow(c.lyricsOffsetMs)) : 0.0F;
                float glow = c.hatGlow ? 0.75F + 0.25F * beat : 0.55F;
-               class_4588 vc = buffers.method_73477(class_12249.method_75994(WHITE));
+               class_4588 vc = Buffers.get(buffers, Layers.cutout(WHITE));
                int n = m.length / 14;
                float[] v = new float[9];
 

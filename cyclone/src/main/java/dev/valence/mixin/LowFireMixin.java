@@ -1,11 +1,12 @@
 package dev.valence.mixin;
 
+import dev.valence.compat.Buffers;
+import dev.valence.compat.Layers;
 import dev.valence.config.ValenceConfig;
 import dev.valence.license.License;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.class_1058;
-import net.minecraft.class_12249;
 import net.minecraft.class_4587;
 import net.minecraft.class_4588;
 import net.minecraft.class_4597;
@@ -25,7 +26,7 @@ public abstract class LowFireMixin {
       float h = Math.max(0.1F, Math.min(1.0F, ValenceConfig.get().fireHeight));
       if (!(h >= 0.999F) && License.active()) {
          ci.cancel();
-         class_4588 vc = buffers.method_73477(class_12249.method_75943(sprite.method_45852()));
+         class_4588 vc = Buffers.get(buffers, Layers.fire(sprite.method_45852()));
          float u0 = sprite.method_4594();
          float u1 = sprite.method_4577();
          float v0 = sprite.method_4593();

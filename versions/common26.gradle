@@ -1,0 +1,71 @@
+// Shared configuration for Minecraft 26.x modules.
+//
+// 26.x is a different world from 1.21.x:
+//   * the client jar is published deobfuscated -- there are no client_mappings
+//     and Fabric publishes neither intermediary nor yarn for 26.x, so there is
+//     nothing to remap against;
+//   * everything is written against official (Mojang) names;
+//   * the game requires Java 25.
+//
+// So these modules use the non-remapping Loom plugin and official names, and
+// the generated source tree comes from the intermediary -> official conversion
+// in versions/tools/mojmap.py rather than xlate.py.
+
+apply plugin: 'net.fabricmc.fabric-loom'
+
+def repoRoot = rootProject.projectDir.parentFile
+def sharedRes = new File(repoRoot, 'cyclone/src/main/resources')
+def genJava = new File(rootProject.projectDir, "gen/${project.name}/java")
+def overlayJava = new File(projectDir, 'java')
+
+version = rootProject.findProperty('mod_version') ?: '1.9.9'
+group = rootProject.findProperty('maven_group') ?: 'dev.valence'
+base {
+    archivesName = "cycloneskies-${project.minecraft_version}"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+}
+
+sourceSets {
+    main {
+        java {
+            setSrcDirs([genJava, overlayJava])
+        }
+        resources {
+            setSrcDirs([sharedRes])
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = Integer.parseInt(project.java_release)
+}
+
+java {
+    def rel = Integer.parseInt(project.java_release)
+    sourceCompatibility = JavaVersion.toVersion(rel)
+    targetCompatibility = JavaVersion.toVersion(rel)
+}
+
+tasks.register('checkGenerated') {
+    doLast {
+        if (!genJava.isDirectory() || genJava.listFiles() == null || genJava.listFiles().length == 0) {
+            throw new GradleException(
+                "Missing generated sources for ${project.name}.\n" +
+                "Run:  python versions/tools/mojmap.py ${project.minecraft_version} --emit ${genJava}")
+        }
+    }
+}
+
+tasks.named('compileJava') {
+    dependsOn 'checkGenerated'
+}

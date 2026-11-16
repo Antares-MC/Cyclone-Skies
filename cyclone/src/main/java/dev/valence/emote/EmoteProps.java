@@ -1,5 +1,7 @@
 package dev.valence.emote;
 
+import dev.valence.compat.EmoteBatch;
+import dev.valence.compat.Layers;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_11659;
-import net.minecraft.class_12249;
 import net.minecraft.class_2960;
 import net.minecraft.class_4587;
 import net.minecraft.class_4588;
@@ -29,10 +29,10 @@ public final class EmoteProps {
    private EmoteProps() {
    }
 
-   public static EmoteProps.Emitter worldEmitter(class_11659 col, int light) {
+   public static EmoteProps.Emitter worldEmitter(EmoteBatch col, int light) {
       return (ps, g) -> {
-         col.method_73483(ps, class_12249.method_75994(WHITE), (pose, vc) -> g.draw(pose, new EmoteProps.VcSink(vc, light, false)));
-         col.method_73483(ps, class_12249.method_76002(WHITE), (pose, vc) -> g.draw(pose, new EmoteProps.VcSink(vc, 15728880, true)));
+         col.submit(ps, Layers.cutout(WHITE), (pose, vc) -> g.draw(pose, new EmoteProps.VcSink(vc, light, false)));
+         col.submit(ps, Layers.translucentEmissive(WHITE), (pose, vc) -> g.draw(pose, new EmoteProps.VcSink(vc, 15728880, true)));
       };
    }
 
@@ -208,7 +208,7 @@ public final class EmoteProps {
    private static void octo(class_4665 base, EmoteProps.Sink s, float y0, float y1, float r, int color) {
       s.box(base, -r, y0, -r, r, y1, r, color, false);
       class_4587 ps = new class_4587();
-      ps.method_23760().method_66521(base);
+      ps.method_23760().method_23761().set(base.method_23761());
       ps.method_22907(class_7833.field_40716.rotationDegrees(45.0F));
       s.box(ps.method_23760(), -r, y0, -r, r, y1, r, color, false);
    }
@@ -451,7 +451,7 @@ public final class EmoteProps {
       int wood = -4616872;
       int ring = -7576776;
       class_4587 ps = new class_4587();
-      ps.method_23760().method_66521(base);
+      ps.method_23760().method_23761().set(base.method_23761());
       ps.method_22903();
       ps.method_46416(0.0F, -0.2F, 0.05F);
       ps.method_22907(class_7833.field_40718.rotationDegrees(90.0F));
@@ -610,7 +610,7 @@ public final class EmoteProps {
       int dark = -14803164;
       int seat = -10805460;
       class_4587 ps = new class_4587();
-      ps.method_23760().method_66521(base);
+      ps.method_23760().method_23761().set(base.method_23761());
       class_4665 pose = ps.method_23760();
       s.box(pose, -0.3F, -0.47F, -0.32F, 0.3F, -0.4F, 0.22F, seat, false);
       s.box(pose, -0.3F, -1.05F, 0.22F, 0.3F, -0.47F, 0.28F, seat, false);

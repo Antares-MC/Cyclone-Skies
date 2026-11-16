@@ -1,5 +1,8 @@
 package dev.valence.cord.cosmetic;
 
+import dev.valence.compat.Skins;
+import dev.valence.compat.Buffers;
+import dev.valence.compat.Layers;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
 import dev.valence.cord.sky.SkyTextures;
@@ -13,7 +16,6 @@ import java.util.Random;
 import java.util.Set;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_12249;
 import net.minecraft.class_1297;
 import net.minecraft.class_1944;
 import net.minecraft.class_2338;
@@ -276,12 +278,12 @@ public final class DeathFx {
       f.self = self;
       f.test = test;
       f.kind = Math.max(1, NeonLyrics.cfg().deathFx);
-      class_243 pos = p.method_73189();
+      class_243 pos = new class_243(p.method_23317(), p.method_23318(), p.method_23321());
       f.yaw = (float)Math.toRadians(p.field_6283);
       f.start = System.nanoTime();
 
       try {
-         f.skin = p.method_52814().comp_1626().comp_3627();
+         f.skin = Skins.texture(p);
       } catch (Throwable var35) {
          f.skin = null;
       }
@@ -491,7 +493,7 @@ public final class DeathFx {
          int light = light(mc, f.ox, f.oy + 0.5, f.oz);
          float fade = 1.0F - sm(3.7F, 4.7F, t);
          boolean firstPerson = f.self && mc.field_1690.method_31044().method_31034();
-         class_4588 g = buffers.method_73477(class_12249.method_76023());
+         class_4588 g = Buffers.get(buffers, Layers.quads());
          float glow = sm(0.95F, 1.6F, t) * (1.0F + 0.2F * (float)Math.sin(t * 19.0F));
          float y0 = 0.02F;
          float sheen = (t < 1.62F ? 0.35F * glow : 0.42F * (float)Math.exp(-(t - 1.62F) * 1.2) + 0.22F) * fade * sm(0.95F, 1.3F, t);
@@ -543,7 +545,7 @@ public final class DeathFx {
             disc(g, m, 1.7F, y0 + 0.02F, 0.85F, rr, rr * 1.04F, 16751272, 0.6F * (1.0F - ag), 16751272, 0.0F, 40);
          }
 
-         class_4588 w = buffers.method_73477(class_12249.method_75994(Accessories.WHITE));
+         class_4588 w = Buffers.get(buffers, Layers.cutout(Accessories.WHITE));
          boolean on = t >= 1.62F;
          float st = sTip(t);
          if (on) {
@@ -632,7 +634,7 @@ public final class DeathFx {
          pose(t, POSE);
          boolean bodyVisible = POSE.p[1] > -1.4F && !firstPerson;
          if (bodyVisible && f.skin != null) {
-            class_4588 sk = buffers.method_73477(class_12249.method_75994(f.skin));
+            class_4588 sk = Buffers.get(buffers, Layers.cutout(f.skin));
             int bl = light(mc, f.ox + POSE.p[0], f.oy + POSE.p[1], f.oz + POSE.p[2]);
             float ex = Math.min(1.0F, POSE.e);
             int tint = -65536 | Math.round(255.0F * (1.0F - 0.6F * ex)) << 8 | Math.round(255.0F * (1.0F - 0.6F * ex));
@@ -640,7 +642,7 @@ public final class DeathFx {
          }
 
          if (SkyTextures.spritesReady()) {
-            class_4588 sp = buffers.method_73477(class_12249.method_76022(SkyTextures.SPRITES));
+            class_4588 sp = Buffers.get(buffers, Layers.text(SkyTextures.SPRITES));
             float rx = AX[0];
             float ry = AX[1];
             float rz = AX[2];

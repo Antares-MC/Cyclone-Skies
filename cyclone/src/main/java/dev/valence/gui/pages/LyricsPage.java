@@ -1,5 +1,6 @@
 package dev.valence.gui.pages;
 
+import dev.valence.compat.Fonts;
 import dev.valence.config.ValenceConfig;
 import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.config.Config;
@@ -22,8 +23,6 @@ import java.util.List;
 import java.util.Locale;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.class_11905;
-import net.minecraft.class_11908;
 import net.minecraft.class_156;
 import net.minecraft.class_2561;
 import net.minecraft.class_2583;
@@ -443,13 +442,13 @@ public class LyricsPage extends Page {
    }
 
    @Override
-   public boolean keyPressed(class_11908 event) {
-      return this.options.keyPressed(event);
+   public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+      return this.options.keyPressed(keyCode, scanCode, modifiers);
    }
 
    @Override
-   public boolean charTyped(class_11905 event) {
-      return this.options.charTyped(event);
+   public boolean charTyped(char chr, int modifiers) {
+      return this.options.charTyped(chr, modifiers);
    }
 
    @Environment(EnvType.CLIENT)
@@ -543,7 +542,7 @@ public class LyricsPage extends Page {
             boolean sel = lf.id().equals(current);
             float hv = Anim.hover(this.key(i), inside(mx, my, cx, cy, cx + cw, cy + 22));
             Theme.card(g, cx, cy, cx + cw, cy + 22, hv, sel);
-            class_2583 st = class_2583.field_24360.method_27704(lf.description());
+            class_2583 st = Fonts.apply(class_2583.field_24360, lf.description());
             String plain = f.method_27523(class_2561.method_43470(lf.displayName()).method_27696(st).getString(), cw - 6);
             g.method_27534(f, class_2561.method_43470(plain).method_27696(st), cx + cw / 2, cy + 7, sel ? -1 : Theme.lerp(-4608298, -1, hv));
          }
@@ -631,7 +630,7 @@ public class LyricsPage extends Page {
             boolean sel = p.id().equals(current);
             float hv = Anim.hover(this.key(i), inside(mx, my, cx, cy, cx + cw, cy + 24));
             Theme.card(g, cx, cy, cx + cw, cy + 24, hv, sel);
-            class_2583 st = class_2583.field_24360.method_27704(LyricFonts.byId(p.font()).description()).method_36139(p.colorA() & 16777215);
+            class_2583 st = Fonts.apply(class_2583.field_24360, LyricFonts.byId(p.font()).description()).method_36139(p.colorA() & 16777215);
             String name = class_2561.method_43471("valence.lyrics.preset." + p.id()).getString();
             if (p.uppercase()) {
                name = name.toUpperCase(Locale.ROOT);
