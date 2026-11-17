@@ -149,6 +149,14 @@ def replace_asset(rel, name, path, tok):
     return call('POST', upload, tok, raw=data, ctype='application/java-archive')
 
 
+def asset_matches(rel, name, size):
+    """True when the release already carries this asset at this byte size."""
+    for asset in rel.get('assets', []):
+        if asset['name'] == name and asset.get('size') == size:
+            return True
+    return False
+
+
 def main():
     dry = '--dry' in sys.argv
     force = '--force' in sys.argv
@@ -169,7 +177,7 @@ def main():
         tag = 'v%s-mc%s' % (MOD_VERSION, ver)
         body = NOTES_SHARED.format(
             mc=ver, asset=name, size=size, sha=digest, java=java_for(ver),
-            payments=NOTES_PAYMENTS if ver in PAYMENTS else NOTES_NOPAYMENTS)
+            payments=(NOTES_PAYMENTS if ver in PAYMENTS else NOTES_NOPAYMENTS).rstrip())
         if ver in ('1.21.9', '1.21.10'):
             body += NOTES_GAP
         title = 'Cyclone Skies %s for Minecraft %s' % (MOD_VERSION, ver)
@@ -187,6 +195,9 @@ def main():
                                    body={'body': body, 'name': title})
             if status not in (200, 201):
                 print('%-8s patch failed %s %s' % (ver, status, patched.get('message')))
+                continue
+            if asset_matches(rel, name, size):
+                print('%-8s notes    %12d  %s  %s' % (ver, size, digest[:16], rel['html_url']))
                 continue
             status, asset = replace_asset(rel, name, path, tok)
             if status not in (200, 201):
