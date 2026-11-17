@@ -1,7 +1,7 @@
 # CycloneSkies + Payment Alerts (Minecraft 1.21.11, Fabric)
 
 One Gradle project, one jar. `cyclone/` is CycloneSkies; `payments/` is the paymentalerts mod
-(150+ themes, 44 payment effects) ported to 1.21.11 and bundled **inside** the CycloneSkies jar
+(150+ themes, 46 payment effects) ported to 1.21.11 and bundled **inside** the CycloneSkies jar
 (Fabric jar-in-jar, same mechanism already used for Lithium and ImmediatelyFast).
 
 ## Build
@@ -25,6 +25,10 @@ reflection (`dev.valence.pay.PaymentsBridge`).
 - **Payments page** in the CycloneSkies menu: alerts on/off, buttons to the alert settings and stats screens.
 - Keys: **H** toggle alerts (was K, which CycloneSkies already uses for its menu), **O** alert settings,
   **J** stats. Chat command `/payalerts`.
+- **Stream alerts** for `youtube.com/@lumindevdsmp`: a 9.4 s broadcast takeover (standby bars, hard
+  cut to air, lens aperture, live lower third, chat chips, viewer counter, subscribe press, wipe to
+  an end card). Fires when chat announces the channel going live, or by hand with
+  `/payalerts stream [title]`. It is an event tier, so it never takes part in the amount ladder.
 
 ## UI themes
 The CycloneSkies menu has four palettes, selectable from the chips row on the **Settings** page and
@@ -123,7 +127,8 @@ fails loudly on purpose.
   render APIs I could not port blind. The code already fell back to faces; it now always does.
   Original files are in `payments/reference-26x/` (not compiled).
 - Alerts effect `SNOW_GLOBE` (style defined, no tier) was dead code; its two switch cases were removed.
-- `SplashManagerMixin` (from the original) replaces every title-screen splash with "subscribe to jettism".
+- `SplashManagerMixin` (from the original) replaces every title-screen splash with
+  "subscribe to cyclonelwk and lumindev".
   Kept as-is; delete the mixin if you do not want it in the combined mod.
 - The CycloneSkies menu (and so the Payments page) still sits behind the CycloneSkies license screen;
   the payment alerts and their own keys work regardless.

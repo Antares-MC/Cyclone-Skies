@@ -7,6 +7,7 @@ import com.paymentalerts.screen.SettingsScreen;
 import com.paymentalerts.screen.StatsScreen;
 import com.paymentalerts.skin.SkinFetcher;
 import com.paymentalerts.stats.PaymentStats;
+import com.paymentalerts.stream.StreamWatch;
 import java.util.function.Function;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
@@ -43,6 +44,7 @@ public final class PaymentAlertsClient implements ClientModInitializer {
         ClientReceiveMessageEvents.GAME.register((component, z) -> {
             if (!z) {
                 AlertManager.onChatLine(component);
+                StreamWatch.handle(component.getString());
             }
         });
         toggleKey = KeyBindingHelper.registerKeyBinding(new KeyMapping("key.paymentalerts.toggle", KEY_H, CATEGORY));

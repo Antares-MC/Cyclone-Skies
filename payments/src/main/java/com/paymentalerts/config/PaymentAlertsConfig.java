@@ -32,6 +32,10 @@ public final class PaymentAlertsConfig {
     public float tabSeconds = 6.0f;
     /** Global theme id, or "random", or empty for Classic Gold */
     public String globalThemeId = "classic_gold";
+    /** Channel shown by the stream alert. */
+    public String streamChannel = "Lumindev";
+    /** Watch chat for the channel going live and play the stream alert. */
+    public boolean streamChatDetect = true;
     public boolean useMojangApiForSkins = true;
     public Map<String, TierSettings> tiers = new LinkedHashMap();
     private Boolean randomVariations;
@@ -129,6 +133,9 @@ public final class PaymentAlertsConfig {
         this.soundVolume = clamp(this.soundVolume, 0.0f, 1.0f);
         this.shakeStrength = clamp(this.shakeStrength, 0.0f, 2.0f);
         this.tabSeconds = clamp(this.tabSeconds, 1.0f, 60.0f);
+        if (this.streamChannel == null || this.streamChannel.isBlank()) {
+            this.streamChannel = "Lumindev";
+        }
         if (this.tiers == null) {
             this.tiers = new LinkedHashMap();
         }

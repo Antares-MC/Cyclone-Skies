@@ -17,6 +17,7 @@ def repoRoot = rootProject.projectDir.parentFile
 def sharedRes = new File(repoRoot, 'cyclone/src/main/resources')
 def genJava = new File(rootProject.projectDir, "gen/${project.name}/java")
 def overlayJava = new File(projectDir, 'java')
+def overlayShared = new File(rootProject.projectDir, 'v26_shared/java')
 
 version = rootProject.findProperty('mod_version') ?: '1.9.9'
 group = rootProject.findProperty('maven_group') ?: 'dev.valence'
@@ -37,7 +38,7 @@ dependencies {
 sourceSets {
     main {
         java {
-            setSrcDirs([genJava, overlayJava])
+            setSrcDirs([genJava, overlayShared, overlayJava])
         }
         resources {
             setSrcDirs([sharedRes])
@@ -54,12 +55,42 @@ tasks.withType(JavaCompile).configureEach {
 // Every other jar has to narrow that to the version it was compiled against, or
 // Fabric will refuse to load it. Rewriting the single depends line here keeps
 // the shared fabric.mod.json free of build-system placeholders.
+//
+// 26.x also raised the required Java runtime to 25, so both lines are rewritten.
+//
+// The paymentalerts addon is nested as a jar-in-jar; see common.gradle for why
+// only a build made for this exact version can go in.
+def paymentsJar = new File(repoRoot, "payments/dist/paymentalerts-${project.minecraft_version}.jar")
+
 processResources {
     def mcVersion = project.minecraft_version
     inputs.property 'valenceMinecraftVersion', mcVersion
+    inputs.property 'valencePayments', paymentsJar.isFile()
+    from(paymentsJar) {
+        into 'META-INF/jars'
+    }
     filesMatching('fabric.mod.json') {
         filter { String line ->
             line.replace('"minecraft": "~1.21.11"', '"minecraft": "~' + mcVersion + '"')
+                .replace('"java": ">=21"', '"java": ">=25"')
+        }
+    }
+    // No ModMenu build exists for the 26.x line, so the config-screen entrypoint
+    // would name a class that is not in the jar.
+    doLast {
+        def meta = destinationDir.toPath().resolve('fabric.mod.json').toFile()
+        def text = meta.getText('UTF-8')
+        def block = ''',
+    "modmenu": [
+      "dev.valence.ModMenuIntegration"
+    ]'''
+        if (text.contains(block)) {
+            meta.setText(text.replace(block, ''), 'UTF-8')
+        }
+        if (paymentsJar.isFile()) {
+            logger.lifecycle("nested ${paymentsJar.name} into ${project.name}")
+        } else {
+            logger.lifecycle("no paymentalerts build for ${mcVersion}; shipping without the addon")
         }
     }
 }
@@ -68,6 +99,9 @@ java {
     def rel = Integer.parseInt(project.java_release)
     sourceCompatibility = JavaVersion.toVersion(rel)
     targetCompatibility = JavaVersion.toVersion(rel)
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(rel)
+    }
 }
 
 tasks.register('checkGenerated') {
@@ -75,7 +109,7 @@ tasks.register('checkGenerated') {
         if (!genJava.isDirectory() || genJava.listFiles() == null || genJava.listFiles().length == 0) {
             throw new GradleException(
                 "Missing generated sources for ${project.name}.\n" +
-                "Run:  python versions/tools/mojmap.py ${project.minecraft_version} --emit ${genJava}")
+                "Run:  python versions/tools/mojemit.py ${project.minecraft_version}")
         }
     }
 }

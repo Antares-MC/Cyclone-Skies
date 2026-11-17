@@ -1,5 +1,6 @@
 package dev.valence.mixin;
 
+import dev.valence.compat.Stacks;
 import dev.valence.config.ValenceConfig;
 import dev.valence.license.License;
 import net.fabricmc.api.EnvType;
@@ -18,7 +19,7 @@ public abstract class TotemPopMixin {
    @Inject(method = "method_3189", at = @At("HEAD"), cancellable = true, require = 0)
    private void valence$noTotemOverlay(class_1799 stack, CallbackInfo ci) {
       try {
-         if (stack != null && stack.method_31574(class_1802.field_8288) && ValenceConfig.get().totemPop == 0 && License.active()) {
+         if (stack != null && Stacks.is(stack, class_1802.field_8288) && ValenceConfig.get().totemPop == 0 && License.active()) {
             ci.cancel();
          }
       } catch (Throwable var4) {

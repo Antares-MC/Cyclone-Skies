@@ -1,6 +1,6 @@
 project.ext.minecraft_version    = '26.1'
 project.ext.loader_version       = '0.19.5'
-project.ext.fabric_api_version   = '0.155.3+26.1.2'
+project.ext.fabric_api_version   = '0.145.1+26.1'
 project.ext.java_release         = '25'
 
 apply from: rootProject.file('common26.gradle')

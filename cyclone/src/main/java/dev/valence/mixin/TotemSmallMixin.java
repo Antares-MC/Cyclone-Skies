@@ -1,5 +1,6 @@
 package dev.valence.mixin;
 
+import dev.valence.compat.Stacks;
 import dev.valence.config.ValenceConfig;
 import dev.valence.license.License;
 import net.fabricmc.api.EnvType;
@@ -28,7 +29,7 @@ public abstract class TotemSmallMixin {
    private void valence$smallStart(class_4587 pose, float partialTick, class_11659 collector, CallbackInfo ci) {
       this.valence$scaled = false;
       class_1799 item = this.field_59972;
-      if (item != null && item.method_31574(class_1802.field_8288) && ValenceConfig.get().totemPop == 1 && License.active()) {
+      if (item != null && Stacks.is(item, class_1802.field_8288) && ValenceConfig.get().totemPop == 1 && License.active()) {
          pose.method_22903();
          pose.method_22905(0.4F, 0.4F, 1.0F);
          this.valence$scaled = true;

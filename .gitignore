@@ -34,3 +34,6 @@ Desktop.ini
 # Local junk
 *.tmp
 *.bak
+
+# Mapping dumps produced by versions/tools/mojmap.py
+versions/tools/map*.json

@@ -49,7 +49,20 @@ public enum Tier {
     SUPERNOVA("supernova", "Supernova", 50_000_000_000L, Kind.STAGE, 0xFFE29A, "A star swells, collapses and explodes into a nebula."),
     SUPERNOVA_LITE("supernova_lite", "Mini supernova", 60_000_000_000L, Kind.STAGE, 0xFFFFFF, "A condensed star-collapse finale."),
     GOD_RAYS("god_rays", "God rays", 80_000_000_000L, Kind.STAGE, 0xFFF8DC, "Heavenly beams and blessing particles."),
-    GOD_TIER("god_tier", "God tier", 100_000_000_000L, Kind.STAGE, 0xFFE44D, "The payer appears giant with a crown, crouch-dancing in a beam of light.");
+    GOD_TIER("god_tier", "God tier", 100_000_000_000L, Kind.STAGE, 0xFFE44D, "The payer appears giant with a crown, crouch-dancing in a beam of light."),
+
+    /**
+     * The developer effect. It sits above god tier on the ladder, but it is really
+     * bound to a name: any payment from Lumindev plays it regardless of amount.
+     */
+    LUMINDEV("lumindev", "Lumindev", 250_000_000_000L, Kind.STAGE, 0xA77BFF, "A rift opens, the payer descends in a beam of light, and the screen collapses into a whiteout."),
+
+    /**
+     * Not a payment tier: this one is bound to an event. It fires when the channel goes
+     * live (chat detection) or when it is triggered by hand with
+     * {@code /payalerts stream}. It never participates in the amount ladder.
+     */
+    STREAM("stream", "Stream live", 0L, Kind.EVENT, 0xFF0033, "Broadcast takeover: tally lights, a lens opening on the channel, chat chips and a subscribe press.");
 
     public static final Tier[] EFFECTS;
 
@@ -69,7 +82,9 @@ public enum Tier {
     public enum Kind {
         NONE,
         SIDE,
-        STAGE
+        STAGE,
+        /** Not on the amount ladder: only fired explicitly (streams, events). */
+        EVENT
     }
 
     Tier(String id, String label, long defaultThreshold, Kind kind, int color, String description) {
@@ -122,10 +137,6 @@ public enum Tier {
         if (this == NONE) {
             return new String[]{"-"};
         }
-        EffectStyle style = EffectFactory.styleFor(this);
-        if (style != null) {
-            return style.variationNames;
-        }
         return switch (this) {
             case COIN_POP -> CoinPopAlert.VARIATIONS;
             case TAB -> TabAlert.VARIATIONS;
@@ -142,6 +153,37 @@ public enum Tier {
             case BLACK_HOLE -> BlackHoleAlert.VARIATIONS;
             case SUPERNOVA -> SupernovaAlert.VARIATIONS;
             case GOD_TIER -> GodTierAlert.VARIATIONS;
+            case LUMINDEV -> LumindevAlert.VARIATIONS;
+            case SPARKLE_BURST -> SparkleBurstAlert.VARIATIONS;
+            case GOLDEN_SHOWER -> GoldenShowerAlert.VARIATIONS;
+            case PARTY_POPPER -> PartyPopperAlert.VARIATIONS;
+            case STARFALL -> StarfallAlert.VARIATIONS;
+            case HEART_BOMB -> HeartBombAlert.VARIATIONS;
+            case LASER_GRID -> LaserGridAlert.VARIATIONS;
+            case TSUNAMI -> TsunamiAlert.VARIATIONS;
+            case VOLCANO -> VolcanoAlert.VARIATIONS;
+            case AURORA -> AuroraAlert.VARIATIONS;
+            case DISCO_BALL -> DiscoBallAlert.VARIATIONS;
+            case PIXEL_STORM -> PixelStormAlert.VARIATIONS;
+            case PHOENIX -> PhoenixAlert.VARIATIONS;
+            case GLITCH -> GlitchAlert.VARIATIONS;
+            case THUNDER_CLAP -> ThunderClapAlert.VARIATIONS;
+            case MONEY_TORNADO -> MoneyTornadoAlert.VARIATIONS;
+            case RAINBOW_ROAD -> RainbowRoadAlert.VARIATIONS;
+            case BLACKOUT -> BlackoutAlert.VARIATIONS;
+            case SUPERNOVA_LITE -> SupernovaLiteAlert.VARIATIONS;
+            case CASH_CANNON -> CashCannonAlert.VARIATIONS;
+            case PORTAL_RIFT -> PortalRiftAlert.VARIATIONS;
+            case EMP_BLAST -> EmpBlastAlert.VARIATIONS;
+            case CHERRY_BLOSSOM -> CherryBlossomAlert.VARIATIONS;
+            case METEOR_MINI -> MeteorMiniAlert.VARIATIONS;
+            case ROYAL_FANFARE -> RoyalFanfareAlert.VARIATIONS;
+            case SANDSTORM -> SandstormAlert.VARIATIONS;
+            case ICE_AGE -> IceAgeAlert.VARIATIONS;
+            case NEON_RAIN -> NeonRainAlert.VARIATIONS;
+            case CONFETTI_NUKE -> ConfettiNukeAlert.VARIATIONS;
+            case GOD_RAYS -> GodRaysAlert.VARIATIONS;
+            case STREAM -> StreamAlert.VARIATIONS;
             default -> new String[]{"Default"};
         };
     }

@@ -9,7 +9,6 @@ import dev.valence.gui.Theme;
 import dev.valence.gui.UiSounds;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.class_2561;
 import net.minecraft.class_2960;
 import net.minecraft.class_304;

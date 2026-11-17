@@ -35,17 +35,7 @@ public final class AlertManager {
     private AlertManager() {
     }
 
-    private static final record Queued(Tier tier, Payment payment, int variation) {
-
-
-        
-
-        
-
-        
-
-
-
+    private static final record Queued(Tier tier, Payment payment, int variation, String note) {
     }
 
     public static Optional<Payment> onChatLine(Component component) {
@@ -71,6 +61,10 @@ public final class AlertManager {
         Tier tier = Tier.NONE;
         long j = Long.MIN_VALUE;
         for (Tier tier2 : Tier.EFFECTS) {
+            // Only amount tiers take part in the ladder; event tiers are fired by name.
+            if (tier2.kind != Tier.Kind.SIDE && tier2.kind != Tier.Kind.STAGE) {
+                continue;
+            }
             long threshold = tier2.threshold();
             if (d >= threshold && threshold >= j && (!z || tier2.isEnabled())) {
                 tier = tier2;
@@ -81,7 +75,11 @@ public final class AlertManager {
     }
 
     public static Tier trigger(Payment payment) {
-        Tier effectiveTier = effectiveTier(payment.amount());
+        // The Lumindev effect is bound to a payer, not to an amount: it plays for
+        // any payment from that name, and for anything above its ladder threshold.
+        Tier effectiveTier = Tier.LUMINDEV.isEnabled() && LumindevAlert.isPayer(payment.name())
+                ? Tier.LUMINDEV
+                : effectiveTier(payment.amount());
         play(effectiveTier, payment, -1);
         return effectiveTier;
     }
@@ -96,7 +94,7 @@ public final class AlertManager {
             case SIDE:
                 SkinFetcher.get(payment.lookupName());
                 int pick = Variations.pick(look, tier.variations().length);
-                SIDE_QUEUE.add(new Queued(tier, payment, pick));
+                SIDE_QUEUE.add(new Queued(tier, payment, pick, null));
                 if (tier == Tier.MONEY_RAIN) {
                     OVERLAYS.add(new MoneyRainAlert(nanoTime, pick));
                 } else if (tier == Tier.COIN_FOUNTAIN) {
@@ -104,10 +102,29 @@ public final class AlertManager {
                 }
                 break;
             case STAGE:
-                STAGE_QUEUE.add(new Queued(tier, payment, look));
+            case EVENT:
+                STAGE_QUEUE.add(new Queued(tier, payment, look, null));
                 break;
         }
         promote(nanoTime);
+    }
+
+    /**
+     * Fires the stream alert. This tier is bound to an event rather than an amount, so it
+     * is never picked by the ladder — only callers can start it.
+     *
+     * @param channel display name of the channel that went live
+     * @param title   the stream title, or null when it is not known
+     */
+    public static void stream(String channel, String title) {
+        Tier tier = Tier.STREAM;
+        if (!tier.isEnabled()) {
+            return;
+        }
+        ThemeService.bindForTier(tier);
+        long now = System.nanoTime();
+        STAGE_QUEUE.add(new Queued(tier, new Payment(channel, 0.0d), tier.look(), title));
+        promote(now);
     }
 
     public static void clear() {
@@ -149,7 +166,7 @@ public final class AlertManager {
         }
         if (stage == null && !STAGE_QUEUE.isEmpty()) {
             Queued poll2 = STAGE_QUEUE.poll();
-            stage = EffectFactory.createStage(poll2.tier(), poll2.payment(), j, poll2.variation());
+            stage = EffectFactory.createStage(poll2.tier(), poll2.payment(), j, poll2.variation(), poll2.note());
             stage.tick(j);
         }
     }

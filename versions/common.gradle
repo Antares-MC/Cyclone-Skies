@@ -58,12 +58,31 @@ tasks.withType(JavaCompile).configureEach {
 // Every other jar has to narrow that to the version it was compiled against, or
 // Fabric will refuse to load it. Rewriting the single depends line here keeps
 // the shared fabric.mod.json free of build-system placeholders.
+//
+// The paymentalerts addon is nested as a jar-in-jar. It is a separate mod with
+// its own fabric.mod.json and its own `minecraft` constraint, and it is compiled
+// against one version's mappings, so only a build made for this exact version can
+// be nested: payments/dist/paymentalerts-<version>.jar. When there is one it goes
+// in; when there is not, the jar simply ships without the addon.
+def paymentsJar = new File(repoRoot, "payments/dist/paymentalerts-${project.minecraft_version}.jar")
+
 processResources {
     def mcVersion = project.minecraft_version
     inputs.property 'valenceMinecraftVersion', mcVersion
+    inputs.property 'valencePayments', paymentsJar.isFile()
+    from(paymentsJar) {
+        into 'META-INF/jars'
+    }
     filesMatching('fabric.mod.json') {
         filter { String line ->
             line.replace('"minecraft": "~1.21.11"', '"minecraft": "~' + mcVersion + '"')
+        }
+    }
+    doFirst {
+        if (paymentsJar.isFile()) {
+            logger.lifecycle("nesting ${paymentsJar.name} into ${project.name}")
+        } else {
+            logger.lifecycle("no paymentalerts build for ${mcVersion}; shipping without the addon")
         }
     }
 }

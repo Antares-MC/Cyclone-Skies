@@ -4,12 +4,14 @@ import com.paymentalerts.payment.Payment;
 
 /**
  * Creates stage / side alerts for each {@link Tier}.
- * Original handcrafted effects keep their classes; new ones use {@link PresetStageAlert}.
+ *
+ * <p>Every stage tier maps to a dedicated class. There is no shared preset renderer:
+ * each effect owns its own timeline, geometry, motion and palette.
  */
 final class EffectFactory {
     private EffectFactory() {}
 
-    static StageAlert createStage(Tier tier, Payment payment, long now, int variation) {
+    static StageAlert createStage(Tier tier, Payment payment, long now, int variation, String note) {
         return switch (tier) {
             case FIREWORKS -> new FireworksAlert(payment, now, variation);
             case CONFETTI -> new ConfettiAlert(payment, now, variation);
@@ -22,36 +24,37 @@ final class EffectFactory {
             case BLACK_HOLE -> new BlackHoleAlert(payment, now, variation);
             case SUPERNOVA -> new SupernovaAlert(payment, now, variation);
             case GOD_TIER -> new GodTierAlert(payment, now, variation);
-            // Preset-driven expansions
-            case SPARKLE_BURST -> new PresetStageAlert(payment, now, EffectStyle.SPARKLE_BURST, variation);
-            case GOLDEN_SHOWER -> new PresetStageAlert(payment, now, EffectStyle.GOLDEN_SHOWER, variation);
-            case PARTY_POPPER -> new PresetStageAlert(payment, now, EffectStyle.PARTY_POPPER, variation);
-            case STARFALL -> new PresetStageAlert(payment, now, EffectStyle.STARFALL, variation);
-            case HEART_BOMB -> new PresetStageAlert(payment, now, EffectStyle.HEART_BOMB, variation);
-            case LASER_GRID -> new PresetStageAlert(payment, now, EffectStyle.LASER_GRID, variation);
-            case TSUNAMI -> new PresetStageAlert(payment, now, EffectStyle.TSUNAMI, variation);
-            case VOLCANO -> new PresetStageAlert(payment, now, EffectStyle.VOLCANO, variation);
-            case AURORA -> new PresetStageAlert(payment, now, EffectStyle.AURORA, variation);
-            case DISCO_BALL -> new PresetStageAlert(payment, now, EffectStyle.DISCO_BALL, variation);
-            case PIXEL_STORM -> new PresetStageAlert(payment, now, EffectStyle.PIXEL_STORM, variation);
-            case PHOENIX -> new PresetStageAlert(payment, now, EffectStyle.PHOENIX, variation);
-            case GLITCH -> new PresetStageAlert(payment, now, EffectStyle.GLITCH, variation);
-            case THUNDER_CLAP -> new PresetStageAlert(payment, now, EffectStyle.THUNDER_CLAP, variation);
-            case MONEY_TORNADO -> new PresetStageAlert(payment, now, EffectStyle.MONEY_TORNADO, variation);
-            case RAINBOW_ROAD -> new PresetStageAlert(payment, now, EffectStyle.RAINBOW_ROAD, variation);
-            case BLACKOUT -> new PresetStageAlert(payment, now, EffectStyle.BLACKOUT, variation);
-            case SUPERNOVA_LITE -> new PresetStageAlert(payment, now, EffectStyle.SUPERNOVA_LITE, variation);
-            case CASH_CANNON -> new PresetStageAlert(payment, now, EffectStyle.CASH_CANNON, variation);
-            case PORTAL_RIFT -> new PresetStageAlert(payment, now, EffectStyle.PORTAL_RIFT, variation);
-            case EMP_BLAST -> new PresetStageAlert(payment, now, EffectStyle.EMP_BLAST, variation);
-            case CHERRY_BLOSSOM -> new PresetStageAlert(payment, now, EffectStyle.CHERRY_BLOSSOM, variation);
-            case METEOR_MINI -> new PresetStageAlert(payment, now, EffectStyle.METEOR_MINI, variation);
-            case ROYAL_FANFARE -> new PresetStageAlert(payment, now, EffectStyle.ROYAL_FANFARE, variation);
-            case SANDSTORM -> new PresetStageAlert(payment, now, EffectStyle.SANDSTORM, variation);
-            case ICE_AGE -> new PresetStageAlert(payment, now, EffectStyle.ICE_AGE, variation);
-            case NEON_RAIN -> new PresetStageAlert(payment, now, EffectStyle.NEON_RAIN, variation);
-            case CONFETTI_NUKE -> new PresetStageAlert(payment, now, EffectStyle.CONFETTI_NUKE, variation);
-            case GOD_RAYS -> new PresetStageAlert(payment, now, EffectStyle.GOD_RAYS, variation);
+            case LUMINDEV -> new LumindevAlert(payment, now, variation);
+            case SPARKLE_BURST -> new SparkleBurstAlert(payment, now, variation);
+            case GOLDEN_SHOWER -> new GoldenShowerAlert(payment, now, variation);
+            case PARTY_POPPER -> new PartyPopperAlert(payment, now, variation);
+            case STARFALL -> new StarfallAlert(payment, now, variation);
+            case HEART_BOMB -> new HeartBombAlert(payment, now, variation);
+            case LASER_GRID -> new LaserGridAlert(payment, now, variation);
+            case TSUNAMI -> new TsunamiAlert(payment, now, variation);
+            case VOLCANO -> new VolcanoAlert(payment, now, variation);
+            case AURORA -> new AuroraAlert(payment, now, variation);
+            case DISCO_BALL -> new DiscoBallAlert(payment, now, variation);
+            case PIXEL_STORM -> new PixelStormAlert(payment, now, variation);
+            case PHOENIX -> new PhoenixAlert(payment, now, variation);
+            case GLITCH -> new GlitchAlert(payment, now, variation);
+            case THUNDER_CLAP -> new ThunderClapAlert(payment, now, variation);
+            case MONEY_TORNADO -> new MoneyTornadoAlert(payment, now, variation);
+            case RAINBOW_ROAD -> new RainbowRoadAlert(payment, now, variation);
+            case BLACKOUT -> new BlackoutAlert(payment, now, variation);
+            case SUPERNOVA_LITE -> new SupernovaLiteAlert(payment, now, variation);
+            case CASH_CANNON -> new CashCannonAlert(payment, now, variation);
+            case PORTAL_RIFT -> new PortalRiftAlert(payment, now, variation);
+            case EMP_BLAST -> new EmpBlastAlert(payment, now, variation);
+            case CHERRY_BLOSSOM -> new CherryBlossomAlert(payment, now, variation);
+            case METEOR_MINI -> new MeteorMiniAlert(payment, now, variation);
+            case ROYAL_FANFARE -> new RoyalFanfareAlert(payment, now, variation);
+            case SANDSTORM -> new SandstormAlert(payment, now, variation);
+            case ICE_AGE -> new IceAgeAlert(payment, now, variation);
+            case NEON_RAIN -> new NeonRainAlert(payment, now, variation);
+            case CONFETTI_NUKE -> new ConfettiNukeAlert(payment, now, variation);
+            case GOD_RAYS -> new GodRaysAlert(payment, now, variation);
+            case STREAM -> new StreamAlert(payment, now, variation, note);
             default -> new FireworksAlert(payment, now, variation);
         };
     }
@@ -63,41 +66,6 @@ final class EffectFactory {
             case COIN_FOUNTAIN -> new TabAlert(payment, now, TabAlert.TabStyle.SILVER, variation);
             case MONEY_RAIN -> new TabAlert(payment, now, TabAlert.TabStyle.GOLD, variation);
             default -> new CoinPopAlert(payment, now, variation);
-        };
-    }
-
-    static EffectStyle styleFor(Tier tier) {
-        return switch (tier) {
-            case SPARKLE_BURST -> EffectStyle.SPARKLE_BURST;
-            case GOLDEN_SHOWER -> EffectStyle.GOLDEN_SHOWER;
-            case PARTY_POPPER -> EffectStyle.PARTY_POPPER;
-            case STARFALL -> EffectStyle.STARFALL;
-            case HEART_BOMB -> EffectStyle.HEART_BOMB;
-            case LASER_GRID -> EffectStyle.LASER_GRID;
-            case TSUNAMI -> EffectStyle.TSUNAMI;
-            case VOLCANO -> EffectStyle.VOLCANO;
-            case AURORA -> EffectStyle.AURORA;
-            case DISCO_BALL -> EffectStyle.DISCO_BALL;
-            case PIXEL_STORM -> EffectStyle.PIXEL_STORM;
-            case PHOENIX -> EffectStyle.PHOENIX;
-            case GLITCH -> EffectStyle.GLITCH;
-            case THUNDER_CLAP -> EffectStyle.THUNDER_CLAP;
-            case MONEY_TORNADO -> EffectStyle.MONEY_TORNADO;
-            case RAINBOW_ROAD -> EffectStyle.RAINBOW_ROAD;
-            case BLACKOUT -> EffectStyle.BLACKOUT;
-            case SUPERNOVA_LITE -> EffectStyle.SUPERNOVA_LITE;
-            case CASH_CANNON -> EffectStyle.CASH_CANNON;
-            case PORTAL_RIFT -> EffectStyle.PORTAL_RIFT;
-            case EMP_BLAST -> EffectStyle.EMP_BLAST;
-            case CHERRY_BLOSSOM -> EffectStyle.CHERRY_BLOSSOM;
-            case METEOR_MINI -> EffectStyle.METEOR_MINI;
-            case ROYAL_FANFARE -> EffectStyle.ROYAL_FANFARE;
-            case SANDSTORM -> EffectStyle.SANDSTORM;
-            case ICE_AGE -> EffectStyle.ICE_AGE;
-            case NEON_RAIN -> EffectStyle.NEON_RAIN;
-            case CONFETTI_NUKE -> EffectStyle.CONFETTI_NUKE;
-            case GOD_RAYS -> EffectStyle.GOD_RAYS;
-            default -> null;
         };
     }
 }

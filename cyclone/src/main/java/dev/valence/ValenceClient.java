@@ -20,7 +20,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.EndTick;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.class_2960;
 import net.minecraft.class_304;
 import net.minecraft.class_3675;
@@ -47,15 +46,11 @@ public class ValenceClient implements ClientModInitializer {
       SkyRegistry.load();
       NeonLyrics.init();
       LiveNotifier.init();
-      OPEN_MENU = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.open_menu", 75));
-      MEDIA_NEXT = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.media_next", 295));
-      MEDIA_PREV = KeyBindingHelper.registerKeyBinding(
-         Keys.bind("key.valence.media_prev", -1)
-      );
-      MEDIA_PLAY = KeyBindingHelper.registerKeyBinding(
-         Keys.bind("key.valence.media_play", -1)
-      );
-      EMOTE = KeyBindingHelper.registerKeyBinding(Keys.bind("key.valence.emote", 66));
+      OPEN_MENU = Keys.bind("key.valence.open_menu", 75);
+      MEDIA_NEXT = Keys.bind("key.valence.media_next", 295);
+      MEDIA_PREV = Keys.bind("key.valence.media_prev", -1);
+      MEDIA_PLAY = Keys.bind("key.valence.media_play", -1);
+      EMOTE = Keys.bind("key.valence.emote", 66);
       ClientTickEvents.END_CLIENT_TICK
          .register(
             (EndTick)client -> {

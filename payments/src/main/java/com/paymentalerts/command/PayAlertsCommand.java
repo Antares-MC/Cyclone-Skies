@@ -49,7 +49,20 @@ public final class PayAlertsCommand {
             AlertManager.clear();
             ((FabricClientCommandSource) commandContext8.getSource()).sendFeedback(Component.literal("[Donut SMP Payment Addon] Cleared.").setStyle(Style.EMPTY.withColor(11184810)));
             return 1;
-        })));
+        })).then(ClientCommandManager.literal("stream").executes(PayAlertsCommand::stream).then(ClientCommandManager.argument("title", StringArgumentType.greedyString()).executes(PayAlertsCommand::stream))));
+    }
+
+    private static int stream(CommandContext<FabricClientCommandSource> commandContext) {
+        String title;
+        try {
+            title = StringArgumentType.getString(commandContext, "title");
+        } catch (IllegalArgumentException e) {
+            title = "";
+        }
+        String channel = PaymentAlertsConfig.get().streamChannel;
+        AlertManager.stream(channel, title);
+        ((FabricClientCommandSource) commandContext.getSource()).sendFeedback(green("[Donut SMP Payment Addon] Stream alert: " + channel + (title.isEmpty() ? "" : " — " + title)));
+        return 1;
     }
 
     /* JADX INFO: Access modifiers changed from: private */

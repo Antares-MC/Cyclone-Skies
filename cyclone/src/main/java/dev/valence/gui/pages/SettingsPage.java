@@ -1,6 +1,7 @@
 package dev.valence.gui.pages;
 
 import dev.valence.ValenceClient;
+import dev.valence.compat.Keys;
 import dev.valence.config.ValenceConfig;
 import dev.valence.gui.OptionList;
 import dev.valence.gui.Page;
@@ -12,7 +13,6 @@ import java.util.function.DoubleFunction;
 import java.util.function.Supplier;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.class_2561;
 import net.minecraft.class_310;
 import net.minecraft.class_332;
@@ -102,7 +102,7 @@ public class SettingsPage extends Page {
       this.options
          .add(
             new OptionList.Button(
-               class_2561.method_43469("valence.settings.key", new Object[]{KeyBindingHelper.getBoundKeyOf(ValenceClient.OPEN_MENU).method_27445()}),
+               class_2561.method_43469("valence.settings.key", new Object[]{Keys.boundKey(ValenceClient.OPEN_MENU).method_27445()}),
                class_2561.method_43471("valence.settings.key.button"),
                () -> class_310.method_1551().method_1507(new class_6599(screen, class_310.method_1551().field_1690))
             )
