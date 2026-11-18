@@ -29,6 +29,7 @@ base {
 
 repositories {
     mavenCentral()
+    maven { url = 'https://maven.terraformersmc.com/releases/' }
 }
 
 dependencies {
@@ -36,6 +37,9 @@ dependencies {
     mappings "net.fabricmc:intermediary:${project.minecraft_version}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    // ModMenu API is compile-only for the versioned builds too: the v1_21_11 overlay ships
+    // the ModMenuIntegration entrypoint that the 1.21.11 generator skips.
+    modCompileOnly "com.terraformersmc:modmenu:17.0.0"
 }
 
 sourceSets {
