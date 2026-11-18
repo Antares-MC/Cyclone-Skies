@@ -3,19 +3,19 @@ package com.paymentalerts.stream;
 import com.paymentalerts.PaymentAlertsClient;
 import com.paymentalerts.alert.AlertManager;
 import com.paymentalerts.config.PaymentAlertsConfig;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Turns a chat line into a stream alert.
  *
- * <p>There is no client-side way to ask YouTube whether a channel is live without an API
- * key and a network round trip on the render thread, so the alert is driven by what the
- * client can actually see: a chat line that names the channel and says it is live, or a
- * link to it. That is also the shape server announcement plugins use, which is where the
- * message normally comes from.
+ * <p>The alert can be triggered by a chat announcement naming Lumindev or Cyclone and
+ * indicating that the channel is live, or by a confirmed live-state transition from a
+ * channel notifier. Chat announcements may be a channel link or text such as "is live".
  *
- * <p>Repeats are suppressed: the same line will not fire twice inside five minutes, and
- * nothing fires twice inside ninety seconds at all.
+ * <p>Duplicate announcements are suppressed for five minutes per identical line, with a
+ * ninety-second cooldown per channel so a chat notice and live poll cannot double-fire.
  */
 public final class StreamWatch {
     private static final long SAME_LINE_MS = 300_000L;
@@ -23,7 +23,7 @@ public final class StreamWatch {
 
     private static String lastLine = "";
     private static long lastLineAt;
-    private static long lastAnyAt;
+    private static final Map<String, Long> LAST_CHANNEL_AT = new HashMap<>();
 
     private StreamWatch() {
     }
@@ -38,37 +38,54 @@ public final class StreamWatch {
             return false;
         }
         String line = raw.toLowerCase(Locale.ROOT);
-        if (!looksLive(line)) {
+        String channel = mentionedChannel(line);
+        if (channel == null || !looksLive(line)) {
             return false;
         }
+        return announce(channel, titleFrom(raw), line);
+    }
+
+    /** Fires from a confirmed live-state transition (as opposed to a chat message). */
+    public static boolean announce(String channel, String title) {
+        if (channel == null || channel.isBlank()) {
+            return false;
+        }
+        return announce(channel, title, "live-event:" + channel.toLowerCase(Locale.ROOT) + ":" +
+                (title == null ? "" : title.toLowerCase(Locale.ROOT)));
+    }
+
+    private static synchronized boolean announce(String channel, String title, String dedupeKey) {
         long now = System.currentTimeMillis();
-        if (line.equals(lastLine) && now - lastLineAt < SAME_LINE_MS) {
+        if (dedupeKey.equals(lastLine) && now - lastLineAt < SAME_LINE_MS) {
             return false;
         }
-        if (now - lastAnyAt < COOLDOWN_MS) {
+        String channelKey = channel.toLowerCase(Locale.ROOT);
+        Long lastChannelAt = LAST_CHANNEL_AT.get(channelKey);
+        if (lastChannelAt != null && now - lastChannelAt < COOLDOWN_MS) {
             return false;
         }
-        lastLine = line;
+        lastLine = dedupeKey;
         lastLineAt = now;
-        lastAnyAt = now;
-        String channel = config.streamChannel == null || config.streamChannel.isBlank()
-                ? "Lumindev"
-                : config.streamChannel;
-        AlertManager.stream(channel, titleFrom(raw));
-        PaymentAlertsClient.LOGGER.info("Stream alert: {}", raw);
+        LAST_CHANNEL_AT.put(channelKey, now);
+        AlertManager.stream(channel, title);
+        PaymentAlertsClient.LOGGER.info("Stream alert: {} — {}", channel, title);
         return true;
     }
 
-    private static boolean looksLive(String line) {
-        String handle = "lumindevdsmp";
-        boolean names = line.contains(handle) || line.contains("lumindev");
-        if (!names) {
-            return false;
+    private static String mentionedChannel(String line) {
+        if (line.contains("lumindevdsmp") || line.contains("lumindev")) {
+            return "Lumindev";
         }
+        if (line.contains("cyclonelwk") || line.contains("cyclone skies")
+                || line.contains("cyclone is live") || line.contains("cyclone's live")) {
+            return "Cyclone";
+        }
+        return null;
+    }
+
+    private static boolean looksLive(String line) {
         boolean link = line.contains("youtube.com/") || line.contains("youtu.be/")
                 || line.contains("twitch.tv/");
-        // A bare link to the channel is an announcement on its own; a name only counts
-        // when the line also says something is live.
         boolean liveWord = line.contains("live") || line.contains("stream")
                 || line.contains("watching") || line.contains("started")
                 || line.contains("is on") || line.contains("now playing");

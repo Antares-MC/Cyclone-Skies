@@ -113,7 +113,10 @@ final class LumindevAlert implements StageAlert {
             return false;
         }
         String flat = name.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
-        return flat.equals("lumindev") || flat.equals("lumin") || flat.equals("lumindevmc");
+        return flat.equals("lumindev")
+                || flat.equals("lumindevdsmp")
+                || flat.equals("lumin")
+                || flat.equals("lumindevmc");
     }
 
     private float elapsed(long now) {

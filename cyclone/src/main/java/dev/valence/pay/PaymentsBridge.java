@@ -25,6 +25,16 @@ public final class PaymentsBridge {
       return Class.forName(BASE + name, true, PaymentsBridge.class.getClassLoader());
    }
 
+   /** Starts the paymentalerts broadcast takeover when the addon is present. */
+   public static void stream(String channel, String title) {
+      try {
+         cls("stream.StreamWatch").getMethod("announce", String.class, String.class)
+            .invoke(null, channel, title);
+      } catch (Throwable t) {
+         // The addon is optional on every build except 1.21.11.
+      }
+   }
+
    public static boolean enabled() {
       try {
          Object cfg = cls("config.PaymentAlertsConfig").getMethod("get").invoke(null);

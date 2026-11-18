@@ -23,7 +23,6 @@ import net.minecraft.class_310;
 public final class LiveNotifier {
    private static final String LIVE_URL = "https://www.youtube.com/@CycloneLwk/live";
    private static long lastPoll = 0L;
-   private static String lastNotified = "";
    private static boolean wasLive = false;
 
    private LiveNotifier() {
@@ -50,16 +49,18 @@ public final class LiveNotifier {
          boolean live = html.contains("isLiveBroadcast") || html.contains("\"isLiveNow\":true")
             || (html.contains("canonical") && html.contains("/watch?v="));
          if (!live) {
-            wasLive = false;
+            synchronized (LiveNotifier.class) {
+               wasLive = false;
+            }
             return;
          }
          String title = extractTitle(html);
          String videoId = extractVideoId(html);
-         String key = videoId != null ? videoId : title;
-         if (key == null || key.isEmpty() || key.equals(lastNotified)) return;
-         lastNotified = key;
-         wasLive = true;
-         // Post on main thread
+         synchronized (LiveNotifier.class) {
+            if (wasLive) return;
+            wasLive = true;
+         }
+         // Post once on the main thread for each observed offline-to-live transition.
          class_310.method_1551().execute(() -> notifyLive(title, videoId));
       } catch (Exception ignored) {
          // silent on network errors
@@ -78,6 +79,8 @@ public final class LiveNotifier {
          mc.field_1705.method_1743().method_1812(prefix.method_10852(link));
       }
       Fx.info("LIVE: " + (title != null ? title : "Stream started"));
+      // Trigger the same broadcast takeover used by chat-based stream announcements.
+      dev.valence.pay.PaymentsBridge.stream("Cyclone", title != null ? title : "is live now");
       // Sky notification
       dev.valence.cord.sky.FloatWords.showLiveAnnouncement("LIVE: " + (title != null ? title : "Cyclone"));
       NeonLyrics.LOG.info("Cyclone live detected: {} | {}", title, url);

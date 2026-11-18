@@ -34,6 +34,7 @@ final class GlitchAlert extends StageBase {
     private final float[] blockY = new float[BLOCKS];
     private final float[] blockW = new float[BLOCKS];
     private final float[] blockH = new float[BLOCKS];
+    private final float[] blockDir = new float[BLOCKS];
     private final int[] blockColor = new int[BLOCKS];
     private final float[] blockSeed = new float[BLOCKS];
 
@@ -54,6 +55,7 @@ final class GlitchAlert extends StageBase {
             this.blockY[i] = rnd(0f, 1f);
             this.blockW[i] = rnd(0.02f, 0.16f);
             this.blockH[i] = rnd(0.006f, 0.04f);
+            this.blockDir[i] = chance(0.5f) ? 1f : -1f;
             this.blockColor[i] = CHANNELS[i % 3];
             this.blockSeed[i] = rnd(0f, 6.283f);
         }
@@ -135,7 +137,7 @@ final class GlitchAlert extends StageBase {
             float blockAlpha = chaos * 0.55f;
             if (blockAlpha > 0.01f) {
                 for (int i = 0; i < BLOCKS; i++) {
-                    float slide = this.blockX[i] * w + this.bandDir[i] * chaos * w * 0.30f
+                    float slide = this.blockX[i] * w + this.blockDir[i] * chaos * w * 0.30f
                             + wave(t * 3f, this.blockSeed[i], i * 1.3f) * 40f;
                     float y = this.blockY[i] * h;
                     float bw = this.blockW[i] * w;
