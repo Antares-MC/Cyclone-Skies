@@ -147,13 +147,58 @@ def parse_args():
                         help='Minecraft versions to process; default: all supported versions')
     parser.add_argument('--clean', action='store_true',
                         help='remove legacy bare 1.9.9 entries after upload (asks for confirmation)')
+    parser.add_argument('--whoami', action='store_true',
+                        help='show the authenticated account and accessible CycloneSkies projects')
     return parser.parse_args()
 
 
 def existing_versions(token):
     r = requests.get('%s/project/%s/version' % (API, PROJECT), headers=headers(token), timeout=60)
+    if r.status_code == 404:
+        raise SystemExit(
+            'Modrinth returned 404 for project %s. The ID is not available to this API request. '
+            'Verify the project is live and the token account has access; the URL slug or a version ID '
+            'cannot be used as a substitute for the project ID.' % PROJECT
+        )
+    if r.status_code == 401:
+        raise SystemExit('Modrinth rejected the token (401). Check that it is valid.')
+    if r.status_code == 403:
+        raise SystemExit('Modrinth denied access (403). Check that the token account can manage this project.')
     r.raise_for_status()
     return r.json()
+
+
+def inspect_account(token):
+    """Print authenticated identity and look for an accessible CycloneSkies project."""
+    h = headers(token)
+    user_response = requests.get('%s/user' % API, headers=h, timeout=60)
+    if user_response.status_code == 401:
+        raise SystemExit('Modrinth rejected the token (401). Check that it is valid.')
+    user_response.raise_for_status()
+    user = user_response.json()
+    print('Authenticated Modrinth user:', user.get('username'), '(id %s)' % user.get('id'))
+
+    projects_response = requests.get('%s/user/%s/projects' % (API, user['id']), headers=h, timeout=60)
+    if not projects_response.ok:
+        print('Could not list this account’s projects (HTTP %s).' % projects_response.status_code)
+        return
+    projects = projects_response.json()
+    matches = [p for p in projects
+               if 'cycloneskies' in str(p.get('slug', '')).casefold()
+               or 'cyclone skies' in str(p.get('title', '')).casefold()
+               or p.get('id') == PROJECT]
+    if matches:
+        print('Matching accessible project(s):')
+        for p in matches:
+            print('  id=%s slug=%s title=%s status=%s' %
+                  (p.get('id'), p.get('slug'), p.get('title'), p.get('status')))
+    else:
+        print('No accessible CycloneSkies project found. Accessible projects:')
+        for p in projects:
+            print('  id=%s slug=%s title=%s status=%s' %
+                  (p.get('id'), p.get('slug'), p.get('title'), p.get('status')))
+        if not projects:
+            print('  (none)')
 
 
 def publish(ver, path, dry, token):
@@ -213,6 +258,9 @@ def main():
         return
 
     token = _file_token()
+    if args.whoami:
+        inspect_account(token)
+        return
     current = existing_versions(token)
     numbers = {v['version_number'] for v in current}
     print('existing versions:', len(current))
