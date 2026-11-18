@@ -55,6 +55,9 @@ reflection (`dev.valence.pay.PaymentsBridge`).
   ice-white accent `#E6F0FF`, cyan glow `#5FD8FF`. Pick it globally or per effect in
   Payment settings -> Themes. One line in `payments/.../theme/Themes.java` if you want other colors.
 - **Payments page** in the CycloneSkies menu: alerts on/off, buttons to the alert settings and stats screens.
+- **paymentalerts screens** (settings, effects list, leaderboard) are drawn in the Cyclone theme:
+  glass panels, card rows, accent-filled sliders and the same palette as the menu, with no bundled
+  textures; only the jar built for 1.21.11 has the addon, so only those screens carry the restyle.
 - Keys: **H** toggle alerts (was K, which CycloneSkies already uses for its menu), **O** alert settings,
   **J** stats. Chat command `/payalerts`.
 - **Stream alerts** for `youtube.com/@lumindevdsmp`: a 9.4 s broadcast takeover (standby bars, hard
