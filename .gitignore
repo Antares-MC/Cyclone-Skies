@@ -37,3 +37,7 @@ Desktop.ini
 
 # Mapping dumps produced by versions/tools/mojmap.py
 versions/tools/map*.json
+
+# Local Modrinth publishing token
+versions/.modrinth_token
+.modrinth_token

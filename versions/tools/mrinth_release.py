@@ -17,16 +17,24 @@ import sys
 import requests
 
 
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 def _file_token():
-    """Token from MODRINTH_TOKEN, or ~/.modrinth_token when the variable is unset."""
+    """Token from MODRINTH_TOKEN, versions/.modrinth_token, or ~/.modrinth_token."""
     tok = os.environ.get('MODRINTH_TOKEN')
     if tok:
         return tok.strip()
-    path = os.path.join(os.path.expanduser('~'), '.modrinth_token')
-    if not os.path.exists(path):
-        raise SystemExit('No Modrinth token: set MODRINTH_TOKEN or write ~/.modrinth_token')
-    with open(path, encoding='utf-8') as fh:
-        return fh.read().strip()
+    candidates = [
+        os.path.join(ROOT, 'versions', '.modrinth_token'),
+        os.path.join(ROOT, '.modrinth_token'),
+        os.path.join(os.path.expanduser('~'), '.modrinth_token'),
+    ]
+    for path in candidates:
+        if os.path.exists(path):
+            with open(path, encoding='utf-8') as fh:
+                return fh.read().strip()
+    raise SystemExit('No Modrinth token: set MODRINTH_TOKEN, or write one to versions/.modrinth_token')
 
 
 TOKEN = _file_token()
