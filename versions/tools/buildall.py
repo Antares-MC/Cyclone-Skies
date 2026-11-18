@@ -17,7 +17,7 @@ import sys
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(TOOLS))
-DOWNLOADS = os.path.join(os.path.expanduser('~'), 'Downloads')
+DOWNLOADS = os.path.join(ROOT, 'versions', 'dist')
 MOD_VERSION = '1.9.9'
 TEMPLATE_CEILING = (1, 21, 5)
 
@@ -83,6 +83,7 @@ def main():
             print('%-8s  NO JAR' % ver)
             continue
         src = max(libs, key=os.path.getmtime)
+        os.makedirs(DOWNLOADS, exist_ok=True)
         dest = os.path.join(DOWNLOADS, 'cycloneskies-%s-%s.jar' % (MOD_VERSION, ver))
         shutil.copyfile(src, dest)
         print('%-8s  %12d  %s  %s' % (ver, os.path.getsize(dest), sha256(dest),

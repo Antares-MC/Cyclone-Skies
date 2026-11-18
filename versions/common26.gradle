@@ -91,6 +91,18 @@ processResources {
             logger.lifecycle("nested ${paymentsJar.name} into ${project.name}")
         } else {
             logger.lifecycle("no paymentalerts build for ${mcVersion}; shipping without the addon")
+            // The shared metadata lists the nested addon. Without a build for this
+            // exact Minecraft version the entry would point at a missing file.
+            def jarsBlock = '''  "jars": [
+    {
+      "file": "META-INF/jars/paymentalerts.jar"
+    }
+  ],
+'''
+            if (text.contains(jarsBlock)) {
+                text = text.replace(jarsBlock, '')
+                meta.setText(text, 'UTF-8')
+            }
         }
     }
 }

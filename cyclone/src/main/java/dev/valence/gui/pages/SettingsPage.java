@@ -103,7 +103,7 @@ public class SettingsPage extends Page {
       this.options
          .add(
             new OptionList.Button(
-               class_2561.method_43469("valence.settings.key", new Object[]{Keys.boundKey(ValenceClient.OPEN_MENU).method_27445()}),
+               class_2561.method_43469("valence.settings.key", new Object[]{Keys.boundKey(ValenceClient.OPEN_MENU)}),
                class_2561.method_43471("valence.settings.key.button"),
                () -> class_310.method_1551().method_1507(new class_6599(screen, class_310.method_1551().field_1690))
             )

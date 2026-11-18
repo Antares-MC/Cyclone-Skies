@@ -1,6 +1,7 @@
 package dev.valence.compat;
 
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.class_2561;
 import net.minecraft.class_304;
 import net.minecraft.class_310;
 import net.minecraft.class_3675;
@@ -24,6 +25,11 @@ public final class Keys {
    /** Registers a binding filed under the mod's category. */
    public static class_304 bind(String translationKey, int defaultCode) {
       return KeyBindingHelper.registerKeyBinding(new class_304(translationKey, defaultCode, "key.categories.valence"));
+   }
+
+   /** The display name of the key this binding currently resolves to. */
+   public static net.minecraft.class_2561 boundKey(class_304 binding) {
+      return binding == null ? net.minecraft.class_2561.method_43470("") : binding.method_1429().method_27445();
    }
 
    /** Whether this binding is the given key. */

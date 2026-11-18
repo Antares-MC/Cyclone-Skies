@@ -34,12 +34,14 @@ UA = 'cyclone-release/1.0 (github.com/Antares-MC/Cyclone-Skies)'
 PROJECT = 'NOxtFhdm'
 FABRIC_API = 'P7dR8mSH'
 MOD_VERSION = '1.9.9'
-JAR_DIR = r'C:\Users\cjsmi\Downloads\CycloneJars'
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+JAR_DIR = os.path.join(ROOT, 'versions', 'dist')
+LEGACY_JAR_DIR = os.path.join(os.path.expanduser('~'), 'Downloads', 'CycloneJars')
 API = 'https://api.modrinth.com/v2'
 
 VERSIONS = ['1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5',
             '1.21.6', '1.21.7', '1.21.8', '1.21.9', '1.21.10', '1.21.11',
-            '26.1', '26.1.1', '26.1.2']
+            '26.1', '26.1.1', '26.1.2', '26.2']
 
 PAYMENTS = {'1.21.11'}
 
@@ -167,11 +169,18 @@ def main():
         if number in numbers:
             print('%-8s exists   %s' % (ver, number))
             continue
-        name = 'cycloneskies-%s-mc%s.jar' % (MOD_VERSION, ver)
-        path = os.path.join(JAR_DIR, name)
-        if not os.path.exists(path):
-            print('%-8s MISSING  %s' % (ver, name))
+        candidates = [
+            os.path.join(JAR_DIR, 'cycloneskies-%s-%s.jar' % (MOD_VERSION, ver)),
+            os.path.join(JAR_DIR, 'cycloneskies-%s-mc%s.jar' % (MOD_VERSION, ver)),
+            os.path.join(LEGACY_JAR_DIR, 'cycloneskies-%s-mc%s.jar' % (MOD_VERSION, ver)),
+            os.path.join(ROOT, 'versions', 'v' + ver.replace('.', '_'), 'build', 'libs',
+                         'cycloneskies-%s-%s.jar' % (ver, MOD_VERSION)),
+        ]
+        path = next((c for c in candidates if os.path.exists(c)), None)
+        if path is None:
+            print('%-8s MISSING  %s' % (ver, 'cycloneskies-%s-%s.jar' % (MOD_VERSION, ver)))
             continue
+        name = os.path.basename(path)
         data = publish(ver, path, dry)
         if data:
             uploaded.append(data)

@@ -18,8 +18,10 @@ import urllib.error
 import urllib.request
 
 REPO = 'Antares-MC/Cyclone-Skies'
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DOWNLOADS = os.path.join(os.path.expanduser('~'), 'Downloads')
-JAR_DIRS = [os.path.join(DOWNLOADS, 'CycloneJars'), DOWNLOADS]
+JAR_DIRS = [os.path.join(ROOT, 'versions', 'dist'),
+            os.path.join(DOWNLOADS, 'CycloneJars'), DOWNLOADS]
 MOD_VERSION = '1.9.9'
 API = 'https://api.github.com'
 
@@ -113,10 +115,15 @@ def sha256(path):
 
 def jar_for(ver):
     name = 'cycloneskies-%s-mc%s.jar' % (MOD_VERSION, ver)
-    for base in JAR_DIRS:
-        path = os.path.join(base, name)
+    candidates = [os.path.join(base, name) for base in JAR_DIRS]
+    candidates += [
+        os.path.join(ROOT, 'versions', 'dist', 'cycloneskies-%s-%s.jar' % (MOD_VERSION, ver)),
+        os.path.join(ROOT, 'versions', 'v' + ver.replace('.', '_'), 'build', 'libs',
+                     'cycloneskies-%s-%s.jar' % (ver, MOD_VERSION)),
+    ]
+    for path in candidates:
         if os.path.exists(path):
-            return name, path
+            return os.path.basename(path), path
     return name, None
 
 

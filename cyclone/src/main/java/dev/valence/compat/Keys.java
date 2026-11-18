@@ -30,9 +30,9 @@ public final class Keys {
       return KeyBindingHelper.registerKeyBinding(new class_304(translationKey, class_307.field_1668, defaultCode, CATEGORY));
    }
 
-   /** The key a binding is currently assigned to, for display. */
-   public static class_306 boundKey(class_304 binding) {
-      return binding == null ? class_3675.field_16237 : binding.method_1429();
+   /** The display name of the key a binding is currently assigned to. */
+   public static net.minecraft.class_2561 boundKey(class_304 binding) {
+      return binding == null ? net.minecraft.class_2561.method_43470("") : binding.method_1429().method_27445();
    }
 
    /** Whether this binding is the given key. */

@@ -4,3 +4,13 @@ project.ext.fabric_api_version   = '0.161.0+26.2'
 project.ext.java_release         = '25'
 
 apply from: rootProject.file('common26.gradle')
+
+// 26.2 replaced the shared world-render hook's MultiBufferSource with retained-mode
+// node submission. The version-neutral 26.x hook stays in v26_shared; this module
+// swaps in its own implementation and drops the shared file from the source set.
+sourceSets.main.java.setSrcDirs([
+    file("${rootProject.projectDir}/gen/v26_2/java"),
+    file("${rootProject.projectDir}/v26_2_shared/java"),
+    file("java")
+])
+

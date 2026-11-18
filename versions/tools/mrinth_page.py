@@ -48,11 +48,11 @@ REPLACEMENTS = [
 SECTION = """
 
 **Versions and downloads**
-Every Minecraft version gets its own file: 1.21, 1.21.1-1.21.11, and 26.1, 26.1.1, 26.1.2.
+Every Minecraft version gets its own file: 1.21, 1.21.1-1.21.11, and 26.1, 26.1.1, 26.1.2, 26.2.
 
 - **1.21.11** bundles paymentalerts: 150+ alert themes, 46 hand-animated effects, `/payalerts`, the title splash *subscribe to cyclonelwk and lumindev*, and a broadcast-style stream alert for youtube.com/@lumindevdsmp (`/payalerts stream`).
 - **1.21.9 / 1.21.10** have no Fabric world-render event, so the custom sky and 3D cosmetics are inactive there.
-- **26.x** needs Java 25. **26.2** is not published yet: it removed the buffered-geometry and text-batch APIs the sky and cosmetics render through, so it needs a dedicated port.
+- **26.x** needs Java 25. **26.2** removed the buffered-geometry and text-batch APIs; this build records that geometry and submits it through the new node collector, so the sky, cosmetics and lyric overlays all render there too.
 
 Fabric Loader 0.19.5 or newer and Fabric API are required.
 """
