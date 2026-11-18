@@ -76,6 +76,7 @@ processResources {
     inputs.property 'valencePayments', paymentsJar.isFile()
     from(paymentsJar) {
         into 'META-INF/jars'
+        rename { 'paymentalerts.jar' }
     }
     filesMatching('fabric.mod.json') {
         filter { String line ->
