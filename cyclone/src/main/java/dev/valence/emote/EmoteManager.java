@@ -38,10 +38,30 @@ public final class EmoteManager {
       return active >= 0 && stopNanos == 0L;
    }
 
+   /**
+    * Drops the emote and puts the camera back, without any of the fade-out bookkeeping.
+    *
+    * <p>Used when the state cannot be trusted any more -- a world change, a disconnect, or
+    * another screen taking over input -- because leaving {@code active} set there would keep
+    * the camera pinned to a player who is no longer being drawn, or leave the view stuck in
+    * third person.
+    */
+   public static void hardReset() {
+      restoreCamera();
+      active = -1;
+      stopNanos = 0L;
+   }
+
    public static void start(int id) {
       class_310 mc = class_310.method_1551();
       class_746 p = mc.field_1724;
-      if (p != null && Emotes.get(id) != null && !p.method_5765() && !p.method_6113() && !p.method_6128() && !p.method_5681()) {
+      if (mc.field_1755 == null
+         && p != null
+         && Emotes.get(id) != null
+         && !p.method_5765()
+         && !p.method_6113()
+         && !p.method_6128()
+         && !p.method_5681()) {
          if (!camera) {
             savedCamera = mc.field_1690.method_31044();
          }
@@ -75,6 +95,13 @@ public final class EmoteManager {
 
    public static void tick(class_310 mc) {
       if (active >= 0) {
+         // A screen takes the keyboard, so the player cannot walk out of the pose and the emote
+         // would sit there holding the camera with nothing able to end it. Drop it instead.
+         if (mc.field_1755 != null) {
+            hardReset();
+            return;
+         }
+
          class_746 p = mc.field_1724;
          if (stopNanos != 0L) {
             if (System.nanoTime() - stopNanos > 320000000L) {
@@ -114,12 +141,10 @@ public final class EmoteManager {
             } else {
                stop();
             }
+         } else if (p == null || mc.field_1687 == null) {
+            hardReset();
          } else {
             stop();
-            if (p == null) {
-               active = -1;
-               stopNanos = 0L;
-            }
          }
       }
    }

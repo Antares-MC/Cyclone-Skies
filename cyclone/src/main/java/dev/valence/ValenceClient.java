@@ -9,6 +9,7 @@ import dev.valence.cord.lyrics.SpotifyClient;
 import dev.valence.emote.EmoteManager;
 import dev.valence.emote.EmoteWheelScreen;
 import dev.valence.gui.ValenceScreen;
+import dev.valence.hud.RandomCoords;
 import dev.valence.hud.ValenceHud;
 import dev.valence.license.License;
 import dev.valence.license.LicenseScreen;
@@ -20,6 +21,11 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.EndTick;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
+import net.minecraft.class_2561;
 import net.minecraft.class_2960;
 import net.minecraft.class_304;
 import net.minecraft.class_3675;
@@ -51,6 +57,47 @@ public class ValenceClient implements ClientModInitializer {
       MEDIA_PREV = Keys.bind("key.valence.media_prev", -1);
       MEDIA_PLAY = Keys.bind("key.valence.media_play", -1);
       EMOTE = Keys.bind("key.valence.emote", 66);
+      // Any emote state left over from a previous world would keep the camera pinned, so both
+      // sides of a connection reset it. The coordinate offset is drawn per world.
+      ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+         EmoteManager.hardReset();
+         RandomCoords.refresh();
+      });
+      ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> EmoteManager.hardReset());
+      ClientCommandRegistrationCallback.EVENT.register(
+         (dispatcher, access) -> dispatcher.register(
+            ClientCommandManager.literal("cyclone")
+               .then(
+                  ClientCommandManager.literal("randomcoords")
+                     .executes(ctx -> {
+                        randomCoords(ctx.getSource(), !RandomCoords.enabled());
+                        return 1;
+                     })
+                     .then(
+                        ClientCommandManager.literal("on")
+                           .executes(ctx -> {
+                              randomCoords(ctx.getSource(), true);
+                              return 1;
+                           })
+                     )
+                     .then(
+                        ClientCommandManager.literal("off")
+                           .executes(ctx -> {
+                              randomCoords(ctx.getSource(), false);
+                              return 1;
+                           })
+                     )
+                     .then(
+                        ClientCommandManager.literal("new")
+                           .executes(ctx -> {
+                              RandomCoords.refresh();
+                              randomCoords(ctx.getSource(), RandomCoords.enabled());
+                              return 1;
+                           })
+                     )
+               )
+         )
+      );
       ClientTickEvents.END_CLIENT_TICK
          .register(
             (EndTick)client -> {
@@ -100,5 +147,19 @@ public class ValenceClient implements ClientModInitializer {
          }
       });
       LOGGER.info("CycloneSkies {} ready", "1.9.9");
+   }
+
+   /** Shared by the {@code /cyclone randomcoords} forms: set, report, keep the offset in step. */
+   private static void randomCoords(FabricClientCommandSource source, boolean on) {
+      ValenceConfig.get().randomCoords = on;
+      ValenceConfig.save();
+      if (on) {
+         RandomCoords.refresh();
+      }
+
+      String text = on
+         ? "Random coords on: " + RandomCoords.offsetX() + ", " + RandomCoords.offsetZ()
+         : "Random coords off: showing real coordinates";
+      source.sendFeedback(class_2561.method_43470(text));
    }
 }

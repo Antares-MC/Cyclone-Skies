@@ -7,6 +7,7 @@ import dev.valence.gui.OptionList;
 import dev.valence.gui.Page;
 import dev.valence.gui.UiSounds;
 import dev.valence.gui.ValenceScreen;
+import dev.valence.hud.RandomCoords;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.DoubleFunction;
@@ -108,6 +109,37 @@ public class SettingsPage extends Page {
             )
          );
       this.options.add(new OptionList.Info(() -> class_2561.method_43471("valence.settings.language"), 2));
+      this.options.add(new OptionList.Header(class_2561.method_43471("valence.settings.section.privacy")));
+      this.options
+         .add(
+            new OptionList.Toggle(
+               class_2561.method_43471("valence.settings.randomcoords"),
+               class_2561.method_43471("valence.settings.randomcoords.desc"),
+               () -> c.randomCoords,
+               v -> {
+                  c.randomCoords = v;
+                  if (v) {
+                     RandomCoords.refresh();
+                  }
+               }
+            )
+         );
+      this.options
+         .add(
+            new OptionList.Button(
+               class_2561.method_43471("valence.settings.randomcoords.new"),
+               class_2561.method_43471("valence.settings.randomcoords.new.button"),
+               () -> {
+                  RandomCoords.refresh();
+                  UiSounds.click();
+               }
+            ) {
+               @Override
+               public boolean visible() {
+                  return c.randomCoords;
+               }
+            }
+         );
       this.options
          .add(
             new OptionList.Button(

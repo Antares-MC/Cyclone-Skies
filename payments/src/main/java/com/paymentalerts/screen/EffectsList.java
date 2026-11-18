@@ -3,6 +3,8 @@ package com.paymentalerts.screen;
 import com.paymentalerts.alert.Tier;
 import com.paymentalerts.payment.AmountFormat;
 import com.paymentalerts.payment.PaymentParser;
+import com.paymentalerts.ui.Ui;
+import com.paymentalerts.ui.UiButton;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,22 +14,21 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
-import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
+import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.network.chat.Component;
 
 final class EffectsList extends ContainerObjectSelectionList<EffectsList.Row> {
-    private static final int ROW_WIDTH = 362;
+    private static final int ROW_WIDTH = 340;
 
     EffectsList(Minecraft minecraft, int i, int i2, int i3, Consumer<Tier> consumer) {
         super(minecraft, i, i2, i3, 24);
         for (Tier tier : Tier.EFFECTS) {
-            addEntry(new Row(minecraft.font, tier, consumer));
+            addEntry(new Row(tier, consumer));
         }
     }
 
@@ -36,22 +37,19 @@ final class EffectsList extends ContainerObjectSelectionList<EffectsList.Row> {
     }
 
     static final class Row extends ContainerObjectSelectionList.Entry<Row> {
-        private static final int TEXT_OK = -2039584;
-        private static final int TEXT_BAD = -40864;
-        private final Font font;
         private final Tier tier;
-        private final Component label;
         private final EditBox amount;
-        private final CycleButton<Integer> look;
-        private final CycleButton<Boolean> enabled;
-        private final Button preview;
-        private final List<AbstractWidget> widgets = new ArrayList();
+        private final UiButton look;
+        private final UiButton onOff;
+        private final UiButton preview;
+        private final List<AbstractWidget> widgets = new ArrayList<>();
 
-        Row(Font font, Tier tier, Consumer<Tier> consumer) {
-            this.font = font;
+        Row(Tier tier, Consumer<Tier> consumer) {
             this.tier = tier;
-            this.label = Component.literal(tier.label);
-            this.amount = new EditBox(font, 0, 0, 52, 18, Component.literal(tier.label + " amount"));
+            String[] variations = tier.variations();
+
+            this.amount = new EditBox(Ui.font(), 0, 0, 42, 16, Component.literal(tier.label + " amount"));
+            this.amount.setBordered(false);
             this.amount.setMaxLength(14);
             this.amount.setValue(AmountFormat.compact(tier.threshold()).substring(1));
             this.amount.setTooltip(Tooltip.create(Component.literal("Smallest payment that plays this effect, e.g. 1m, 250m, 2.5b")));
@@ -59,69 +57,85 @@ final class EffectsList extends ContainerObjectSelectionList<EffectsList.Row> {
                 OptionalDouble parseAmount = PaymentParser.parseAmount(str);
                 if (parseAmount.isPresent() && parseAmount.getAsDouble() >= 1.0d && parseAmount.getAsDouble() < 9.0E18d) {
                     tier.setThreshold((long) parseAmount.getAsDouble());
-                    this.amount.setTextColor(TEXT_OK);
+                    this.amount.setTextColor(Ui.GOOD);
                 } else {
-                    this.amount.setTextColor(TEXT_BAD);
+                    this.amount.setTextColor(Ui.BAD);
                 }
             });
-            String[] variations = tier.variations();
-            ArrayList<Integer> arrayList = new ArrayList<>();
-            for (int i = -1; i < variations.length; i++) {
-                arrayList.add(Integer.valueOf(i));
-            }
-            this.look = CycleButton.<Integer>builder(num -> {
-                return Component.literal(num.intValue() < 0 ? "Random look" : variations[num.intValue()]);
-            }, Integer.valueOf(tier.look())).withValues(arrayList).displayOnlyValue().withTooltip(num2 -> {
-                String str2;
-                if (num2.intValue() < 0) {
-                    str2 = "Picks one of the " + variations.length + " looks at random each time.";
-                } else {
-                    str2 = "Always use this look.";
+
+            this.look = new UiButton(0, 0, 112, 20, Component.literal(lookLabel(variations, tier.look())), b -> {
+            }) {
+                @Override
+                public void onPress(InputWithModifiers input) {
+                    int next = tier.look() + 1;
+                    if (next >= variations.length) {
+                        next = -1;
+                    }
+                    tier.setLook(next);
+                    setMessage(Component.literal(lookLabel(variations, next)));
                 }
-                return Tooltip.create(Component.literal(str2));
-            }).create(0, 0, 128, 20, Component.literal("Look"), (cycleButton, num3) -> {
-                tier.setLook(num3.intValue());
-            });
-            this.enabled = CycleButton.onOffBuilder(tier.isEnabled()).displayOnlyValue().withTooltip(bool -> {
-                String str2;
-                if (bool.booleanValue()) {
-                    str2 = "On. Payments in its range play this effect.";
-                } else {
-                    str2 = "Off. Payments in its range play the next effect below that is on.";
+            };
+            this.look.setTooltip(Tooltip.create(Component.literal("Click to cycle through the " + variations.length + " looks, or Random to pick each time.")));
+
+            this.onOff = new UiButton(0, 0, 40, 20, Component.literal(tier.isEnabled() ? "On" : "Off"), b -> {
+            }) {
+                @Override
+                public void onPress(InputWithModifiers input) {
+                    boolean next = !tier.isEnabled();
+                    tier.setEnabled(next);
+                    setMessage(Component.literal(next ? "On" : "Off"));
+                    selected(next);
                 }
-                return Tooltip.create(Component.literal(str2));
-            }).create(0, 0, 40, 20, Component.literal("On"), (cycleButton2, bool2) -> {
-                tier.setEnabled(bool2.booleanValue());
-            });
-            this.preview = Button.builder(Component.literal("▶"), button -> {
-                consumer.accept(tier);
-            }).size(20, 20).tooltip(Tooltip.create(Component.literal("Preview " + tier.label))).build();
+            };
+            this.onOff.selected(tier.isEnabled());
+            this.onOff.setTooltip(Tooltip.create(Component.literal("Off means payments in this range play the next effect below that is on.")));
+
+            this.preview = new UiButton(0, 0, 20, 20, Component.literal("\u25B6"), b -> consumer.accept(tier));
+            this.preview.setTooltip(Tooltip.create(Component.literal("Preview " + tier.label)));
+            this.preview.accent(true);
+
             this.widgets.add(this.amount);
             this.widgets.add(this.look);
-            this.widgets.add(this.enabled);
+            this.widgets.add(this.onOff);
             this.widgets.add(this.preview);
         }
 
-        public void renderContent(GuiGraphics guiGraphics, int i, int i2, boolean z, float f) {
+        private static String lookLabel(String[] variations, int look) {
+            return look < 0 || look >= variations.length ? "Random look" : variations[look];
+        }
+
+        public void renderContent(GuiGraphics guiGraphics, int mouseX, int mouseY, boolean z, float f) {
             int contentX = getContentX();
             int contentY = getContentY();
-            int contentHeight = contentY + ((getContentHeight() - 8) / 2);
-            guiGraphics.fill(contentX, contentY + 3, contentX + 3, contentY + 17, (-16777216) | this.tier.color);
-            guiGraphics.drawString(this.font, this.label, contentX + 7, contentHeight, this.tier.isEnabled() ? -1 : -8355712);
-            if (i >= contentX && i < contentX + 104 && i2 >= contentY && i2 < contentY + 20) {
-                guiGraphics.setTooltipForNextFrame(this.font.split(Component.literal(this.tier.description), 200), i, i2);
+            int cardRight = contentX + ROW_WIDTH;
+            boolean hover = mouseX >= contentX && mouseX < cardRight && mouseY >= contentY && mouseY < contentY + 22;
+
+            Ui.card(guiGraphics, contentX, contentY, cardRight, contentY + 22, hover ? 1.0f : 0.0f, false);
+            Ui.round(guiGraphics, contentX + 3, contentY + 7, contentX + 5, contentY + 15, 0xFF000000 | this.tier.color, 1);
+            Ui.label(guiGraphics, Ui.font(), this.tier.label, contentX + 9, contentY + 7, 84,
+                    this.tier.isEnabled() ? Ui.TEXT : Ui.TEXT_MUTED);
+
+            if (mouseX >= contentX && mouseX < contentX + 96 && mouseY >= contentY && mouseY < contentY + 22) {
+                guiGraphics.setTooltipForNextFrame(Ui.font().split(Component.literal(this.tier.description), 200), mouseX, mouseY);
             }
-            this.amount.setX(contentX + 108);
-            this.amount.setY(contentY + 1);
-            this.look.setX(contentX + 164);
-            this.look.setY(contentY);
-            this.enabled.setX(contentX + 296);
-            this.enabled.setY(contentY);
-            this.preview.setX(contentX + 340);
-            this.preview.setY(contentY);
+
+            // Amount field: our card, a borderless EditBox inside it.
+            int amountX = contentX + 98;
+            Ui.round(guiGraphics, amountX, contentY + 3, amountX + 50, contentY + 19, Ui.CARD, 4);
+            Ui.outline(guiGraphics, amountX, contentY + 3, amountX + 50, contentY + 19, Ui.BORDER, 4);
+            this.amount.setX(amountX + 4);
+            this.amount.setY(contentY + 7);
+
+            this.look.setX(contentX + 152);
+            this.look.setY(contentY + 1);
+            this.onOff.setX(contentX + 268);
+            this.onOff.setY(contentY + 1);
+            this.preview.setX(contentX + 312);
+            this.preview.setY(contentY + 1);
+
             Iterator<AbstractWidget> it = this.widgets.iterator();
             while (it.hasNext()) {
-                it.next().render(guiGraphics, i, i2, f);
+                it.next().render(guiGraphics, mouseX, mouseY, f);
             }
         }
 

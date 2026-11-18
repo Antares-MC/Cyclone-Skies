@@ -83,6 +83,7 @@ public class ValenceConfig {
    public float maxFpsLyricGlow = 0.0F;
    public boolean perfCulling = true;
    public boolean perfBackgroundFps = true;
+   public boolean randomCoords = false;
 
    public static ValenceConfig get() {
       return instance;

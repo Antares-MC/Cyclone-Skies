@@ -5,6 +5,7 @@ import dev.valence.compat.InputScreen;
 import dev.valence.compat.Keys;
 import dev.valence.compat.Pipes;
 import dev.valence.compat.Pose;
+import dev.valence.config.ValenceConfig;
 import dev.valence.gui.Theme;
 import dev.valence.gui.UiSounds;
 import net.fabricmc.api.EnvType;
@@ -25,6 +26,7 @@ public final class EmoteWheelScreen extends InputScreen {
    private static final class_2960 DISC = class_2960.method_60655("valence", "textures/emote/disc.png");
    private static final class_2960 CIRCLE = class_2960.method_60655("valence", "textures/emote/circle.png");
    private static int page;
+   private static final int NO_PICK = -2;
    private final class_304 key;
    private final long openedAt = System.currentTimeMillis();
    private final long openedNanos = System.nanoTime();
@@ -34,6 +36,8 @@ public final class EmoteWheelScreen extends InputScreen {
    private float pageAnim = 1.0F;
    private float open;
    private long lastFrame;
+   private int pendingPick = NO_PICK;
+   private long closeAt;
    private final float[] hoverAnim = new float[8];
 
    public EmoteWheelScreen(class_304 key) {
@@ -80,16 +84,48 @@ public final class EmoteWheelScreen extends InputScreen {
    }
 
    private void pick(int id) {
-      this.method_25419();
+      this.requestClose(id);
+   }
+
+   /**
+    * Closes the wheel and remembers what was chosen.
+    *
+    * <p>The close has to happen on a client tick, not inside a render pass: the emote is only
+    * allowed to start when no screen is open, and swapping the screen mid-render is how the
+    * wheel used to end up as a screen that never closed -- which left the player unable to move.
+    */
+   private void requestClose(int id) {
+      if (this.closeAt != 0L) {
+         return;
+      }
+
       if (id >= 0) {
          UiSounds.click();
-         EmoteManager.start(id);
       }
+
+      this.pendingPick = id;
+      this.closeAt = System.nanoTime();
+   }
+
+   public void method_25419() {
+      ValenceConfig.save();
+      this.requestClose(-1);
    }
 
    public void method_25393() {
       if (this.field_22787.field_1724 == null) {
-         this.method_25419();
+         this.pendingPick = NO_PICK;
+         this.closeAt = 0L;
+         this.field_22787.method_1507((class_437)null);
+         return;
+      }
+
+      if (this.closeAt != 0L && System.nanoTime() - this.closeAt >= 150000000L) {
+         int id = this.pendingPick;
+         this.pendingPick = NO_PICK;
+         this.closeAt = 0L;
+         this.field_22787.method_1507((class_437)null);
+         EmoteManager.start(id);
       }
    }
 

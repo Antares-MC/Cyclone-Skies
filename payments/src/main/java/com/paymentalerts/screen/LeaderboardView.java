@@ -6,6 +6,7 @@ import com.paymentalerts.skin.SkinDoll;
 import com.paymentalerts.skin.SkinFetcher;
 import com.paymentalerts.stats.PaymentStats;
 import com.paymentalerts.stats.StatsFormat;
+import com.paymentalerts.ui.Ui;
 import java.util.List;
 import java.util.function.Consumer;
 import net.minecraft.client.gui.Font;
@@ -32,7 +33,7 @@ final class LeaderboardView {
     private int panelBottom;
     private int panelLeft;
     private int panelRight;
-    static final int GOLD = -11443;
+    static final int GOLD = Ui.WARN;
     private static final int[] MEDAL = {GOLD, -2563862, -3110340};
     private static final String[] PLACE = {"1st", "2nd", "3rd"};
     private static final int[] BLOCK_H = {44, 32, 24};
@@ -101,11 +102,7 @@ final class LeaderboardView {
         this.panelLeft = i;
         this.panelRight = i3;
         this.scroll = Math.max(0.0d, Math.min(this.maxScroll, this.scroll));
-        guiGraphics.fill(i, i2, i3, i4, 1879048192);
-        guiGraphics.fill(i, i2, i3, i2 + 1, 1090519039);
-        guiGraphics.fill(i, i4 - 1, i3, i4, 1090519039);
-        guiGraphics.fill(i, i2, i + 1, i4, 1090519039);
-        guiGraphics.fill(i3 - 1, i2, i3, i4, 1090519039);
+        Ui.glass(guiGraphics, i, i2, i3, i4);
         ScreenRectangle screenRectangle = new ScreenRectangle(i + 1, i2 + 1, (i3 - i) - 2, i7 - 2);
         boolean z = i5 > i && i5 < i3 && i6 > i2 && i6 < i4;
         guiGraphics.enableScissor(i + 1, i2 + 1, i3 - 1, i4 - 1);
@@ -119,8 +116,8 @@ final class LeaderboardView {
         if (this.maxScroll > 0) {
             int max = Math.max(18, ((i7 - 4) * i7) / (i7 + this.maxScroll));
             int round = i2 + 2 + ((int) Math.round((((i7 - 4) - max) * this.scroll) / this.maxScroll));
-            guiGraphics.fill(i3 - 5, i2 + 2, i3 - 2, i4 - 2, 822083583);
-            guiGraphics.fill(i3 - 5, round, i3 - 2, round + max, -1056964609);
+            Ui.pill(guiGraphics, i3 - 5, i2 + 2, i3 - 2, i4 - 2, Ui.TRACK);
+            Ui.pill(guiGraphics, i3 - 5, round, i3 - 2, round + max, Ui.withAlpha(Ui.ACCENT, 0.55f));
         }
     }
 
@@ -136,9 +133,12 @@ final class LeaderboardView {
             int i13 = i12 + (min / 2);
             int i14 = i9 - BLOCK_H[i11];
             int i15 = MEDAL[i11];
-            guiGraphics.fillGradient(i12, i14 + 4, i12 + min, i9, shade(i15, 0.8f), shade(i15, 0.45f));
-            guiGraphics.fill(i12, i14, i12 + min, i14 + 4, shade(i15, 1.12f));
-            guiGraphics.fill(i12, i14 + 4, i12 + min, i14 + 5, shade(i15, 0.35f));
+            if (i11 == 0) {
+                Ui.glow(guiGraphics, i12, i14, i12 + min, i9, i15, 0.14f);
+            }
+            Ui.round(guiGraphics, i12, i14, i12 + min, i9, Ui.alpha(i15, 52), 5);
+            Ui.round(guiGraphics, i12, i14, i12 + min, i14 + 5, Ui.alpha(i15, 108), 4);
+            Ui.outline(guiGraphics, i12, i14, i12 + min, i9, Ui.alpha(i15, 132), 5);
             if (i10 > 0) {
                 guiGraphics.fill(i12, i14 + 5, i12 + 1, i9, 1342177280);
             }
@@ -146,10 +146,10 @@ final class LeaderboardView {
             pose.pushMatrix();
             pose.translate(i13, ((i14 + 5) + ((BLOCK_H[i11] - 5) / 2.0f)) - 6.0f);
             pose.scale(1.5f, 1.5f);
-            guiGraphics.drawCenteredString(font, Component.literal(PLACE[i11]), 0, 0, -1);
+            guiGraphics.drawCenteredString(font, Component.literal(PLACE[i11]), 0, 0, Ui.TEXT);
             pose.popMatrix();
             if (i11 >= this.payers.size()) {
-                guiGraphics.drawCenteredString(font, Component.literal("?"), i13, i14 - 14, -8355712);
+                guiGraphics.drawCenteredString(font, Component.literal("?"), i13, i14 - 14, Ui.TEXT_MUTED);
             } else {
                 PaymentStats.Payer payer = this.payers.get(i11);
                 int i16 = DOLL_SIZE[i11];
@@ -178,17 +178,17 @@ final class LeaderboardView {
                 }
                 String plainSubstrByWidth = font.plainSubstrByWidth(payer.name, min + 30);
                 int width = font.width(plainSubstrByWidth);
-                guiGraphics.fill((i13 - (width / 2)) - 2, i17 - 2, ((i13 + width) - (width / 2)) + 2, i17 + 9, -1610612736);
-                guiGraphics.drawString(font, Component.literal(plainSubstrByWidth), i13 - (width / 2), i17, i11 == 0 ? GOLD : -1);
+                guiGraphics.fill((i13 - (width / 2)) - 2, i17 - 2, ((i13 + width) - (width / 2)) + 2, i17 + 9, Ui.alpha(Ui.PANEL, 200));
+                guiGraphics.drawString(font, Component.literal(plainSubstrByWidth), i13 - (width / 2), i17, i11 == 0 ? GOLD : Ui.TEXT);
                 String compact = AmountFormat.compact(payer.total);
                 guiGraphics.drawCenteredString(font, Component.literal(compact), i13, i9 + 5, i15);
-                guiGraphics.drawCenteredString(font, Component.literal(StatsFormat.payments(payer.count)), i13, i9 + 16, -7303024);
+                guiGraphics.drawCenteredString(font, Component.literal(StatsFormat.payments(payer.count)), i13, i9 + 16, Ui.TEXT_MUTED);
                 if (z && i6 >= i12 && i6 < i12 + min && i7 >= i17 - 2 && i7 < i9 + SESSION_H) {
                     str = payer.name + " paid you " + compact + " in " + StatsFormat.payments(payer.count) + ". Last paid you " + StatsFormat.dateTime(payer.last);
                 }
             }
         }
-        guiGraphics.fill((i8 - ((min * 3) / 2)) - PAD, i9, i8 + ((min * 3) / 2) + PAD, i9 + 1, -2130706433);
+        guiGraphics.fill((i8 - ((min * 3) / 2)) - PAD, i9, i8 + ((min * 3) / 2) + PAD, i9 + 1, Ui.PANEL_BORDER);
         if (str != null) {
             guiGraphics.setTooltipForNextFrame(font, Component.literal(str), i6, i7);
         }
@@ -212,15 +212,15 @@ final class LeaderboardView {
         int i4 = (i + i2) / 2;
         int width = font.width(str);
         int i5 = i3 + 10;
-        guiGraphics.fill(i + PAD, i5, (i4 - (width / 2)) - 6, i5 + 1, 1358954495);
-        guiGraphics.fill(((i4 + width) - (width / 2)) + 6, i5, i2 - PAD, i5 + 1, 1358954495);
-        guiGraphics.drawCenteredString(font, Component.literal(str), i4, i3 + 6, -2039584);
+        guiGraphics.fill(i + PAD, i5, (i4 - (width / 2)) - 6, i5 + 1, Ui.withAlpha(Ui.ACCENT, 0.32f));
+        guiGraphics.fill(((i4 + width) - (width / 2)) + 6, i5, i2 - PAD, i5 + 1, Ui.withAlpha(Ui.ACCENT, 0.32f));
+        guiGraphics.drawCenteredString(font, Component.literal(str), i4, i3 + 6, Ui.TEXT_DIM);
         return i3 + 22;
     }
 
     private int rows(GuiGraphics guiGraphics, Font font, int i, int i2, int i3, int i4, int i5, int i6, int i7, boolean z) {
         if (this.payers.size() <= 3) {
-            guiGraphics.drawCenteredString(font, Component.literal(this.payers.isEmpty() ? this.emptyText : "Nobody else yet."), (i + i2) / 2, i3 + 7, -7303024);
+            guiGraphics.drawCenteredString(font, Component.literal(this.payers.isEmpty() ? this.emptyText : "Nobody else yet."), (i + i2) / 2, i3 + 7, Ui.TEXT_MUTED);
             return i3 + 22;
         }
         double max = Math.max(1.0d, this.payers.get(0).total);
@@ -231,19 +231,19 @@ final class LeaderboardView {
             if (i11 + 22 >= i4 && i11 <= i5) {
                 PaymentStats.Payer payer = this.payers.get(i10);
                 boolean z2 = z && i7 >= i11 && i7 < i11 + 22 && i6 >= i8 && i6 < i2 - PAD;
-                guiGraphics.fill(i8, i11, i2 - PAD, (i11 + 22) - 2, z2 ? 822083583 : i10 % 2 == 0 ? 419430399 : 218103807);
-                guiGraphics.drawString(font, Component.literal("#" + (i10 + 1)), i8 + 4, i11 + 6, -6250336);
+                Ui.card(guiGraphics, i8, i11, i2 - PAD, (i11 + 22) - 2, z2 ? 1.0f : 0.0f, false);
+                guiGraphics.drawString(font, Component.literal("#" + (i10 + 1)), i8 + 4, i11 + 6, Ui.TEXT_MUTED);
                 Dolls.face(guiGraphics, skin(i10), i8 + 30, i11 + 2, 16);
                 String compact = AmountFormat.compact(payer.total);
                 String payments = StatsFormat.payments(payer.count);
                 int i12 = i8 + 52;
                 int max2 = Math.max(20, ((i9 - Math.max(font.width(compact), font.width(payments))) - PAD) - i12);
-                guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(payer.name, max2)), i12, i11 + 2, -1);
+                guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(payer.name, max2)), i12, i11 + 2, Ui.TEXT);
                 guiGraphics.drawString(font, Component.literal(compact), i9 - font.width(compact), i11 + 2, GOLD);
-                guiGraphics.drawString(font, Component.literal(payments), i9 - font.width(payments), i11 + 11, -7303024);
+                guiGraphics.drawString(font, Component.literal(payments), i9 - font.width(payments), i11 + 11, Ui.TEXT_MUTED);
                 int max3 = Math.max(2, (int) Math.round(max2 * Math.min(1.0d, payer.total / max)));
-                guiGraphics.fill(i12, i11 + 13, i12 + max2, i11 + 16, 822083583);
-                guiGraphics.fill(i12, i11 + 13, i12 + max3, i11 + 16, -6250336);
+                guiGraphics.fill(i12, i11 + 13, i12 + max2, i11 + 16, Ui.TRACK);
+                guiGraphics.fill(i12, i11 + 13, i12 + max3, i11 + 16, Ui.withAlpha(Ui.ACCENT, 0.80f));
                 if (z2) {
                     guiGraphics.setTooltipForNextFrame(font, Component.literal("Last paid you " + StatsFormat.dateTime(payer.last)), i6, i7);
                 }
@@ -255,15 +255,17 @@ final class LeaderboardView {
     static int statsBar(GuiGraphics guiGraphics, Font font, int i, int i2, int i3, List<Stat> list, int i4) {
         int size = ((list.size() + i4) - 1) / i4;
         int i5 = ((i3 - i) - (4 * (i4 - 1))) / i4;
-        guiGraphics.fill(i - 4, i2 - 4, i3 + 4, ((i2 + (size * (STAT_H + 4))) - 4) + 4, -1879048192);
-        guiGraphics.fill(i - 4, i2 - 4, i3 + 4, i2 - 3, 1090519039);
+        int bottom = ((i2 + (size * (STAT_H + 4))) - 4) + 4;
+        Ui.round(guiGraphics, i - 4, i2 - 4, i3 + 4, bottom, Ui.PANEL, 7);
+        Ui.outline(guiGraphics, i - 4, i2 - 4, i3 + 4, bottom, Ui.PANEL_BORDER, 7);
         for (int i6 = 0; i6 < list.size(); i6++) {
             Stat stat = list.get(i6);
             int i7 = i + ((i6 % i4) * (i5 + 4));
             int i8 = i2 + ((i6 / i4) * (STAT_H + 4));
-            guiGraphics.fill(i7, i8, i7 + i5, i8 + STAT_H, 687865855);
-            guiGraphics.fill(i7, i8, i7 + 2, i8 + STAT_H, stat.color() == -1 ? 1627389951 : stat.color());
-            guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(stat.label(), i5 - 9)), i7 + 6, i8 + 4, -6645094);
+            Ui.card(guiGraphics, i7, i8, i7 + i5, i8 + STAT_H, Ui.CARD, Ui.BORDER);
+            int tint = stat.color() == -1 ? Ui.ACCENT : stat.color();
+            Ui.round(guiGraphics, i7, i8, i7 + 2, i8 + STAT_H, tint, 1);
+            guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(stat.label(), i5 - 9)), i7 + 6, i8 + 4, Ui.TEXT_MUTED);
             guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(stat.value(), i5 - 9)), i7 + 6, i8 + 14, stat.color());
         }
         return (size * (STAT_H + 4)) - 4;
@@ -275,7 +277,7 @@ final class LeaderboardView {
 
     private void sessionRows(GuiGraphics guiGraphics, Font font, int i, int i2, int i3, int i4, int i5, int i6, int i7, boolean z) {
         if (this.sessions.isEmpty()) {
-            guiGraphics.drawCenteredString(font, Component.literal("No sessions yet. One starts each time you join a world or server."), (i + i2) / 2, i3 + PAD, -7303024);
+            guiGraphics.drawCenteredString(font, Component.literal("No sessions yet. One starts each time you join a world or server."), (i + i2) / 2, i3 + PAD, Ui.TEXT_MUTED);
             return;
         }
         long currentTimeMillis = System.currentTimeMillis();
@@ -287,12 +289,12 @@ final class LeaderboardView {
                 PaymentStats.Session session = this.sessions.get(i10);
                 boolean isOpen = session.isOpen();
                 boolean z2 = z && i7 >= i11 && i7 < (i11 + SESSION_H) - 2 && i6 >= i8 && i6 < i9;
-                guiGraphics.fill(i8, i11, i9, (i11 + SESSION_H) - 2, z2 ? 822083583 : i10 % 2 == 0 ? 419430399 : 218103807);
+                Ui.card(guiGraphics, i8, i11, i9, (i11 + SESSION_H) - 2, z2 ? 1.0f : 0.0f, false);
                 String compact = AmountFormat.compact(session.total);
                 int width = (i9 - 4) - font.width(compact);
-                guiGraphics.drawString(font, Component.literal(compact), width, i11 + 3, session.total > 0.0d ? GOLD : -9408400);
-                guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(payerNames(session), Math.max(20, (width - i8) - 12))), i8 + 4, i11 + 3, session.count == 0 ? -9408400 : isOpen ? -8586102 : -1);
-                guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(StatsFormat.span(session.joined, session.end(currentTimeMillis), isOpen) + "  (" + StatsFormat.duration(session.end(currentTimeMillis) - session.joined) + (isOpen ? ", playing now" : "") + ")  " + StatsFormat.payments(session.count), (i9 - i8) - PAD)), i8 + 4, i11 + 13, -7303024);
+                guiGraphics.drawString(font, Component.literal(compact), width, i11 + 3, session.total > 0.0d ? GOLD : Ui.TEXT_MUTED);
+                guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(payerNames(session), Math.max(20, (width - i8) - 12))), i8 + 4, i11 + 3, session.count == 0 ? Ui.TEXT_MUTED : isOpen ? Ui.ACCENT_LIGHT : Ui.TEXT);
+                guiGraphics.drawString(font, Component.literal(font.plainSubstrByWidth(StatsFormat.span(session.joined, session.end(currentTimeMillis), isOpen) + "  (" + StatsFormat.duration(session.end(currentTimeMillis) - session.joined) + (isOpen ? ", playing now" : "") + ")  " + StatsFormat.payments(session.count), (i9 - i8) - PAD)), i8 + 4, i11 + 13, Ui.TEXT_MUTED);
                 if (z2) {
                     String str = "Click to see who paid you in this session";
                     if (session.biggestFrom != null) {
@@ -304,8 +306,7 @@ final class LeaderboardView {
         }
     }
 
-    private static String payerNames(PaymentStats.Session session) {
-        List<PaymentStats.Payer> pVar = PaymentStats.top(session.payers);
+    private static String payerNames(PaymentStats.Session session) {        List<PaymentStats.Payer> pVar = PaymentStats.top(session.payers);
         if (pVar.isEmpty()) {
             return "No payments";
         }
@@ -331,9 +332,5 @@ final class LeaderboardView {
         }
         this.onSession.accept(this.sessions.get(floor));
         return true;
-    }
-
-    private static int shade(int i, float f) {
-        return (-16777216) | (Math.min(255, Math.round(((i >> 16) & 255) * f)) << 16) | (Math.min(255, Math.round(((i >> PAD) & 255) * f)) << PAD) | Math.min(255, Math.round((i & 255) * f));
     }
 }

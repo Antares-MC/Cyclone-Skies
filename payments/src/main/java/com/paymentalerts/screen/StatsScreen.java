@@ -5,10 +5,11 @@ import com.paymentalerts.payment.AmountFormat;
 import com.paymentalerts.screen.LeaderboardView;
 import com.paymentalerts.stats.PaymentStats;
 import com.paymentalerts.stats.StatsFormat;
+import com.paymentalerts.ui.Ui;
+import com.paymentalerts.ui.UiButton;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.ConfirmScreen;
 import net.minecraft.client.gui.screens.Screen;
@@ -35,20 +36,24 @@ public final class StatsScreen extends Screen {
     protected void init() {
         this.shownCount = PaymentStats.get().count;
         if (this.detail != null) {
-            addRenderableWidget(Button.builder(Component.literal("< Back"), button -> {
+            addRenderableWidget(new UiButton(6, 4, 66, 20, Component.literal("< Back"), button -> {
                 openDetail(null);
-            }).bounds(6, 4, 60, 20).build());
+            }));
         } else {
-            addRenderableWidget(Button.builder(Component.literal("Settings"), button2 -> {
+            addRenderableWidget(new UiButton(6, 4, 66, 20, Component.literal("Settings"), button2 -> {
                 this.minecraft.setScreen(new SettingsScreen(this));
-            }).bounds(6, 4, 60, 20).build());
-            addRenderableWidget(Button.builder(Component.literal("Reset..."), button3 -> {
+            }));
+            UiButton reset = new UiButton(76, 4, 66, 20, Component.literal("Reset..."), button3 -> {
                 confirmReset();
-            }).bounds(70, 4, 60, 20).tooltip(Tooltip.create(Component.literal("Forget all payment stats and sessions."))).build());
+            });
+            reset.setTooltip(Tooltip.create(Component.literal("Forget all payment stats and sessions.")));
+            addRenderableWidget(reset);
         }
-        addRenderableWidget(Button.builder(Component.literal("Done"), button4 -> {
+        UiButton done = new UiButton(this.width - 72, 4, 66, 20, Component.literal("Done"), button4 -> {
             onClose();
-        }).bounds(this.width - 66, 4, 60, 20).build());
+        });
+        done.accent(true);
+        addRenderableWidget(done);
         try {
             if (this.detail == null) {
                 this.board = new LeaderboardView(PaymentStats.top(PaymentStats.get().payers), PaymentStats.newestFirst(), this::openDetail, "No payments counted yet.", this.scroll);
@@ -74,12 +79,12 @@ public final class StatsScreen extends Screen {
         if (this.detail != null) {
             PaymentStats.Session session = this.detail;
             long end = session.end(currentTimeMillis) - session.joined;
-            arrayList.add(new LeaderboardView.Stat("Made", AmountFormat.compact(session.total), -11443));
-            arrayList.add(new LeaderboardView.Stat("Per hour", perHour(session.total, end), -11443));
+            arrayList.add(new LeaderboardView.Stat("Made", AmountFormat.compact(session.total), LeaderboardView.GOLD));
+            arrayList.add(new LeaderboardView.Stat("Per hour", perHour(session.total, end), LeaderboardView.GOLD));
             arrayList.add(new LeaderboardView.Stat("Payments", String.valueOf(session.count)));
             arrayList.add(new LeaderboardView.Stat("People who paid", String.valueOf(session.payers.size())));
-            arrayList.add(new LeaderboardView.Stat("Biggest", biggest(session.count, session.biggestAmount, session.biggestFrom), -11443));
-            arrayList.add(new LeaderboardView.Stat("Average", session.count > 0 ? AmountFormat.compact(session.total / session.count) : "-", -11443));
+            arrayList.add(new LeaderboardView.Stat("Biggest", biggest(session.count, session.biggestAmount, session.biggestFrom), LeaderboardView.GOLD));
+            arrayList.add(new LeaderboardView.Stat("Average", session.count > 0 ? AmountFormat.compact(session.total / session.count) : "-", LeaderboardView.GOLD));
             arrayList.add(new LeaderboardView.Stat("Joined", StatsFormat.dateTime(session.joined)));
             arrayList.add(new LeaderboardView.Stat(session.isOpen() ? "Playing for" : "Length", StatsFormat.duration(end)));
             return arrayList;
@@ -87,14 +92,14 @@ public final class StatsScreen extends Screen {
         PaymentStats paymentStats = PaymentStats.get();
         PaymentStats.Session activeSession = PaymentStats.activeSession();
         long j = activeSession == null ? 0L : currentTimeMillis - activeSession.joined;
-        arrayList.add(new LeaderboardView.Stat("This session", AmountFormat.compact(activeSession == null ? 0.0d : activeSession.total), -11443));
-        arrayList.add(new LeaderboardView.Stat("All time", AmountFormat.compact(paymentStats.total), -11443));
-        arrayList.add(new LeaderboardView.Stat("Per hour", activeSession == null ? "-" : perHour(activeSession.total, j), -11443));
+        arrayList.add(new LeaderboardView.Stat("This session", AmountFormat.compact(activeSession == null ? 0.0d : activeSession.total), LeaderboardView.GOLD));
+        arrayList.add(new LeaderboardView.Stat("All time", AmountFormat.compact(paymentStats.total), LeaderboardView.GOLD));
+        arrayList.add(new LeaderboardView.Stat("Per hour", activeSession == null ? "-" : perHour(activeSession.total, j), LeaderboardView.GOLD));
         arrayList.add(new LeaderboardView.Stat("Time on", activeSession == null ? "-" : StatsFormat.duration(j)));
         arrayList.add(new LeaderboardView.Stat("Payments", (activeSession == null ? 0 : activeSession.count) + " (" + paymentStats.count + " total)"));
         arrayList.add(new LeaderboardView.Stat("People who paid", String.valueOf(paymentStats.payers.size())));
-        arrayList.add(new LeaderboardView.Stat("Biggest", biggest(paymentStats.count, paymentStats.biggestAmount, paymentStats.biggestFrom), -11443));
-        arrayList.add(new LeaderboardView.Stat("Average", paymentStats.count > 0 ? AmountFormat.compact(paymentStats.total / paymentStats.count) : "-", -11443));
+        arrayList.add(new LeaderboardView.Stat("Biggest", biggest(paymentStats.count, paymentStats.biggestAmount, paymentStats.biggestFrom), LeaderboardView.GOLD));
+        arrayList.add(new LeaderboardView.Stat("Average", paymentStats.count > 0 ? AmountFormat.compact(paymentStats.total / paymentStats.count) : "-", LeaderboardView.GOLD));
         return arrayList;
     }
 
@@ -192,7 +197,8 @@ public final class StatsScreen extends Screen {
             fail(th);
         }
         int i3 = this.width / 2;
-        guiGraphics.drawCenteredString(this.font, Component.literal(this.font.plainSubstrByWidth(this.detail != null ? "Session: " + StatsFormat.dateTime(this.detail.joined) : this.title.getString(), this.width - 280)), i3, 10, -1);
+        String heading = this.detail != null ? "Session: " + StatsFormat.dateTime(this.detail.joined) : this.title.getString();
+        Ui.header(guiGraphics, this.font, this.font.plainSubstrByWidth(heading, this.width - 280), i3, 10);
         if (this.error == null) {
             try {
                 if (this.board != null) {
@@ -205,10 +211,15 @@ public final class StatsScreen extends Screen {
             }
         }
         if (this.error != null) {
-            guiGraphics.drawCenteredString(this.font, Component.literal("The leaderboard ran into a problem:"), i3, (this.height / 2) - 16, -40864);
-            guiGraphics.drawCenteredString(this.font, Component.literal(this.font.plainSubstrByWidth(String.valueOf(this.error), this.width - 20)), i3, this.height / 2, -1);
-            guiGraphics.drawCenteredString(this.font, Component.literal("Please send logs/latest.log so it can be fixed."), i3, (this.height / 2) + 16, -6250336);
+            guiGraphics.drawCenteredString(this.font, Component.literal("The leaderboard ran into a problem:"), i3, (this.height / 2) - 16, Ui.BAD);
+            guiGraphics.drawCenteredString(this.font, Component.literal(this.font.plainSubstrByWidth(String.valueOf(this.error), this.width - 20)), i3, this.height / 2, Ui.TEXT);
+            guiGraphics.drawCenteredString(this.font, Component.literal("Please send logs/latest.log so it can be fixed."), i3, (this.height / 2) + 16, Ui.TEXT_MUTED);
         }
+    }
+
+    @Override
+    public void renderBackground(GuiGraphics guiGraphics, int i, int i2, float f) {
+        Ui.scrim(guiGraphics, this.width, this.height);
     }
 
     public void onClose() {

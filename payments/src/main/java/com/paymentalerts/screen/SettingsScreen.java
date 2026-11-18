@@ -4,18 +4,16 @@ import com.paymentalerts.PaymentAlertsClient;
 import com.paymentalerts.alert.AlertManager;
 import com.paymentalerts.alert.Tier;
 import com.paymentalerts.config.PaymentAlertsConfig;
-import com.paymentalerts.theme.Theme;
 import com.paymentalerts.theme.ThemeService;
 import com.paymentalerts.theme.Themes;
 import com.paymentalerts.payment.Payment;
+import com.paymentalerts.ui.Ui;
+import com.paymentalerts.ui.UiButton;
+import com.paymentalerts.ui.UiSlider;
 import java.util.Locale;
 import java.util.function.Consumer;
-import java.util.function.DoubleConsumer;
-import java.util.function.DoubleFunction;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -24,12 +22,16 @@ public final class SettingsScreen extends Screen {
     private static Page lastPage = Page.GENERAL;
     private static final int ROW = 24;
     private static final int TOP = 54;
+    /** Panel geometry: one glass sheet behind the whole page body. */
+    private static final int PANEL_SIDE = 172;
+    private static final int PANEL_TOP = 48;
+    private static final int PANEL_BOTTOM_MARGIN = 34;
     private final Screen parent;
     private Page page;
     private EffectsList effectsList;
     private Throwable error;
 
-        private enum Page {
+    private enum Page {
         GENERAL,
         EFFECTS,
         THEMES
@@ -43,21 +45,9 @@ public final class SettingsScreen extends Screen {
 
     protected void init() {
         int i = this.width / 2;
-        Button build = Button.builder(Component.literal("General"), button -> {
-            switchTo(Page.GENERAL);
-        }).bounds(i - 168, ROW, 108, 20).build();
-        Button build2 = Button.builder(Component.literal("Effects"), button2 -> {
-            switchTo(Page.EFFECTS);
-        }).bounds(i - 54, ROW, 108, 20).build();
-        Button buildThemes = Button.builder(Component.literal("Themes (" + Themes.count() + ")"), button3 -> {
-            switchTo(Page.THEMES);
-        }).bounds(i + 60, ROW, 108, 20).build();
-        build.active = this.page != Page.GENERAL;
-        build2.active = this.page != Page.EFFECTS;
-        buildThemes.active = this.page != Page.THEMES;
-        addRenderableWidget(build);
-        addRenderableWidget(build2);
-        addRenderableWidget(buildThemes);
+        tab(i - 168, "General", Page.GENERAL);
+        tab(i - 54, "Effects", Page.EFFECTS);
+        tab(i + 60, "Themes (" + Themes.count() + ")", Page.THEMES);
         this.error = null;
         try {
             if (this.page == Page.GENERAL) {
@@ -72,12 +62,34 @@ public final class SettingsScreen extends Screen {
             this.error = th;
             PaymentAlertsClient.LOGGER.error("The payment settings failed to open", th);
         }
-        addRenderableWidget(Button.builder(Component.literal("Clear alerts"), button3 -> {
+        button(i - 154, this.height - 28, 150, "Clear alerts", button3 -> {
             AlertManager.clear();
-        }).bounds(i - 154, this.height - 28, 150, 20).tooltip(Tooltip.create(Component.literal("Stops every effect that is on screen right now."))).build());
-        addRenderableWidget(Button.builder(Component.literal("Done"), button4 -> {
+        }, "Stops every effect that is on screen right now.");
+        UiButton done = new UiButton(i + 4, this.height - 28, 150, 20, Component.literal("Done"), button4 -> {
             onClose();
-        }).bounds(i + 4, this.height - 28, 150, 20).build());
+        });
+        done.accent(true);
+        addRenderableWidget(done);
+    }
+
+    private void tab(int x, String label, Page target) {
+        UiButton button = new UiButton(x, ROW, 108, 20, Component.literal(label), b -> switchTo(target));
+        button.selected(this.page == target);
+        addRenderableWidget(button);
+    }
+
+    private UiButton button(int x, int y, int width, int height, String label, Button.OnPress press, String tooltip) {
+        UiButton button = new UiButton(x, y, width, height, Component.literal(label), press);
+        if (tooltip != null) {
+            button.setTooltip(Tooltip.create(Component.literal(tooltip)));
+        }
+        addRenderableWidget(button);
+        return button;
+    }
+
+    /** Convenience overload for the fixed 150px footer buttons. */
+    private UiButton button(int x, int y, int width, String label, Button.OnPress press, String tooltip) {
+        return button(x, y, width, 20, label, press, tooltip);
     }
 
     private void initGeneral(int i) {
@@ -94,18 +106,18 @@ public final class SettingsScreen extends Screen {
         toggle(i2, i4, 160, "Screen shake", paymentAlertsConfig.screenShakeEnabled, bool3 -> {
             paymentAlertsConfig.screenShakeEnabled = bool3.booleanValue();
         }, "Shake the camera and HUD on big hits (lightning, nuke, meteors, ...).");
-        addRenderableWidget(new Slider(i3, i4, 160, "Volume", paymentAlertsConfig.soundVolume, d -> {
+        addRenderableWidget(new UiSlider(i3, i4, 160, 20, "Volume", paymentAlertsConfig.soundVolume, d -> {
             return Math.round(d * 100.0d) + "%";
         }, d2 -> {
             paymentAlertsConfig.soundVolume = (float) d2;
         }));
         int i5 = i4 + ROW;
-        addRenderableWidget(new Slider(i2, i5, 160, "Shake strength", paymentAlertsConfig.shakeStrength / 2.0d, d3 -> {
+        addRenderableWidget(new UiSlider(i2, i5, 160, 20, "Shake strength", paymentAlertsConfig.shakeStrength / 2.0d, d3 -> {
             return Math.round(d3 * 200.0d) + "%";
         }, d4 -> {
             paymentAlertsConfig.shakeStrength = (float) (d4 * 2.0d);
         }));
-        addRenderableWidget(new Slider(i3, i5, 160, "Tab time", (paymentAlertsConfig.tabSeconds - 2.0f) / 13.0f, d5 -> {
+        addRenderableWidget(new UiSlider(i3, i5, 160, 20, "Tab time", (paymentAlertsConfig.tabSeconds - 2.0f) / 13.0f, d5 -> {
             return String.format(Locale.ROOT, "%.1fs", Double.valueOf(2.0d + (d5 * 13.0d)));
         }, d6 -> {
             paymentAlertsConfig.tabSeconds = (float) (2.0d + (d6 * 13.0d));
@@ -120,22 +132,19 @@ public final class SettingsScreen extends Screen {
                 i7++;
             }
         }
-        addRenderableWidget(Button.builder(Component.literal("Effects on: " + i7 + "/" + Tier.EFFECTS.length + " >"), button -> {
+        button(i3, i6, 160, 20, "Effects on: " + i7 + "/" + Tier.EFFECTS.length + " >", button -> {
             switchTo(Page.EFFECTS);
-        }).bounds(i3, i6, 160, 20).tooltip(Tooltip.create(Component.literal("Pick amounts, looks and previews for each effect."))).build());
-        addRenderableWidget(Button.builder(Component.literal("Payment stats (J) >"), button2 -> {
+        }, "Pick amounts, looks and previews for each effect.");
+        button(i2, i6 + ROW, (160 * 2) + 10, 20, "Payment stats (J) >", button2 -> {
             this.minecraft.setScreen(new StatsScreen(this));
-        }).bounds(i2, i6 + ROW, (160 * 2) + 10, 20).tooltip(Tooltip.create(Component.literal("Top payers and how much you made this session, per session and in total."))).build());
+        }, "Top payers and how much you made this session, per session and in total.");
     }
 
     private void toggle(int i, int i2, int i3, String str, boolean z, Consumer<Boolean> consumer, String str2) {
-        addRenderableWidget(CycleButton.onOffBuilder(z).withTooltip(bool -> {
-            return Tooltip.create(Component.literal(str2));
-        }).create(i, i2, i3, 20, Component.literal(str), (cycleButton, bool2) -> {
-            consumer.accept(bool2);
-        }));
+        UiButton.Toggle toggle = new UiButton.Toggle(i, i2, i3, 20, Component.literal(str), z, consumer);
+        toggle.setTooltip(Tooltip.create(Component.literal(str2)));
+        addRenderableWidget(toggle);
     }
-
 
     private void initThemes(int centerX) {
         PaymentAlertsConfig cfg = PaymentAlertsConfig.get();
@@ -143,37 +152,35 @@ public final class SettingsScreen extends Screen {
         int y = TOP + 8;
 
         String globalLabel = "Global: " + ThemeService.displayName(cfg.globalThemeId);
-        addRenderableWidget(Button.builder(Component.literal("<"), b -> {
+        button(left, y, 28, 20, "<", b -> {
             cfg.globalThemeId = ThemeService.prevThemeId(cfg.globalThemeId);
             PaymentAlertsConfig.save();
             switchTo(Page.THEMES);
-        }).bounds(left, y, 28, 20).build());
-        addRenderableWidget(Button.builder(Component.literal(globalLabel), b -> {
+        }, "Previous theme.");
+        button(left + 32, y, 256, 20, globalLabel, b -> {
             cfg.globalThemeId = ThemeService.nextThemeId(cfg.globalThemeId);
             PaymentAlertsConfig.save();
             switchTo(Page.THEMES);
-        }).bounds(left + 32, y, 256, 20).tooltip(Tooltip.create(Component.literal(
-            "Theme applied to every effect that has no per-tier override. Click to cycle. " + Themes.count() + " themes available."
-        ))).build());
-        addRenderableWidget(Button.builder(Component.literal(">"), b -> {
+        }, "Theme applied to every effect that has no per-tier override. Click to cycle. " + Themes.count() + " themes available.").accent(true);
+        button(left + 292, y, 28, 20, ">", b -> {
             cfg.globalThemeId = ThemeService.nextThemeId(cfg.globalThemeId);
             PaymentAlertsConfig.save();
             switchTo(Page.THEMES);
-        }).bounds(left + 292, y, 28, 20).build());
+        }, "Next theme.");
 
         y += 28;
-        addRenderableWidget(Button.builder(Component.literal("Set global = Random"), b -> {
+        button(left, y, 150, 20, "Set global = Random", b -> {
             cfg.globalThemeId = "random";
             PaymentAlertsConfig.save();
             switchTo(Page.THEMES);
-        }).bounds(left, y, 150, 20).tooltip(Tooltip.create(Component.literal("Pick a random theme for each alert."))).build());
-        addRenderableWidget(Button.builder(Component.literal("Reset all tier themes"), b -> {
+        }, "Pick a random theme for each alert.");
+        button(left + 160, y, 160, 20, "Reset all tier themes", b -> {
             for (Tier t : Tier.EFFECTS) {
                 cfg.tier(t).themeId = "";
             }
             PaymentAlertsConfig.save();
             switchTo(Page.THEMES);
-        }).bounds(left + 160, y, 160, 20).tooltip(Tooltip.create(Component.literal("Clear per-effect overrides so they all use the global theme."))).build());
+        }, "Clear per-effect overrides so they all use the global theme.");
 
         y += 32;
         int col = 0;
@@ -185,7 +192,7 @@ public final class SettingsScreen extends Screen {
             int by = y + (col / 2) * 22;
             if (by + 22 > this.height - 40) break;
             final Tier ft = tier;
-            addRenderableWidget(Button.builder(Component.literal(label.length() > 28 ? label.substring(0, 26) + ".." : label), b -> {
+            button(bx, by, 165, 20, label.length() > 28 ? label.substring(0, 26) + ".." : label, b -> {
                 String cur = cfg.tier(ft).themeId;
                 if (cur == null || cur.isEmpty()) {
                     cfg.tier(ft).themeId = Themes.all().get(0).id;
@@ -194,9 +201,7 @@ public final class SettingsScreen extends Screen {
                 }
                 PaymentAlertsConfig.save();
                 switchTo(Page.THEMES);
-            }).bounds(bx, by, 165, 20).tooltip(Tooltip.create(Component.literal(
-                "Click to cycle theme for " + tier.label + ". Empty uses the global theme."
-            ))).build());
+            }, "Click to cycle theme for " + tier.label + ". Empty uses the global theme.").selected(!tid.isEmpty());
             col++;
         }
     }
@@ -213,6 +218,13 @@ public final class SettingsScreen extends Screen {
         AlertManager.play(tier, new Payment(name, tier.threshold()), -1);
     }
 
+    @Override
+    public void renderBackground(GuiGraphics guiGraphics, int i, int i2, float f) {
+        Ui.scrim(guiGraphics, this.width, this.height);
+        Ui.glass(guiGraphics, (this.width / 2) - PANEL_SIDE, PANEL_TOP, (this.width / 2) + PANEL_SIDE,
+                this.height - PANEL_BOTTOM_MARGIN);
+    }
+
     public void render(GuiGraphics guiGraphics, int i, int i2, float f) {
         try {
             super.render(guiGraphics, i, i2, f);
@@ -222,38 +234,20 @@ public final class SettingsScreen extends Screen {
             }
             this.error = th;
         }
-        guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 9, -1);
+        Ui.header(guiGraphics, this.font, this.title.getString(), this.width / 2, 9);
+        if (this.page == Page.GENERAL && this.error == null) {
+            Ui.centered(guiGraphics, this.font, "Changes save when you close this screen.", this.width / 2,
+                    this.height - PANEL_BOTTOM_MARGIN - 12, Ui.TEXT_MUTED);
+        }
         if (this.error != null) {
-            guiGraphics.drawCenteredString(this.font, Component.literal("The settings ran into a problem:"), this.width / 2, (this.height / 2) - 16, -40864);
-            guiGraphics.drawCenteredString(this.font, Component.literal(this.font.plainSubstrByWidth(String.valueOf(this.error), this.width - 20)), this.width / 2, this.height / 2, -1);
-            guiGraphics.drawCenteredString(this.font, Component.literal("Please send logs/latest.log so it can be fixed."), this.width / 2, (this.height / 2) + 16, -6250336);
+            guiGraphics.drawCenteredString(this.font, Component.literal("The settings ran into a problem:"), this.width / 2, (this.height / 2) - 16, Ui.BAD);
+            guiGraphics.drawCenteredString(this.font, Component.literal(this.font.plainSubstrByWidth(String.valueOf(this.error), this.width - 20)), this.width / 2, this.height / 2, Ui.TEXT);
+            guiGraphics.drawCenteredString(this.font, Component.literal("Please send logs/latest.log so it can be fixed."), this.width / 2, (this.height / 2) + 16, Ui.TEXT_MUTED);
         }
     }
 
     public void onClose() {
         PaymentAlertsConfig.save();
         this.minecraft.setScreen(this.parent);
-    }
-
-        private static final class Slider extends AbstractSliderButton {
-        private final String label;
-        private final DoubleFunction<String> format;
-        private final DoubleConsumer apply;
-
-        Slider(int i, int i2, int i3, String str, double d, DoubleFunction<String> doubleFunction, DoubleConsumer doubleConsumer) {
-            super(i, i2, i3, 20, Component.empty(), Math.max(0.0d, Math.min(1.0d, d)));
-            this.label = str;
-            this.format = doubleFunction;
-            this.apply = doubleConsumer;
-            updateMessage();
-        }
-
-        protected void updateMessage() {
-            setMessage(Component.literal(this.label + ": " + this.format.apply(this.value)));
-        }
-
-        protected void applyValue() {
-            this.apply.accept(this.value);
-        }
     }
 }

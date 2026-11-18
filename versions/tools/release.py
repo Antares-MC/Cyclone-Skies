@@ -59,6 +59,8 @@ sha256 `{sha}`
 NOTES_PAYMENTS = """\
 - paymentalerts inside the jar: 150+ alert themes, 46 hand-animated payment effects,
   `/payalerts`, and 46 bespoke effect classes with no shared preset renderer.
+- The addon's screens (settings, effects list, leaderboard) are drawn in the Cyclone theme:
+  the same palette, glass panel, card rows and sliders as the menu, with no bundled textures.
 - The title-screen splash reads **subscribe to cyclonelwk and lumindev**.
 - **Stream alert** for `youtube.com/@lumindevdsmp`: a 9.4 s broadcast takeover (standby
   bars, hard cut to air, lens aperture, live lower third, chat chips, viewer counter,

@@ -24,6 +24,8 @@
   "CapeMixin",
   "DrawContextThemeMixin",
   "HudSuppressMixin",
+  "DebugCoordsMixin",
+  "DebugCoordsTargetMixin",
   "ScreenBlurAccessor"
  ],
  "injectors": {
