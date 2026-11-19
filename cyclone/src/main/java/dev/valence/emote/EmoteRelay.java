@@ -109,7 +109,8 @@ public final class EmoteRelay {
          } else if ("start".equals(type) || "stop".equals(type)) {
             apply(message);
          } else if ("error".equals(type)) {
-            ValenceClient.LOGGER.warn("Emote relay rejected connection: {}", message.get("reason").getAsString());
+            String reason = message.has("reason") ? message.get("reason").getAsString() : "unknown rejection";
+            scheduleRetry(new IllegalStateException("relay rejected join: " + reason));
          }
       } catch (RuntimeException error) {
          ValenceClient.LOGGER.debug("Ignoring invalid emote relay event: {}", error.toString());
@@ -161,7 +162,12 @@ public final class EmoteRelay {
          join.addProperty("token", config.emoteRelayToken);
          join.addProperty("room", config.emoteRelayRoom == null || config.emoteRelayRoom.isBlank() ? "public" : config.emoteRelayRoom);
          join.addProperty("player_id", client.field_1724.method_5667().toString());
-         String displayName = client.field_1724.method_5477().getString();
+         // Use the authenticated account name, not a server-decorated display component.
+         String displayName = dev.valence.cord.util.Fx.myName();
+         if (displayName == null) {
+            displayName = "Player";
+         }
+         displayName = displayName.replaceAll("[^A-Za-z0-9_]", "");
          if (displayName.isBlank() || displayName.length() > 32) {
             displayName = "Player";
          }
@@ -186,7 +192,7 @@ public final class EmoteRelay {
       @Override
       public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
          SOCKET.compareAndSet(webSocket, null);
-         nextConnectAtMs = System.currentTimeMillis() + 2_000L;
+         nextConnectAtMs = Math.max(nextConnectAtMs, System.currentTimeMillis() + 2_000L);
          EmoteManager.clearRemote();
          return null;
       }
