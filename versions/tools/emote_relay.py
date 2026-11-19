@@ -166,7 +166,12 @@ async def handler(ws: ServerConnection) -> None:
                 await reject(ws, "rate limit exceeded")
                 break
 
-            if kind == "start":
+            if kind == "sync":
+                active = [state for state in ROOM_ACTIVE.get(peer.room, {}).values() if state.get("player_id") != peer.player_id]
+                cosmetics = [state for state in ROOM_COSMETICS.get(peer.room, {}).values() if state.get("player_id") != peer.player_id]
+                await send_json(ws, {"type": "ready", "room": peer.room, "server_time_ms": int(time.time() * 1000), "active": active, "cosmetics": cosmetics})
+                continue
+            elif kind == "start":
                 emote_id = msg.get("emote")
                 try:
                     started_at = int(msg.get("started_at_ms"))

@@ -7,6 +7,7 @@ import dev.valence.cord.NeonLyrics;
 import dev.valence.cord.live.LiveNotifier;
 import dev.valence.cord.lyrics.SpotifyClient;
 import dev.valence.emote.EmoteManager;
+import dev.valence.emote.EmoteRelay;
 import dev.valence.emote.EmoteWheelScreen;
 import dev.valence.gui.ValenceScreen;
 import dev.valence.hud.RandomCoords;
@@ -61,6 +62,7 @@ public class ValenceClient implements ClientModInitializer {
       // sides of a connection reset it. The coordinate offset is drawn per world.
       ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
          EmoteManager.hardReset();
+         EmoteRelay.requestSync();
          RandomCoords.refresh();
       });
       ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> EmoteManager.hardReset());

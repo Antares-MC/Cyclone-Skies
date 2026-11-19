@@ -10,7 +10,6 @@ import net.minecraft.class_7833;
 @Environment(EnvType.CLIENT)
 public final class EmoteAnimator {
    private static final float RAD = (float) (Math.PI / 180.0);
-   private static final EmotePose POSE = new EmotePose();
 
    private EmoteAnimator() {
    }
@@ -18,9 +17,12 @@ public final class EmoteAnimator {
    public static EmotePose pose(EmoteState st) {
       Emotes.Emote e = Emotes.get(st.valence$emote());
       if (e != null && !(st.valence$weight() <= 0.001F)) {
-         POSE.reset();
-         e.anim().pose(st.valence$time(), POSE);
-         return POSE;
+         // Render submissions can be deferred until after other entities are extracted.
+         // A shared mutable pose lets a later player's animation overwrite this player's
+         // pose before those queued submissions execute.
+         EmotePose pose = new EmotePose();
+         e.anim().pose(st.valence$time(), pose);
+         return pose;
       } else {
          return null;
       }

@@ -59,7 +59,8 @@ VERSIONS = ['1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5',
 PAYMENTS = {'1.21.11'}
 
 HEAD = """\
-CycloneSkies {mod} for Minecraft {mc}, built from the same source tree as every other version \
+**Bug-fix patch:** fixes remote emote stop handling and refreshes emote/cosmetic state when joining \
+a Minecraft server, preventing remote emotes and capes from becoming stale until both clients rejoin.\n\nCycloneSkies {mod} for Minecraft {mc}, built from the same source tree as every other version \
 in this release.
 
 **What is in it**

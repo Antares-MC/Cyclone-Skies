@@ -33,6 +33,9 @@ VERSIONS = ['1.21', '1.21.1', '1.21.2', '1.21.3', '1.21.4', '1.21.5',
 PAYMENTS = {'1.21.11'}
 
 NOTES_SHARED = """\
+**Bug-fix patch:** fixes remote emote stop handling and refreshes emote/cosmetic state when joining
+Minecraft servers, preventing remote emotes and capes from becoming stale until both clients rejoin.
+
 CycloneSkies and the bundled paymentalerts mod in one Fabric jar.
 
 **What is in it**

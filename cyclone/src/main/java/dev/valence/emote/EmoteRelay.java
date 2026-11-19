@@ -91,6 +91,12 @@ public final class EmoteRelay {
       send(message);
    }
 
+   public static void requestSync() {
+      JsonObject message = new JsonObject();
+      message.addProperty("type", "sync");
+      send(message);
+   }
+
    public static void tickCosmetics() {
       class_310 client = class_310.method_1551();
       if (client.field_1724 == null || SOCKET.get() == null) {
@@ -124,6 +130,8 @@ public final class EmoteRelay {
          JsonObject message = JsonParser.parseString(text).getAsJsonObject();
          String type = message.has("type") ? message.get("type").getAsString() : "";
          if ("ready".equals(type)) {
+            EmoteManager.clearRemote();
+            Cosmetics.clearRemote();
             JsonArray active = message.has("active") ? message.getAsJsonArray("active") : new JsonArray();
             for (int i = 0; i < active.size(); i++) apply(active.get(i).getAsJsonObject());
             JsonArray cosmetics = message.has("cosmetics") ? message.getAsJsonArray("cosmetics") : new JsonArray();
@@ -165,7 +173,7 @@ public final class EmoteRelay {
       }
       String type = message.has("type") ? message.get("type").getAsString() : "";
       if ("stop".equals(type)) {
-         EmoteManager.remoteStop(id);
+         class_310.method_1551().execute(() -> EmoteManager.remoteStop(id));
          return;
       }
       String emoteId = message.has("emote") ? message.get("emote").getAsString() : "";

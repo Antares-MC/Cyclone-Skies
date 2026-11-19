@@ -35,7 +35,7 @@ public final class EmoteManager {
    private static long previewStart;
    private static final Map<UUID, RemoteEmote> REMOTE = new ConcurrentHashMap<>();
 
-   private record RemoteEmote(int id, long startedAtMillis) {
+   private record RemoteEmote(int id, long startedAtMillis, long stoppedAtMillis) {
    }
 
    private EmoteManager() {
@@ -199,7 +199,17 @@ public final class EmoteManager {
          if (remote != null) {
             float elapsed = Math.max(0f, (System.currentTimeMillis() - remote.startedAtMillis()) / 1000f);
             if (elapsed < 120f && Emotes.get(remote.id()) != null) {
-               state.valence$setEmoteOverride(remote.id(), elapsed, 1f);
+               float weight = 1.0F;
+               if (remote.stoppedAtMillis() > 0L) {
+                  float fade = 1.0F - Math.max(0L, System.currentTimeMillis() - remote.stoppedAtMillis()) / 320.0F;
+                  weight = Math.max(0.0F, Math.min(1.0F, fade));
+                  if (weight <= 0.001F) {
+                     REMOTE.remove(playerId, remote);
+                     state.valence$setEmote(-1, 0.0F, 0.0F);
+                     return;
+                  }
+               }
+               state.valence$setEmoteOverride(remote.id(), elapsed, weight);
                return;
             }
             REMOTE.remove(playerId, remote);
@@ -227,13 +237,13 @@ public final class EmoteManager {
       class_310 client = class_310.method_1551();
       if (playerId != null && Emotes.get(emoteId) != null
             && (client.field_1724 == null || !playerId.equals(client.field_1724.method_5667()))) {
-         REMOTE.put(playerId, new RemoteEmote(emoteId, startedAtMillis));
+         REMOTE.put(playerId, new RemoteEmote(emoteId, startedAtMillis, 0L));
       }
    }
 
    public static void remoteStop(UUID playerId) {
       if (playerId != null) {
-         REMOTE.remove(playerId);
+         REMOTE.computeIfPresent(playerId, (id, remote) -> new RemoteEmote(remote.id(), remote.startedAtMillis(), System.currentTimeMillis()));
       }
    }
 
