@@ -138,6 +138,19 @@ public final class SettingsScreen extends Screen {
         button(i2, i6 + ROW, (160 * 2) + 10, 20, "Payment stats (J) >", button2 -> {
             this.minecraft.setScreen(new StatsScreen(this));
         }, "Top payers and how much you made this session, per session and in total.");
+        int safetyY = i6 + (ROW * 2);
+        toggle(i2, safetyY, 160, "Confirm large /pay", paymentAlertsConfig.verifyLargePayments, enabled -> {
+            paymentAlertsConfig.verifyLargePayments = enabled;
+        }, "Ask before sending player-to-player /pay commands at or above the threshold.");
+        button(i3, safetyY, 160, 20, "Threshold: " + com.paymentalerts.payment.AmountFormat.compact(paymentAlertsConfig.largePaymentThreshold), button3 -> {
+            double[] thresholds = {100000.0d, 1000000.0d, 10000000.0d, 100000000.0d, 1000000000.0d};
+            int next = 0;
+            while (next < thresholds.length - 1 && thresholds[next] < paymentAlertsConfig.largePaymentThreshold) {
+                next++;
+            }
+            paymentAlertsConfig.largePaymentThreshold = thresholds[(next + 1) % thresholds.length];
+            switchTo(Page.GENERAL);
+        }, "Click to cycle the minimum payment requiring confirmation.");
     }
 
     private void toggle(int i, int i2, int i3, String str, boolean z, Consumer<Boolean> consumer, String str2) {

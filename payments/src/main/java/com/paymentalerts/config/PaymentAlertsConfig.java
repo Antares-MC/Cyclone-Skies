@@ -37,6 +37,10 @@ public final class PaymentAlertsConfig {
     /** Watch chat for the channel going live and play the stream alert. */
     public boolean streamChatDetect = true;
     public boolean useMojangApiForSkins = true;
+    /** Confirm player-to-player /pay commands at or above the configured threshold. */
+    public boolean verifyLargePayments = false;
+    /** Minimum amount that requires confirmation. */
+    public double largePaymentThreshold = 1000000.0d;
     public Map<String, TierSettings> tiers = new LinkedHashMap();
     private Boolean randomVariations;
     private Boolean tabEnabled;
@@ -133,6 +137,9 @@ public final class PaymentAlertsConfig {
         this.soundVolume = clamp(this.soundVolume, 0.0f, 1.0f);
         this.shakeStrength = clamp(this.shakeStrength, 0.0f, 2.0f);
         this.tabSeconds = clamp(this.tabSeconds, 1.0f, 60.0f);
+        if (!Double.isFinite(this.largePaymentThreshold) || this.largePaymentThreshold < 1.0d) {
+            this.largePaymentThreshold = 1000000.0d;
+        }
         if (this.streamChannel == null || this.streamChannel.isBlank()) {
             this.streamChannel = "Lumindev";
         }

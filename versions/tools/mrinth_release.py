@@ -145,6 +145,8 @@ def parse_args():
     parser.add_argument('--dry', action='store_true', help='show the upload plan without changing Modrinth')
     parser.add_argument('--versions', nargs='+', choices=VERSIONS, metavar='MC_VERSION',
                         help='Minecraft versions to process; default: all supported versions')
+    parser.add_argument('--replace', action='store_true',
+                        help='delete and re-upload matching existing versions with the local jars')
     parser.add_argument('--clean', action='store_true',
                         help='remove legacy bare 1.9.9 entries after upload (asks for confirmation)')
     parser.add_argument('--whoami', action='store_true',
@@ -269,16 +271,28 @@ def main():
                                     [f['filename'] for f in v['files']]))
 
     uploaded = []
+    by_number = {v['version_number']: v for v in current}
     for ver in selected:
         number = '%s+mc%s' % (MOD_VERSION, ver)
-        if number in numbers:
+        existing = by_number.get(number)
+        if existing and not args.replace:
             print('%-8s exists   %s' % (ver, number))
             continue
+        if existing and args.replace:
+            delete_response = requests.delete('%s/version/%s' % (API, existing['id']),
+                                              headers=headers(token), timeout=120)
+            if delete_response.status_code not in (200, 204):
+                print('%-8s FAILED to delete existing %s (HTTP %s): %s' %
+                      (ver, existing['id'], delete_response.status_code,
+                       delete_response.text[:300]))
+                continue
+            print('%-8s replaced old version %s' % (ver, existing['id']))
         path = artifacts[ver]
-        name = os.path.basename(path)
         data = publish(ver, path, args.dry, token)
         if data:
             uploaded.append(data)
+        elif existing and args.replace:
+            print('%-8s ERROR: old version was removed but upload failed; retry this version' % ver)
 
     if args.dry or not args.clean:
         return

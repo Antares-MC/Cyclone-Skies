@@ -2,10 +2,12 @@ package com.paymentalerts;
 
 import com.paymentalerts.alert.AlertManager;
 import com.paymentalerts.command.PayAlertsCommand;
+import com.paymentalerts.command.PaymentCommandGuard;
 import com.paymentalerts.config.PaymentAlertsConfig;
 import com.paymentalerts.screen.SettingsScreen;
 import com.paymentalerts.screen.StatsScreen;
 import com.paymentalerts.skin.SkinFetcher;
+import com.paymentalerts.payment.AmountFormat;
 import com.paymentalerts.stats.PaymentStats;
 import com.paymentalerts.stream.StreamWatch;
 import java.util.function.Function;
@@ -41,6 +43,7 @@ public final class PaymentAlertsClient implements ClientModInitializer {
     public void onInitializeClient() {
         PaymentAlertsConfig.load();
         PaymentStats.load();
+        PaymentCommandGuard.register();
         ClientReceiveMessageEvents.GAME.register((component, z) -> {
             if (!z) {
                 AlertManager.onChatLine(component);
@@ -88,6 +91,10 @@ public final class PaymentAlertsClient implements ClientModInitializer {
             PayAlertsCommand.register(commandDispatcher);
         });
         LOGGER.info("Donut SMP Payment Addon ready — originally by cobha, developed by cyclonelwk & Lumina");
+    }
+
+    public static String formatPaymentAmount(double amount) {
+        return AmountFormat.compact(amount);
     }
 
     public static void toggle(Minecraft minecraft) {

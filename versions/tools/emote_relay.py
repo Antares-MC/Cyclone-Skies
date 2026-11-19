@@ -28,7 +28,8 @@ from websockets.exceptions import ConnectionClosed
 LOG = logging.getLogger("cycloneskies.emote_relay")
 TOKEN = os.environ.get("CYCLONE_RELAY_TOKEN", "").strip()
 HOST = os.environ.get("CYCLONE_RELAY_HOST", "0.0.0.0")
-PORT = int(os.environ.get("CYCLONE_RELAY_PORT", "9469"))
+# Wispbyte and similar hosts usually inject PORT for the allocated public port.
+PORT = int(os.environ.get("CYCLONE_RELAY_PORT", os.environ.get("PORT", "9469")))
 TLS_CERT = os.environ.get("CYCLONE_RELAY_TLS_CERT", "").strip()
 TLS_KEY = os.environ.get("CYCLONE_RELAY_TLS_KEY", "").strip()
 MAX_MESSAGE_BYTES = 2048

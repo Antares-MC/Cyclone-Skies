@@ -11,26 +11,33 @@ import java.net.http.WebSocket;
 import java.time.Duration;
 import java.util.UUID;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import net.minecraft.class_310;
 
 /** Optional WebSocket relay connection for cross-client emote synchronization. */
 public final class EmoteRelay {
-   private static final URI DEFAULT_URI = URI.create("wss://78.154.103.29:9469");
+   // Wispbyte can host the relay without TLS; use ws:// unless a TLS proxy is configured.
+   private static final URI DEFAULT_URI = URI.create("ws://78.154.103.29:9469");
    private static final HttpClient HTTP = HttpClient.newBuilder()
          .connectTimeout(Duration.ofSeconds(8))
          .build();
    private static final AtomicReference<WebSocket> SOCKET = new AtomicReference<>();
    private static final StringBuilder FRAGMENTS = new StringBuilder();
+   private static final AtomicInteger FAILED_ATTEMPTS = new AtomicInteger();
    private static volatile boolean connecting;
+   private static volatile long nextConnectAtMs;
+   private static volatile long lastFailureWarningAtMs;
 
    private EmoteRelay() {
    }
 
    public static void connect() {
       ValenceConfig config = ValenceConfig.get();
+      class_310 client = class_310.method_1551();
+      long now = System.currentTimeMillis();
       if (!config.emoteRelayEnabled || config.emoteRelayToken == null || config.emoteRelayToken.isBlank()
-            || connecting || SOCKET.get() != null) {
+            || client.field_1724 == null || connecting || SOCKET.get() != null || now < nextConnectAtMs) {
          return;
       }
       connecting = true;
@@ -39,9 +46,30 @@ public final class EmoteRelay {
             .whenComplete((socket, error) -> {
                connecting = false;
                if (error != null) {
-                  ValenceClient.LOGGER.warn("Emote relay connection failed: {}", error.toString());
+                  scheduleRetry(error);
                }
             });
+   }
+
+   private static void scheduleRetry(Throwable error) {
+      int failures = FAILED_ATTEMPTS.updateAndGet(previous -> Math.min(previous + 1, 10));
+      long delayMs = Math.min(60_000L, 2_000L << Math.min(failures - 1, 5));
+      nextConnectAtMs = System.currentTimeMillis() + delayMs;
+      long now = System.currentTimeMillis();
+      if (now - lastFailureWarningAtMs >= 30_000L) {
+         lastFailureWarningAtMs = now;
+         ValenceClient.LOGGER.warn("Emote relay connection failed (retrying in {}s): {}", delayMs / 1000L, rootCause(error));
+      } else {
+         ValenceClient.LOGGER.debug("Emote relay connection failed; retrying in {}s: {}", delayMs / 1000L, rootCause(error));
+      }
+   }
+
+   private static String rootCause(Throwable error) {
+      Throwable cause = error;
+      while (cause.getCause() != null && cause.getCause() != cause) {
+         cause = cause.getCause();
+      }
+      return cause.toString();
    }
 
    public static void sendStart(int id) {
@@ -118,6 +146,8 @@ public final class EmoteRelay {
    private static final class Listener implements WebSocket.Listener {
       @Override
       public void onOpen(WebSocket webSocket) {
+         FAILED_ATTEMPTS.set(0);
+         nextConnectAtMs = 0L;
          SOCKET.set(webSocket);
          ValenceConfig config = ValenceConfig.get();
          class_310 client = class_310.method_1551();
@@ -152,6 +182,7 @@ public final class EmoteRelay {
       @Override
       public CompletionStage<?> onClose(WebSocket webSocket, int statusCode, String reason) {
          SOCKET.compareAndSet(webSocket, null);
+         nextConnectAtMs = System.currentTimeMillis() + 2_000L;
          EmoteManager.clearRemote();
          return null;
       }
@@ -159,7 +190,7 @@ public final class EmoteRelay {
       @Override
       public void onError(WebSocket webSocket, Throwable error) {
          SOCKET.compareAndSet(webSocket, null);
-         ValenceClient.LOGGER.debug("Emote relay socket error: {}", error.toString());
+         scheduleRetry(error);
       }
    }
 }
