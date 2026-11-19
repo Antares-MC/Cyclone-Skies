@@ -1,6 +1,9 @@
 package dev.valence.emote;
 
 import dev.valence.license.License;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -30,6 +33,10 @@ public final class EmoteManager {
    private static float lastHealth = -1.0F;
    private static int preview = -1;
    private static long previewStart;
+   private static final Map<UUID, RemoteEmote> REMOTE = new ConcurrentHashMap<>();
+
+   private record RemoteEmote(int id, long startedAtMillis) {
+   }
 
    private EmoteManager() {
    }
@@ -48,8 +55,10 @@ public final class EmoteManager {
     */
    public static void hardReset() {
       restoreCamera();
+      if (active >= 0 && stopNanos == 0L) EmoteRelay.sendStop();
       active = -1;
       stopNanos = 0L;
+      REMOTE.clear();
    }
 
    public static void start(int id) {
@@ -68,6 +77,7 @@ public final class EmoteManager {
 
          active = id;
          startNanos = System.nanoTime();
+         EmoteRelay.sendStart(id);
          stopNanos = 0L;
          camera = true;
          camYaw = p.getYRot() + 180.0F + 25.0F;
@@ -82,6 +92,7 @@ public final class EmoteManager {
    public static void stop() {
       if (active >= 0 && stopNanos == 0L) {
          stopNanos = System.nanoTime();
+         EmoteRelay.sendStop();
          restoreCamera();
       }
    }
@@ -94,6 +105,7 @@ public final class EmoteManager {
    }
 
    public static void tick(net.minecraft.client.Minecraft mc) {
+      EmoteRelay.connect();
       if (active >= 0) {
          // A screen takes the keyboard, so the player cannot walk out of the pose and the emote
          // would sit there holding the camera with nothing able to end it. Drop it instead.
@@ -177,6 +189,18 @@ public final class EmoteManager {
    }
 
    public static void fill(net.minecraft.world.entity.Entity entity, EmoteState state) {
+      if (entity != net.minecraft.client.Minecraft.getInstance().player) {
+         UUID playerId = entity.getUUID();
+         RemoteEmote remote = REMOTE.get(playerId);
+         if (remote != null) {
+            float elapsed = Math.max(0f, (System.currentTimeMillis() - remote.startedAtMillis()) / 1000f);
+            if (elapsed < 120f && Emotes.get(remote.id()) != null) {
+               state.valence$setEmoteOverride(remote.id(), elapsed, 1f);
+               return;
+            }
+            REMOTE.remove(playerId, remote);
+         }
+      }
       if (preview >= 0) {
          state.valence$setEmote(preview, (float)(System.nanoTime() - previewStart) / 1.0E9F, 1.0F);
       } else if (active >= 0 && entity == net.minecraft.client.Minecraft.getInstance().player) {
@@ -193,6 +217,21 @@ public final class EmoteManager {
 
    public static void endPreview() {
       preview = -1;
+   }
+
+   public static void remoteStart(UUID playerId, int emoteId, long startedAtMillis) {
+      if (playerId != null && Emotes.get(emoteId) != null
+            && !playerId.equals(net.minecraft.client.Minecraft.getInstance().player == null ? null : net.minecraft.client.Minecraft.getInstance().player.getUUID())) {
+         REMOTE.put(playerId, new RemoteEmote(emoteId, startedAtMillis));
+      }
+   }
+
+   public static void remoteStop(UUID playerId) {
+      if (playerId != null) REMOTE.remove(playerId);
+   }
+
+   public static void clearRemote() {
+      REMOTE.clear();
    }
 
    public static boolean cameraActive(net.minecraft.world.entity.Entity entity) {

@@ -46,9 +46,12 @@ def emit(ver):
     mod = module(ver)
     gen = os.path.join(ROOT, 'versions', 'gen', mod, 'java')
     overlay = os.path.join(ROOT, 'versions', mod, 'java')
-    subprocess.run([sys.executable, os.path.join(TOOLS, 'xlate.py'),
-                    '1.21.11', ver, '--emit', gen, '--overlay', overlay],
-                   cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
+    if ver.startswith('26.'):
+        cmd = [sys.executable, os.path.join(TOOLS, 'mojemit.py'), ver, '--out', gen]
+    else:
+        cmd = [sys.executable, os.path.join(TOOLS, 'xlate.py'),
+               '1.21.11', ver, '--emit', gen, '--overlay', overlay]
+    subprocess.run(cmd, cwd=ROOT, check=True, stdout=subprocess.DEVNULL)
 
 
 def sha256(path):
@@ -69,11 +72,19 @@ def main():
         emit(ver)
 
     tasks = [':%s:build' % module(v) for v in versions]
-    log = os.path.join(os.environ['TEMP'], 'opencode', 'buildall.log')
+    log = os.path.join(os.environ.get('TEMP', os.path.expanduser('~')), 'opencode', 'buildall.log')
+    os.makedirs(os.path.dirname(log), exist_ok=True)
     with open(log, 'w') as fh:
-        cmd = ['cmd', '/c', 'gradlew.bat -p versions --no-daemon -q'] + tasks
+        if os.name == 'nt':
+            cmd = ['cmd', '/c', 'call', os.path.join(ROOT, 'gradlew.bat'),
+                   '-p', 'versions', '--no-daemon', '-q'] + tasks
+        else:
+            cmd = ['./gradlew', '-p', 'versions', '--no-daemon', '-q'] + tasks
         code = subprocess.run(cmd, cwd=ROOT, stdout=fh, stderr=subprocess.STDOUT).returncode
     print('gradle exit', code)
+    if code != 0:
+        print('Gradle failed; see', log)
+        raise SystemExit(code)
 
     for ver in versions:
         mod = module(ver)

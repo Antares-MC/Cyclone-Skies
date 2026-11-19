@@ -21,6 +21,7 @@ import net.fabricmc.loader.api.FabricLoader;
 public class ValenceConfig {
    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
    private static final int VERSION = 6;
+   private static final String DEFAULT_EMOTE_RELAY_TOKEN = "Vi5y/Fc0NywCzk+uFwpfnRy80i79yDdwRSGDTjenY9ZgVRlKYbAJ5mjS2XpTPDj0";
    private static ValenceConfig instance = new ValenceConfig();
    private static int revision = 0;
    public int configVersion = 0;
@@ -84,6 +85,9 @@ public class ValenceConfig {
    public boolean perfCulling = true;
    public boolean perfBackgroundFps = true;
    public boolean randomCoords = false;
+   public boolean emoteRelayEnabled = true;
+   public String emoteRelayRoom = "public";
+   public String emoteRelayToken = DEFAULT_EMOTE_RELAY_TOKEN;
 
    public static ValenceConfig get() {
       return instance;
@@ -135,6 +139,12 @@ public class ValenceConfig {
          }
       }
 
+      if (instance.emoteRelayToken == null || instance.emoteRelayToken.isBlank()) {
+         instance.emoteRelayToken = DEFAULT_EMOTE_RELAY_TOKEN;
+      }
+      if (instance.emoteRelayRoom == null || instance.emoteRelayRoom.isBlank()) {
+         instance.emoteRelayRoom = "public";
+      }
       if (instance.styles == null) {
          instance.styles = new LinkedHashMap<>();
       }

@@ -38,7 +38,10 @@ dependencies {
 sourceSets {
     main {
         java {
-            setSrcDirs([genJava, overlayShared, overlayJava])
+            def overlay26_1 = new File(rootProject.projectDir, 'v26_1/java')
+            setSrcDirs([genJava, overlayShared,
+                        overlay26_1.exists() ? overlay26_1 : new File('v26_1-no-shared/java'),
+                        overlayJava])
         }
         resources {
             setSrcDirs([sharedRes])

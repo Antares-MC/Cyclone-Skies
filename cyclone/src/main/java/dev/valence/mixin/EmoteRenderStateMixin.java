@@ -38,4 +38,11 @@ public abstract class EmoteRenderStateMixin implements EmoteState {
       this.valence$time = time;
       this.valence$weight = weight;
    }
+
+   @Override
+   public void valence$setEmoteOverride(int id, float time, float weight) {
+      this.valence$emote = id;
+      this.valence$time = time;
+      this.valence$weight = weight;
+   }
 }

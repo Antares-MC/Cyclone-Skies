@@ -341,6 +341,8 @@ def main():
     # lives in one overlay shared by the whole line and each version dir only
     # carries what that release changed.
     overlays = [os.path.join(ROOT, 'versions', 'v26_shared', 'java'),
+                os.path.join(ROOT, 'versions', 'v26_2_shared', 'java'),
+                os.path.join(ROOT, 'versions', 'v26_1', 'java'),
                 os.path.join(ROOT, 'versions', 'v' + ver.replace('.', '_'), 'java')]
     for i, arg in enumerate(sys.argv):
         if arg == '--overlay':

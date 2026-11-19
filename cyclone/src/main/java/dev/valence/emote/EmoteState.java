@@ -12,4 +12,6 @@ public interface EmoteState {
    float valence$weight();
 
    void valence$setEmote(int var1, float var2, float var3);
+
+   void valence$setEmoteOverride(int id, float time, float weight);
 }
