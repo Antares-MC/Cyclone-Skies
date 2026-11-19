@@ -33,18 +33,24 @@ public abstract class CapeMixin {
    private void valence$cape(CallbackInfoReturnable<class_8685> cir) {
       class_742 self = (class_742)(Object)this;
       EmoteManager.fill(self, (EmoteState)(Object)self);
-      if (self != class_310.method_1551().field_1724) {
-         return;
-      }
-
+      class_310 mc = class_310.method_1551();
+      boolean local = self == mc.field_1724;
+      dev.valence.cosmetics.Cosmetics.Equipped equipped = local
+         ? dev.valence.cosmetics.Cosmetics.localEquipped()
+         : dev.valence.cosmetics.Cosmetics.remoteEquipped(self.method_5667());
       class_8685 skin = cir.getReturnValue();
-      if (dev.valence.cosmetics.Cosmetics.wings() != null) {
+      boolean hasWings = local
+         ? dev.valence.cosmetics.Cosmetics.wings() != null
+         : equipped != null && !equipped.wings().isEmpty();
+      if (hasWings) {
          cir.setReturnValue(new class_8685(skin.comp_1626(), skin.comp_1911(), (class_2960)null,
                                             skin.comp_1628(), skin.comp_1629(), skin.comp_1630()));
          return;
       }
 
-      Capes.Cape cape = Capes.active();
+      Capes.Cape cape = local
+         ? Capes.active()
+         : equipped == null ? null : Capes.byId(equipped.cape());
       if (cape != null) {
          cir.setReturnValue(new class_8685(skin.comp_1626(), skin.comp_1911(), cape.textureNow(),
                                             skin.comp_1628(), skin.comp_1629(), skin.comp_1630()));

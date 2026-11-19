@@ -19,6 +19,7 @@ import net.minecraft.class_4588;
 import net.minecraft.class_4597;
 import net.minecraft.class_4608;
 import net.minecraft.class_746;
+import net.minecraft.class_742;
 import net.minecraft.class_765;
 import org.joml.Matrix4f;
 
@@ -54,21 +55,6 @@ public final class CosmeticRender {
          return;
       }
 
-      Hats.Hat hat = Cosmetics.hat();
-      Wings.Wing wing = Cosmetics.wings();
-      if (hat == null && wing == null) {
-         return;
-      }
-
-      class_746 pl = mc.field_1724;
-      if (pl.method_5767() || pl.method_6113() || pl.method_5681() || pl.method_6128()) {
-         return;
-      }
-
-      if (mc.field_1690.method_31044().method_31034()) {
-         return;
-      }
-
       if (!Accessories.whiteTex()) {
          return;
       }
@@ -78,32 +64,34 @@ public final class CosmeticRender {
          class_4597 buffers = ctx.consumers();
          class_243 cam = ctx.camera();
          float pt = mc.method_61966().method_60637(false);
-         class_243 pos = pl.method_30950(pt);
-         float yaw = class_3532.method_17821(pt, pl.field_6241, pl.field_6259);
-         float pitch = pl.method_5695(pt);
-         int light = light(mc, pos);
          float time = (float)(System.nanoTime() / 1.0E9);
          class_4588 vc = Buffers.get(buffers, Layers.cutout(Accessories.WHITE));
-         CosmeticRender.Emitter e = new CosmeticRender.Emitter(
-            base,
-            buffers,
-            vc,
-            light,
-            time,
-            (float)(pos.field_1352 - cam.field_1352),
-            (float)(pos.field_1351 - cam.field_1351),
-            (float)(pos.field_1350 - cam.field_1350),
-            (float)Math.cos(-Math.toRadians(yaw)),
-            (float)Math.sin(-Math.toRadians(yaw)),
-            (float)Math.cos(Math.toRadians(pitch)),
-            (float)Math.sin(Math.toRadians(pitch))
-         );
-         if (hat != null) {
-            Hats.emit(Hats.ALL.indexOf(hat), time, e.pivot(Hats.ANCHOR_Y));
-         }
-
-         if (wing != null) {
-            Wings.emit(wing, time, e.pivot(Wings.ANCHOR_Y));
+         for (class_742 pl : mc.field_1687.method_18456()) {
+            boolean local = pl == mc.field_1724;
+            if (pl.method_5767() || pl.method_6113() || pl.method_5681() || pl.method_6128()) continue;
+            if (local && mc.field_1690.method_31044().method_31034()) continue;
+            Cosmetics.Equipped remote = local ? Cosmetics.localEquipped() : Cosmetics.remoteEquipped(pl.method_5667());
+            String hatId = remote == null ? "" : remote.hat();
+            String wingId = remote == null ? "" : remote.wings();
+            Hats.Hat hat = Hats.byId(hatId);
+            Wings.Wing wing = Wings.byId(wingId);
+            if (hat == null && wing == null) continue;
+            class_243 pos = pl.method_30950(pt);
+            float yaw = class_3532.method_17821(pt, pl.field_6241, pl.field_6259);
+            float pitch = pl.method_5695(pt);
+            int light = light(mc, pos);
+            CosmeticRender.Emitter e = new CosmeticRender.Emitter(
+               base, buffers, vc, light, time,
+               (float)(pos.field_1352 - cam.field_1352),
+               (float)(pos.field_1351 - cam.field_1351),
+               (float)(pos.field_1350 - cam.field_1350),
+               (float)Math.cos(-Math.toRadians(yaw)),
+               (float)Math.sin(-Math.toRadians(yaw)),
+               (float)Math.cos(Math.toRadians(pitch)),
+               (float)Math.sin(Math.toRadians(pitch))
+            );
+            if (hat != null) Hats.emit(Hats.ALL.indexOf(hat), time, e.pivot(Hats.ANCHOR_Y));
+            if (wing != null) Wings.emit(wing, time, e.pivot(Wings.ANCHOR_Y));
          }
       } catch (Throwable var18) {
       }

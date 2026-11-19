@@ -35,7 +35,7 @@ TLS_KEY = os.environ.get("CYCLONE_RELAY_TLS_KEY", "").strip()
 MAX_MESSAGE_BYTES = 2048
 MAX_CLIENTS = int(os.environ.get("CYCLONE_RELAY_MAX_CLIENTS", "256"))
 ROOM_RE = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
-EMOTE_RE = re.compile(r"^[a-z0-9_-]{1,32}$")
+COSMETIC_RE = re.compile(r"^[a-z0-9_-]{1,48}$")
 RATE_LIMIT = 12
 RATE_WINDOW = 10.0
 
@@ -44,6 +44,32 @@ VALID_EMOTES = {
     "67", "cringe", "football", "redcard", "cozy", "kebab", "fivehead",
     "winner", "swagger", "caught4k", "bighead", "hanging", "pancake",
     "wheelie", "backflip", "headspin", "zen", "robot", "tpose",
+}
+# Keep synchronized with Hats.ALL, Wings.ALL and Capes.ALL. Only built-in asset IDs are allowed;
+# custom cape images are intentionally never sent through this relay.
+VALID_HATS = {
+    "storm_crown", "volt_halo", "neon_visor", "mech_helm", "top_hat", "cap", "beanie",
+    "visor", "headphones", "party_hat", "cone", "crown", "flame_crown", "halo", "viking",
+    "witch_hat", "unicorn", "devil_horns", "cat_ears", "bunny_ears", "antennae", "flower_crown",
+    "mushroom", "octopus", "rubber_duck", "disco_ball", "note_ring", "saturn", "storm_cloud", "pumpkin",
+    "fairyset_helm", "emissary_helm", "necros_helm", "twilight_crown", "soulreaper_helm_green",
+    "soulreaper_helm_purple", "soulreaper_helm_red",
+}
+VALID_WINGS = {
+    "angel_white", "seraph_gold", "frost", "phoenix", "raven", "dragon_crimson", "dragon_void",
+    "night_bat", "fairy", "moon_moth", "cyber_edge", "mech_frame", "storm", "emissary_wings",
+    "necros_wings", "twilight_wings", "soulreaper_wings_green", "soulreaper_wings_purple",
+    "soulreaper_wings_red",
+}
+VALID_CAPES = {
+    "crown_black", "crown_white", "crown_cardboard", "error_white", "error_black", "pixel_heart",
+    "love_note", "full_house", "ace_spades", "job_application", "glitch_kanji", "lantern_night",
+    "lucky_cat", "golden_pattern", "red_sun", "sun_boat", "sakura_temple", "great_wave", "fire_ring",
+    "samurai_moon", "dragon_kanji", "neon_koi", "neon_lucky_cat", "tarot_moon", "tarot_sun", "tarot_star",
+    "tarot_seer", "tarot_emperor", "tarot_wheel", "angel_black", "angel_white", "neon_butterfly",
+    "neon_butterfly_blue", "neon_heart", "neon_bolt", "pixel_space", "pixel_lava", "onebit_skull",
+    "battle_skull", "lightning_white", "lightning_purple", "lightning_green", "lightning_red", "synthwave",
+    "matrix", "aurora", "galaxy", "rainbow", "pixel_heart_red",
 }
 
 @dataclass(eq=False)
@@ -56,6 +82,7 @@ class Peer:
 
 ROOMS: dict[str, set[Peer]] = defaultdict(set)
 ROOM_ACTIVE: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
+ROOM_COSMETICS: dict[str, dict[str, dict[str, Any]]] = defaultdict(dict)
 CLIENTS: set[ServerConnection] = set()
 
 async def send_json(ws: ServerConnection, payload: dict[str, Any]) -> None:
@@ -127,7 +154,8 @@ async def handler(ws: ServerConnection) -> None:
                 ROOMS[room].add(peer)
                 # Share currently active emotes with a late joiner.
                 active = [state for state in ROOM_ACTIVE.get(room, {}).values()]
-                await send_json(ws, {"type": "ready", "room": room, "server_time_ms": int(time.time() * 1000), "active": active})
+                cosmetics = [state for state in ROOM_COSMETICS.get(room, {}).values()]
+                await send_json(ws, {"type": "ready", "room": room, "server_time_ms": int(time.time() * 1000), "active": active, "cosmetics": cosmetics})
                 LOG.info("join room=%s player=%s", room, player_id)
                 continue
 
@@ -158,6 +186,25 @@ async def handler(ws: ServerConnection) -> None:
                 }
             elif kind == "stop":
                 event = {"type": "stop", "player_id": peer.player_id}
+            elif kind == "cosmetics":
+                fields = (("hat", VALID_HATS), ("wings", VALID_WINGS), ("cape", VALID_CAPES))
+                equipped: dict[str, str] = {}
+                for field_name, allowed in fields:
+                    value = msg.get(field_name, "")
+                    if not isinstance(value, str) or (value and (not COSMETIC_RE.fullmatch(value) or value not in allowed)):
+                        await reject(ws, f"invalid {field_name}")
+                        break
+                    equipped[field_name] = value
+                else:
+                    event = {"type": "cosmetics", "player_id": peer.player_id, **equipped}
+                    peer.sent_events.append(now)
+                    if any(equipped.values()):
+                        ROOM_COSMETICS.setdefault(peer.room, {})[peer.player_id] = event
+                    else:
+                        ROOM_COSMETICS.get(peer.room, {}).pop(peer.player_id, None)
+                    await broadcast(peer.room, event, exclude=ws)
+                    continue
+                break
             else:
                 await reject(ws, "unsupported event")
                 break
@@ -183,7 +230,11 @@ async def handler(ws: ServerConnection) -> None:
             ROOM_ACTIVE.get(peer.room, {}).pop(peer.player_id, None)
             if not ROOM_ACTIVE.get(peer.room):
                 ROOM_ACTIVE.pop(peer.room, None)
+            ROOM_COSMETICS.get(peer.room, {}).pop(peer.player_id, None)
+            if not ROOM_COSMETICS.get(peer.room):
+                ROOM_COSMETICS.pop(peer.room, None)
             await broadcast(peer.room, {"type": "stop", "player_id": peer.player_id}, exclude=ws)
+            await broadcast(peer.room, {"type": "cosmetics", "player_id": peer.player_id, "hat": "", "wings": "", "cape": ""}, exclude=ws)
             LOG.info("leave room=%s player=%s", peer.room, peer.player_id)
 
 async def main() -> None:

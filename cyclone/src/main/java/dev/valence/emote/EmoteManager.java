@@ -61,6 +61,7 @@ public final class EmoteManager {
       active = -1;
       stopNanos = 0L;
       REMOTE.clear();
+      dev.valence.cosmetics.Cosmetics.clearRemote();
    }
 
    public static void start(int id) {
@@ -108,6 +109,7 @@ public final class EmoteManager {
 
    public static void tick(class_310 mc) {
       EmoteRelay.connect();
+      EmoteRelay.tickCosmetics();
       if (active >= 0) {
          // A screen takes the keyboard, so the player cannot walk out of the pose and the emote
          // would sit there holding the camera with nothing able to end it. Drop it instead.

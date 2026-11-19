@@ -19,6 +19,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import dev.valence.compat.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.util.LightCoordsUtil;
 import org.joml.Matrix4f;
 
@@ -54,21 +55,6 @@ public final class CosmeticRender {
          return;
       }
 
-      Hats.Hat hat = Cosmetics.hat();
-      Wings.Wing wing = Cosmetics.wings();
-      if (hat == null && wing == null) {
-         return;
-      }
-
-      net.minecraft.client.player.LocalPlayer pl = mc.player;
-      if (pl.isInvisible() || pl.isSleeping() || pl.isSwimming() || pl.isFallFlying()) {
-         return;
-      }
-
-      if (mc.options.getCameraType().isFirstPerson()) {
-         return;
-      }
-
       if (!Accessories.whiteTex()) {
          return;
       }
@@ -78,32 +64,31 @@ public final class CosmeticRender {
          dev.valence.compat.MultiBufferSource buffers = ctx.consumers();
          net.minecraft.world.phys.Vec3 cam = ctx.camera();
          float pt = mc.getDeltaTracker().getGameTimeDeltaPartialTick(false);
-         net.minecraft.world.phys.Vec3 pos = pl.getPosition(pt);
-         float yaw = net.minecraft.util.Mth.rotLerp(pt, pl.yHeadRot, pl.yHeadRotO);
-         float pitch = pl.getViewXRot(pt);
-         int light = light(mc, pos);
          float time = (float)(System.nanoTime() / 1.0E9);
          com.mojang.blaze3d.vertex.VertexConsumer vc = Buffers.get(buffers, Layers.cutout(Accessories.WHITE));
-         CosmeticRender.Emitter e = new CosmeticRender.Emitter(
-            base,
-            buffers,
-            vc,
-            light,
-            time,
-            (float)(pos.x - cam.x),
-            (float)(pos.y - cam.y),
-            (float)(pos.z - cam.z),
-            (float)Math.cos(-Math.toRadians(yaw)),
-            (float)Math.sin(-Math.toRadians(yaw)),
-            (float)Math.cos(Math.toRadians(pitch)),
-            (float)Math.sin(Math.toRadians(pitch))
-         );
-         if (hat != null) {
-            Hats.emit(Hats.ALL.indexOf(hat), time, e.pivot(Hats.ANCHOR_Y));
-         }
-
-         if (wing != null) {
-            Wings.emit(wing, time, e.pivot(Wings.ANCHOR_Y));
+         for (Player pl : mc.level.players()) {
+            boolean local = pl == mc.player;
+            if (pl.isInvisible() || pl.isSleeping() || pl.isSwimming() || pl.isFallFlying()) continue;
+            if (local && mc.options.getCameraType().isFirstPerson()) continue;
+            Cosmetics.Equipped equipped = local ? Cosmetics.localEquipped() : Cosmetics.remoteEquipped(pl.getUUID());
+            if (equipped == null) continue;
+            Hats.Hat hat = Hats.byId(equipped.hat());
+            Wings.Wing wing = Wings.byId(equipped.wings());
+            if (hat == null && wing == null) continue;
+            net.minecraft.world.phys.Vec3 pos = pl.getPosition(pt);
+            float yaw = net.minecraft.util.Mth.rotLerp(pt, pl.yHeadRot, pl.yHeadRotO);
+            float pitch = pl.getViewXRot(pt);
+            int light = light(mc, pos);
+            CosmeticRender.Emitter e = new CosmeticRender.Emitter(
+               base, buffers, vc, light, time,
+               (float)(pos.x - cam.x), (float)(pos.y - cam.y), (float)(pos.z - cam.z),
+               (float)Math.cos(-Math.toRadians(yaw)),
+               (float)Math.sin(-Math.toRadians(yaw)),
+               (float)Math.cos(Math.toRadians(pitch)),
+               (float)Math.sin(Math.toRadians(pitch))
+            );
+            if (hat != null) Hats.emit(Hats.ALL.indexOf(hat), time, e.pivot(Hats.ANCHOR_Y));
+            if (wing != null) Wings.emit(wing, time, e.pivot(Wings.ANCHOR_Y));
          }
       } catch (Throwable var18) {
       }

@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import dev.valence.ValenceClient;
 import dev.valence.config.ValenceConfig;
+import dev.valence.cosmetics.Cosmetics;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.WebSocket;
@@ -28,6 +29,7 @@ public final class EmoteRelay {
    private static volatile boolean connecting;
    private static volatile long nextConnectAtMs;
    private static volatile long lastFailureWarningAtMs;
+   private static volatile String lastEquipped = "";
 
    private EmoteRelay() {
    }
@@ -89,6 +91,24 @@ public final class EmoteRelay {
       send(message);
    }
 
+   public static void tickCosmetics() {
+      class_310 client = class_310.method_1551();
+      if (client.field_1724 == null || SOCKET.get() == null) {
+         lastEquipped = "";
+         return;
+      }
+      Cosmetics.Equipped equipped = Cosmetics.localEquipped();
+      String key = equipped.hat() + "|" + equipped.wings() + "|" + equipped.cape();
+      if (key.equals(lastEquipped)) return;
+      lastEquipped = key;
+      JsonObject message = new JsonObject();
+      message.addProperty("type", "cosmetics");
+      message.addProperty("hat", equipped.hat());
+      message.addProperty("wings", equipped.wings());
+      message.addProperty("cape", equipped.cape());
+      send(message);
+   }
+
    private static void send(JsonObject event) {
       WebSocket socket = SOCKET.get();
       if (socket != null && !socket.isOutputClosed()) {
@@ -106,14 +126,32 @@ public final class EmoteRelay {
          if ("ready".equals(type)) {
             JsonArray active = message.has("active") ? message.getAsJsonArray("active") : new JsonArray();
             for (int i = 0; i < active.size(); i++) apply(active.get(i).getAsJsonObject());
+            JsonArray cosmetics = message.has("cosmetics") ? message.getAsJsonArray("cosmetics") : new JsonArray();
+            for (int i = 0; i < cosmetics.size(); i++) applyCosmetics(cosmetics.get(i).getAsJsonObject());
          } else if ("start".equals(type) || "stop".equals(type)) {
             apply(message);
+         } else if ("cosmetics".equals(type)) {
+            applyCosmetics(message);
          } else if ("error".equals(type)) {
             String reason = message.has("reason") ? message.get("reason").getAsString() : "unknown rejection";
             scheduleRetry(new IllegalStateException("relay rejected join: " + reason));
          }
       } catch (RuntimeException error) {
          ValenceClient.LOGGER.debug("Ignoring invalid emote relay event: {}", error.toString());
+      }
+   }
+
+   private static void applyCosmetics(JsonObject message) {
+      if (!message.has("player_id")) return;
+      try {
+         UUID id = UUID.fromString(message.get("player_id").getAsString());
+         class_310 client = class_310.method_1551();
+         if (client.field_1724 != null && id.equals(client.field_1724.method_5667())) return;
+         String hat = message.has("hat") ? message.get("hat").getAsString() : "";
+         String wings = message.has("wings") ? message.get("wings").getAsString() : "";
+         String cape = message.has("cape") ? message.get("cape").getAsString() : "";
+         client.execute(() -> Cosmetics.remoteEquipped(id, hat, wings, cape));
+      } catch (RuntimeException ignored) {
       }
    }
 
@@ -194,6 +232,8 @@ public final class EmoteRelay {
          SOCKET.compareAndSet(webSocket, null);
          nextConnectAtMs = Math.max(nextConnectAtMs, System.currentTimeMillis() + 2_000L);
          EmoteManager.clearRemote();
+         Cosmetics.clearRemote();
+         lastEquipped = "";
          return null;
       }
 

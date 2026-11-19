@@ -30,29 +30,38 @@ public abstract class CapeMixin {
 
    @Inject(method = "method_62604(Lnet/minecraft/class_11890;Lnet/minecraft/class_10055;F)V", at = @At("TAIL"))
    private void valence$cape(class_11890 entity, class_10055 state, float partialTick, CallbackInfo ci) {
-      if (entity == class_310.method_1551().field_1724) {
-         if (dev.valence.cosmetics.Cosmetics.wings() != null) {
-            state.field_53532 = false;
-            return;
-         }
-
-         Capes.Cape cape = Capes.active();
-         if (cape != null) {
-            class_2960 tex = cape.textureNow();
-            class_8685 s = state.field_53520;
-            state.field_53520 = new class_8685(s.comp_1626(), new class_10726(tex, tex), s.comp_1628(), s.comp_1629(), s.comp_1630());
-            state.field_53532 = true;
-            long now = System.nanoTime();
-            float dt = lastNanos == 0L ? 0.016F : Math.min(0.1F, (float)(now - lastNanos) / 1.0E9F);
-            lastNanos = now;
-            float k = 1.0F - (float)Math.exp(-dt * 9.0F);
-            lean2 = lean2 + (state.field_53538 * 0.3F - lean2) * k;
-            lean = lean + (state.field_53537 - lean) * k;
-            flap = flap + (state.field_53536 - flap) * k;
-            state.field_53538 = lean2;
-            state.field_53537 = lean;
-            state.field_53536 = flap;
-         }
+      class_310 mc = class_310.method_1551();
+      boolean local = entity == mc.field_1724;
+      dev.valence.cosmetics.Cosmetics.Equipped equipped = local
+         ? dev.valence.cosmetics.Cosmetics.localEquipped()
+         : dev.valence.cosmetics.Cosmetics.remoteEquipped(entity.method_5667());
+      boolean hasWings = local
+         ? dev.valence.cosmetics.Cosmetics.wings() != null
+         : equipped != null && !equipped.wings().isEmpty();
+      if (hasWings) {
+         state.field_53532 = false;
+         return;
       }
+
+      Capes.Cape cape = local
+         ? Capes.active()
+         : equipped == null ? null : Capes.byId(equipped.cape());
+      if (cape == null) return;
+
+      class_2960 tex = cape.textureNow();
+      class_8685 s = state.field_53520;
+      state.field_53520 = new class_8685(s.comp_1626(), new class_10726(tex, tex), s.comp_1628(), s.comp_1629(), s.comp_1630());
+      state.field_53532 = true;
+      if (!local) return;
+      long now = System.nanoTime();
+      float dt = lastNanos == 0L ? 0.016F : Math.min(0.1F, (float)(now - lastNanos) / 1.0E9F);
+      lastNanos = now;
+      float k = 1.0F - (float)Math.exp(-dt * 9.0F);
+      lean2 = lean2 + (state.field_53538 * 0.3F - lean2) * k;
+      lean = lean + (state.field_53537 - lean) * k;
+      flap = flap + (state.field_53536 - flap) * k;
+      state.field_53538 = lean2;
+      state.field_53537 = lean;
+      state.field_53536 = flap;
    }
 }
