@@ -161,7 +161,11 @@ public final class EmoteRelay {
          join.addProperty("token", config.emoteRelayToken);
          join.addProperty("room", config.emoteRelayRoom == null || config.emoteRelayRoom.isBlank() ? "public" : config.emoteRelayRoom);
          join.addProperty("player_id", client.field_1724.method_5667().toString());
-         join.addProperty("name", client.field_1724.method_5667().toString());
+         String displayName = client.field_1724.method_5477().getString();
+         if (displayName.isBlank() || displayName.length() > 32) {
+            displayName = "Player";
+         }
+         join.addProperty("name", displayName);
          webSocket.sendText(join.toString(), true);
          webSocket.request(1);
       }
